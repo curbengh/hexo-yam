@@ -33,9 +33,7 @@ var assign = require('object-assign');
             output: {},
             compress: {},
             exclude: ['*.min.js']
-        }, hexo.config.neat_js, {
-                fromString: true
-            });
+        }, hexo.config.neat_js);
 
 
         var filter = require('./lib/filter');

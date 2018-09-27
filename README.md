@@ -34,7 +34,7 @@ neat_html:
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Print log switch. Defaults to `true`.
 - **exclude**: Exclude files
-**Note:** there are so many params please see '[HTMLMinifier](https://github.com/kangax/html-minifier)'
+**Note:** For more options, see '[HTMLMinifier](https://github.com/kangax/html-minifier)'
 
 ----------
 
@@ -65,6 +65,7 @@ neat_js:
 - **output**: Output options
 - **compress**: Compress options
 - **exclude**: Exclude files
+**Note:** For more options, see '[UglifyJS](https://github.com/mishoo/UglifyJS2)'
 
 
 ## Credits
