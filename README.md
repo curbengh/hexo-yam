@@ -1,5 +1,10 @@
 # Hexo-yam
 
+[![npm version](https://badge.fury.io/js/hexo-yam.svg)](https://www.npmjs.com/package/hexo-yam)
+[![Build Status](https://travis-ci.org/weyusi/hexo-yam.svg?branch=master)](https://travis-ci.org/weyusi/hexo-yam)
+[![NPM Dependencies](https://david-dm.org/weyusi/hexo-yam.svg)](https://david-dm.org/weyusi/hexo-yam)
+[![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
+
 > This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
 
 Yet Another Minifier for Hexo.
