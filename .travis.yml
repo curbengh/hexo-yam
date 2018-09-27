@@ -11,7 +11,3 @@ script:
   - npm install # install node modules
   - snyk auth $SNYK_TOKEN
   - snyk test # Check node modules for vulnerability
-
-branches:
-  only:
-    - master # this job will affect only the 'master' branch
