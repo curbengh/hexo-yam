@@ -1,7 +1,9 @@
 # Hexo-yam
 
 > This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
+
 Yet Another Minifier for Hexo.
+
 The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. Its outdated dependencies suffer from minor [vulnerability](https://snyk.io/test/npm/hexo-neat).
 
 All the options are the same, so you can use this as a drop-in replacement.
