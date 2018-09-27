@@ -1,7 +1,7 @@
 # Hexo-yam
 
 [![npm version](https://badge.fury.io/js/hexo-yam.svg)](https://www.npmjs.com/package/hexo-yam)
-[![Build Status](https://travis-ci.org/weyusi/hexo-yam.svg?branch=master)](https://travis-ci.org/weyusi/hexo-yam)
+[![Build Status](https://travis-ci.com/weyusi/hexo-yam.svg?branch=master)](https://travis-ci.com/weyusi/hexo-yam)
 [![NPM Dependencies](https://david-dm.org/weyusi/hexo-yam.svg)](https://david-dm.org/weyusi/hexo-yam)
 [![Greenkeeper badge](https://badges.greenkeeper.io/weyusi/hexo-yam.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
