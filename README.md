@@ -1,25 +1,24 @@
-# status
-[![npm version](https://badge.fury.io/js/hexo-neat.svg)](https://badge.fury.io/js/hexo-neat)
+# Hexo-yam
 
-# Hexo-neat
+> This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
+Yet Another Minifier for Hexo.
+The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. Its outdated dependencies suffer from minor [vulnerability](https://snyk.io/test/npm/hexo-neat).
 
-I want a profect page to show for my blog, so I made this.
-
-## Show
-[青枫浦](http://post.zz173.com)
+All the options are the same, so you can use this as a drop-in replacement.
 
 ## Installation
 ``` bash
-$ npm install hexo-neat --save
+$ npm install hexo-yam --save
 ```
 
-
-## Options
-To Enable Auto neat , you must config like this:
+## Usage
+To enable this plugin, insert the following to `_config.yml`:
 ``` yaml
 neat_enable: true
 ```
+For further customization, see below.
 
+## Options
 ``` yaml
 neat_html:
   enable: true
@@ -29,6 +28,7 @@ neat_html:
 - **logger** - Print log switch. Defaults to `true`.
 - **exclude**: Exclude files
 **Note:** there are so many params please see '[HTMLMinifier](https://github.com/kangax/html-minifier)'
+
 ----------
 
 ``` yaml
@@ -60,8 +60,9 @@ neat_js:
 - **exclude**: Exclude files
 
 
-## Thanks
-Say Very Thanks for this gays:
+## Credits
+All credits go to the following work:
+- [hexo-neat](https://github.com/rozbo/hexo-neat) by rozbo
 - neat html by [HTMLMinifier](https://github.com/kangax/html-minifier)
 - neat css  by [clean-css](https://github.com/jakubpawlowicz/clean-css)
 - neat js   by  [UglifyJS](http://lisperator.net/uglifyjs/)
