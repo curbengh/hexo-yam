@@ -45,6 +45,6 @@ var assign = require('object-assign');
         hexo.extend.filter.register('after_render:html', filter.logic_html);
         hexo.extend.filter.register('after_render:css', filter.logic_css);
         hexo.extend.filter.register('after_render:js', filter.logic_js);
-        hexo.extend.filter.register('before_exit', filter.logic_gzip);
+        hexo.extend.filter.register('after_generate', filter.logic_gzip);
     }
 //}
