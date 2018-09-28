@@ -35,10 +35,16 @@ var assign = require('object-assign');
             exclude: ['*.min.js']
         }, hexo.config.neat_js);
 
+        // html, css, js compression
+        hexo.config.gzip = assign({
+            enable: true,
+            logger: true,
+        }, hexo.config.gzip);
 
         var filter = require('./lib/filter');
         hexo.extend.filter.register('after_render:html', filter.logic_html);
         hexo.extend.filter.register('after_render:css', filter.logic_css);
         hexo.extend.filter.register('after_render:js', filter.logic_js);
+        hexo.extend.filter.register('before_exit', filter.logic_gzip);
     }
 //}

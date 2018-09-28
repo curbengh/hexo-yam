@@ -8,7 +8,7 @@
 
 > This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
 
-Yet Another Minifier for Hexo.
+Yet Another Minifier for Hexo. Minify and compress (gzip) html, js and css.
 
 The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. Its outdated dependencies suffer from minor [vulnerability](https://snyk.io/test/npm/hexo-neat).
 
@@ -68,6 +68,13 @@ neat_js:
 - **exclude**: Exclude files
 **Note:** For more options, see '[UglifyJS](https://github.com/mishoo/UglifyJS2)'
 
+----------
+
+``` yaml
+gzip:
+  enable: true
+```
+- **enable** - Enable the plugin. Defaults to `true`.
 
 ## Credits
 All credits go to the following work:
@@ -75,3 +82,4 @@ All credits go to the following work:
 - neat html by [HTMLMinifier](https://github.com/kangax/html-minifier)
 - neat css  by [clean-css](https://github.com/jakubpawlowicz/clean-css)
 - neat js   by  [UglifyJS](http://lisperator.net/uglifyjs/)
+- gzip inspired by [hexo-generator-optimize](https://github.com/JackyRen/hexo-generator-optimize)
