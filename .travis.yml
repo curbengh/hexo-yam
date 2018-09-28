@@ -7,7 +7,7 @@ cache:
     - "node_modules" # cache the modules for faster build
 
 script:
-  - npm install -g snyk hexo-cli
+  - npm install -g snyk
   - npm install # install node modules
   - snyk auth $SNYK_TOKEN
   - snyk test # Check node modules for vulnerability
