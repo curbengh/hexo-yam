@@ -71,10 +71,11 @@ neat_js:
 ----------
 
 ``` yaml
-gzip:
+neat_gzip:
   enable: true
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **logger** - Print log switch. Defaults to `true`.
 
 ## Credits
 All credits go to the following work:
