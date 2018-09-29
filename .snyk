@@ -1,0 +1,9 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:braces:20180219':
+    - hexo-fs > chokidar > anymatch > micromatch > braces:
+        reason: Patch/update unavailable
+        expires: '2018-12-31T00:00:00.000Z'
+patch: {}
