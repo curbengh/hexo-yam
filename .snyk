@@ -6,4 +6,11 @@ ignore:
     - hexo-fs > chokidar > anymatch > micromatch > braces:
         reason: Patch/update unavailable
         expires: '2018-12-31T00:00:00.000Z'
+  'npm:chownr:20180731':
+    - hexo-fs > chokidar > fsevents > node-pre-gyp > tar > chownr:
+        reason: Patch/update unavailable
+        expires: '2018-12-31T00:00:00.000Z'
+    - iltorb > prebuild-install > tar-fs > chownr:
+        reason: Patch/update unavailable
+        expires: '2018-12-31T00:00:00.000Z'
 patch: {}
