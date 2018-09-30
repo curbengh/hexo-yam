@@ -1,7 +1,7 @@
 {
   "name": "hexo-yam",
   "description": "Yet Another Minifier. Minify and compress html, js and css",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "readme": "README.md",
   "main": "index.js",
   "directories": {
@@ -20,12 +20,13 @@
   "dependencies": {
     "bluebird": "^3.5.2",
     "clean-css": "^4.2.1",
+    "hexo-fs": "^0.2.3",
     "html-minifier": "^3.5.20",
+    "iltorb": "^2.4.0",
     "minimatch": "^3.0.4",
     "object-assign": "^4.1.1",
     "stream-to-array": "^2.3.0",
-    "uglify-js": "^3.4.9",
-    "hexo-fs": "^0.2.3"
+    "uglify-js": "^3.4.9"
   },
   "keywords": [
     "html",
@@ -34,6 +35,7 @@
     "minify",
     "compress",
     "gzip",
+    "brotli",
     "hexo-yam",
     "hexo"
   ]

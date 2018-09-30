@@ -8,9 +8,9 @@
 
 > This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
 
-Yet Another Minifier for Hexo. Minify and compress (gzip) html, js and css.
+Yet Another Minifier for Hexo. Minify and compress html, js and css. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
-The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. Its outdated dependencies suffer from minor [vulnerability](https://snyk.io/test/npm/hexo-neat).
+The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. Its outdated dependencies suffer from a minor [vulnerability](https://snyk.io/test/npm/hexo-neat).
 
 All the options are the same, so you can use this as a drop-in replacement.
 
@@ -72,6 +72,15 @@ neat_js:
 
 ``` yaml
 neat_gzip:
+  enable: true
+```
+- **enable** - Enable the plugin. Defaults to `true`.
+- **logger** - Print log switch. Defaults to `true`.
+
+----------
+
+``` yaml
+neat_brotli:
   enable: true
 ```
 - **enable** - Enable the plugin. Defaults to `true`.

@@ -40,9 +40,16 @@ if (true === hexo.config.neat_enable) {
         logger: true,
     }, hexo.config.neat_gzip);
 
+    // html, css, js compression
+    hexo.config.neat_brotli = assign({
+        enable: true,
+        logger: true,
+    }, hexo.config.neat_brotli);
+
     var filter = require('./lib/filter');
     hexo.extend.filter.register('after_render:html', filter.logic_html);
     hexo.extend.filter.register('after_render:css', filter.logic_css);
     hexo.extend.filter.register('after_render:js', filter.logic_js);
     hexo.extend.filter.register('before_exit', filter.logic_gzip);
+    hexo.extend.filter.register('before_exit', filter.logic_brotli);
 }
