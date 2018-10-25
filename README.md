@@ -33,8 +33,8 @@ neat_html:
   exclude:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **logger** - Print log switch. Defaults to `true`.
-- **exclude**: Exclude files
+- **logger** - Verbose output. Defaults to `false`.
+- **exclude** - Exclude files
 **Note:** For more options, see '[HTMLMinifier](https://github.com/kangax/html-minifier)'
 
 ----------
@@ -46,26 +46,24 @@ neat_css:
     - '*.min.css'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **logger** - Print log switch. Defaults to `true`.
-- **exclude**: Exclude files
+- **logger** - Verbose output. Defaults to `false`.
+- **exclude** - Exclude files
 
 ----------
 
 ``` yaml
 neat_js:
   enable: true
-  mangle: true
-  output:
-  compress:
   exclude:
     - '*.min.js'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **mangle**: Mangle file names
-- **logger** - Print log switch. Defaults to `true`.
-- **output**: Output options
-- **compress**: Compress options
-- **exclude**: Exclude files
+- **mangle** - Mangle file names. Defaults to `true`.
+- **logger** - Verbose output. Defaults to `false`.
+- **output** - Output options
+- **compress** - Compress options
+- **exclude** - Exclude files
+
 **Note:** For more options, see '[UglifyJS](https://github.com/mishoo/UglifyJS2)'
 
 ----------
@@ -75,7 +73,7 @@ neat_gzip:
   enable: true
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **logger** - Print log switch. Defaults to `true`.
+- **logger** - Verbose output. Defaults to `false`.
 
 ----------
 
@@ -84,7 +82,7 @@ neat_brotli:
   enable: true
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **logger** - Print log switch. Defaults to `true`.
+- **logger** - Verbose output. Defaults to `false`.
 
 ## Credits
 All credits go to the following work:
