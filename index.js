@@ -5,7 +5,7 @@ if (hexo.config.neat_enable === true) {
   // HTML minifier
   hexo.config.neat_html = assign({
     enable: true,
-    logger: true,
+    logger: false,
     exclude: [],
     ignoreCustomComments: [/^\s*more/],
     removeComments: true,
@@ -20,7 +20,7 @@ if (hexo.config.neat_enable === true) {
   // Css minifier
   hexo.config.neat_css = assign({
     enable: true,
-    logger: true,
+    logger: false,
     exclude: ['*.min.css']
   }, hexo.config.neat_css)
 
@@ -28,7 +28,7 @@ if (hexo.config.neat_enable === true) {
   hexo.config.neat_js = assign({
     enable: true,
     mangle: true,
-    logger: true,
+    logger: false,
     output: {},
     compress: {},
     exclude: ['*.min.js']
@@ -37,13 +37,13 @@ if (hexo.config.neat_enable === true) {
   // html, css, js compression
   hexo.config.neat_gzip = assign({
     enable: true,
-    logger: true
+    logger: false
   }, hexo.config.neat_gzip)
 
   // html, css, js compression
   hexo.config.neat_brotli = assign({
     enable: true,
-    logger: true
+    logger: false
   }, hexo.config.neat_brotli)
 
   var filter = require('./lib/filter')
