@@ -1,5 +1,5 @@
 /* global hexo */
-var assign = require('object-assign')
+const assign = require('object-assign')
 
 if (hexo.config.neat_enable === true) {
   // HTML minifier
@@ -46,7 +46,7 @@ if (hexo.config.neat_enable === true) {
     logger: false
   }, hexo.config.neat_brotli)
 
-  var filter = require('./lib/filter')
+  const filter = require('./lib/filter')
   hexo.extend.filter.register('after_render:html', filter.logicHtml)
   hexo.extend.filter.register('after_render:css', filter.logicCss)
   hexo.extend.filter.register('after_render:js', filter.logicJs)
