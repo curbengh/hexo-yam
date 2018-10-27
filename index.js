@@ -1,9 +1,7 @@
 /* global hexo */
-const assign = require('object-assign')
-
 if (hexo.config.neat_enable === true) {
   // HTML minifier
-  hexo.config.neat_html = assign({
+  hexo.config.neat_html = Object.assign({
     enable: true,
     logger: false,
     exclude: [],
@@ -18,14 +16,14 @@ if (hexo.config.neat_enable === true) {
   }, hexo.config.neat_html)
 
   // Css minifier
-  hexo.config.neat_css = assign({
+  hexo.config.neat_css = Object.assign({
     enable: true,
     logger: false,
     exclude: ['*.min.css']
   }, hexo.config.neat_css)
 
   // Js minifier
-  hexo.config.neat_js = assign({
+  hexo.config.neat_js = Object.assign({
     enable: true,
     mangle: true,
     logger: false,
@@ -35,13 +33,13 @@ if (hexo.config.neat_enable === true) {
   }, hexo.config.neat_js)
 
   // html, css, js compression
-  hexo.config.neat_gzip = assign({
+  hexo.config.neat_gzip = Object.assign({
     enable: true,
     logger: false
   }, hexo.config.neat_gzip)
 
   // html, css, js compression
-  hexo.config.neat_brotli = assign({
+  hexo.config.neat_brotli = Object.assign({
     enable: true,
     logger: false
   }, hexo.config.neat_brotli)
