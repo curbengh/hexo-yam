@@ -11,6 +11,8 @@ script:
   - npm install # install node modules
   - snyk auth $SNYK_TOKEN
   - snyk test # Check node modules for vulnerability
+  - snyk protect # Patch node modules (if available)
+  - snyk monitor # Update dependencies to snyk
 
 branches:
   only:
