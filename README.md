@@ -14,6 +14,8 @@ The original package has not been [updated](https://www.npmjs.com/package/hexo-n
 
 All the options are the same, so you can use this as a drop-in replacement.
 
+*Note:* See [HTTP Compression](#http-compression) section below for more info on using brotli.
+
 ## Installation
 ``` bash
 $ npm install hexo-yam --save
@@ -84,6 +86,16 @@ neat_brotli:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
+
+## HTTP Compression
+While most modern web browsers [support](https://www.caniuse.com/#feat=brotli) Brotli, you also need to consider whether web servers, hosting platforms, reverse proxy or CDN (whichever relevant to you) support it. As of 2018, GitHub & GitLab Pages and Netlify *do not* support brotli. You can still generate `.br` files, but they won't be serving those files.
+
+If you have access to the web server config, you should disable on-the-fly compression for static files (that are already compressed by this plugin), e.g.
+
+- [nginx](https://github.com/google/ngx_brotli): Make sure both filter and static modules are enabled. This way pre-compressed `.br` files will be served while dynamic content can be compressed on-the-fly. Protip: `brotli_types text/plain text/css application/javascript application/json image/svg+xml application/xml+rss;` to prevent compressing media files (which are already compressed anyway).
+- [Apache](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html): See 'Serving pre-compressed content' section of [mod_brotli](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html).
+- [Caddy](https://caddyserver.com/features): [0.9.4+](https://caddyserver.com/blog/caddy-0_9_4-released) by default support pre-compressed `.gz` `.br` files and on-the-fly gzip compress dynamic files.
+- [express](https://github.com/expressjs/express)/[connect](https://github.com/senchalabs/connect): Use [pre-compressed-assets](https://github.com/domadams/pre-compressed-assets). You still can continue to use [compression](https://github.com/expressjs/compression)/[shrink-ray-current](https://github.com/Alorel/shrink-ray) for dynamic files.
 
 ## Credits
 All credits go to the following work:
