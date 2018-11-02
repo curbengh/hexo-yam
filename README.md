@@ -88,7 +88,9 @@ neat_brotli:
 - **logger** - Verbose output. Defaults to `false`.
 
 ## HTTP Compression
-While most modern web browsers [support](https://www.caniuse.com/#feat=brotli) Brotli, you also need to consider whether web servers, hosting platforms, reverse proxy or CDN (whichever relevant to you) support it. As of 2018, GitHub & GitLab Pages and Netlify *do not* support brotli. You can still generate `.br` files, but they won't be serving those files.
+While most modern web browsers [support](https://www.caniuse.com/#feat=brotli) Brotli, you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
+
+As of 2018, GitHub/GitLab Pages and Netlify *do not* support brotli. You can generate `.br` files, but they won't be serving those files.
 
 If you have access to the web server config, you should disable on-the-fly compression for static files (that are already compressed by this plugin), e.g.
 
