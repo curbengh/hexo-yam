@@ -8,7 +8,7 @@
 
 > This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
 
-Yet Another Minifier for Hexo. Minify and compress html, js and css. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify and compress html, js and css. xml and json are compressed only. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
 The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. I update the [dependencies](https://github.com/weyusi/hexo-yam/blob/master/package.json) and add compression support.
 

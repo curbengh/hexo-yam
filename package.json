@@ -29,6 +29,8 @@
     "html",
     "js",
     "css",
+    "xml",
+    "json",
     "minify",
     "compress",
     "gzip",
