@@ -104,5 +104,5 @@ All credits go to the following work:
 - [hexo-neat](https://github.com/rozbo/hexo-neat) by rozbo
 - neat html by [HTMLMinifier](https://github.com/kangax/html-minifier)
 - neat css  by [clean-css](https://github.com/jakubpawlowicz/clean-css)
-- neat js   by  [UglifyJS](http://lisperator.net/uglifyjs/)
-- gzip inspired by [hexo-generator-optimize](https://github.com/JackyRen/hexo-generator-optimize)
+- neat js   by  [terser](https://github.com/terser-js/terser)
+- gzip feature is inspired by [hexo-generator-optimize](https://github.com/JackyRen/hexo-generator-optimize)
