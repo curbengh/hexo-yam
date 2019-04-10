@@ -23,7 +23,7 @@
     "html-minifier": "^4.0.0",
     "iltorb": "^2.4.2",
     "minimatch": "^3.0.4",
-    "uglify-js": "^3.5.3"
+    "terser": "^3.17.0"
   },
   "keywords": [
     "html",
