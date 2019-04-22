@@ -1,7 +1,7 @@
 {
   "name": "hexo-yam",
   "description": "Yet Another Minifier. Minify and compress html, js and css",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "readme": "README.md",
   "main": "index.js",
   "directories": {
