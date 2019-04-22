@@ -18,7 +18,6 @@
     "url": "https://github.com/weyusi/hexo-yam.git"
   },
   "dependencies": {
-    "bluebird": "^3.5.4",
     "clean-css": "^4.2.1",
     "html-minifier": "^4.0.0",
     "iltorb": "^2.4.2",
