@@ -21,7 +21,7 @@
     "clean-css": "^4.2.1",
     "html-minifier": "^4.0.0",
     "iltorb": "^2.4.2",
-    "minimatch": "^3.0.4",
+    "nanomatch": "^1.2.13",
     "terser": "^3.17.0"
   },
   "keywords": [

@@ -36,7 +36,7 @@ neat_html:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **exclude** - Exclude files
+- **exclude** - Exclude files. Support [wildcard](https://github.com/micromatch/nanomatch#features) pattern.
 
 For more options, see [HTMLMinifier](https://github.com/kangax/html-minifier).
 
@@ -50,7 +50,7 @@ neat_css:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **exclude** - Exclude files
+- **exclude** - Exclude files. Support wilcard pattern.
 
 ----------
 
@@ -65,7 +65,7 @@ neat_js:
 - **logger** - Verbose output. Defaults to `false`.
 - **output** - Output options
 - **compress** - Compress options
-- **exclude** - Exclude files
+- **exclude** - Exclude files. Support wilcard pattern.
 
 For more options, see [UglifyJS](https://github.com/mishoo/UglifyJS2).
 
