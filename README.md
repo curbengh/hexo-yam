@@ -37,7 +37,7 @@ neat_html:
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support [wildcard](https://github.com/micromatch/nanomatch#features) glob pattern.
-  - It can be specified as a one-liner, `[*.min.html, *.note.html]`.
+  - Support one-liner, `exclude: [*.min.html, *.note.html]`.
   - To exclude a file, double asterisk and the full path must be specified, `**/themes/typing/source/js/source.js`.
   - `*source.js` also works, but it also excludes `resource.js`.
   - Test glob pattern on the web using [Globtester](http://www.globtester.com/).
@@ -81,18 +81,46 @@ For more options, see [Terser](https://github.com/terser-js/terser).
 ``` yaml
 neat_gzip:
   enable: true
+  include:
+    - '*.html'
+    - '*.css'
+    - '*.js'
+    - '*.txt'
+    - '*.ttf'
+    - '*.atom'
+    - '*.stl'
+    - '*.xml'
+    - '*.svg'
+    - '*.eot'
+    - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support wildcard pattern.
+  - Support one-liner, `include: ['*.html','*.css','*.js']`.
+  - Must include asterisk and single quotes. `.html` is invalid. `'*.html'` is valid.
 
 ----------
 
 ``` yaml
 neat_brotli:
   enable: true
+  include:
+    - '*.html'
+    - '*.css'
+    - '*.js'
+    - '*.txt'
+    - '*.ttf'
+    - '*.atom'
+    - '*.stl'
+    - '*.xml'
+    - '*.svg'
+    - '*.eot'
+    - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support wildcard pattern.
 
 ## HTTP Compression
 While most modern web browsers [support](https://www.caniuse.com/#feat=brotli) Brotli, you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.

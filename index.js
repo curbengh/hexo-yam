@@ -33,16 +33,18 @@ if (hexo.config.neat_enable === true) {
     compress: {}
   }, hexo.config.neat_js)
 
-  // html, css, js compression
+  // gzip compression
   hexo.config.neat_gzip = Object.assign({
     enable: true,
-    logger: false
+    logger: false,
+    include: ['*.html','*.css','*.js','*.txt','*.ttf','*.atom','*.stl','*.xml','*.svg','*.eot','*.json']
   }, hexo.config.neat_gzip)
 
-  // html, css, js compression
+  // brotli compression
   hexo.config.neat_brotli = Object.assign({
     enable: true,
-    logger: false
+    logger: false,
+    include: ['*.html','*.css','*.js','*.txt','*.ttf','*.atom','*.stl','*.xml','*.svg','*.eot','*.json']
   }, hexo.config.neat_brotli)
 
   const filter = require('./lib/filter')
