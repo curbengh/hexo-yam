@@ -33,6 +33,14 @@ if (hexo.config.neat_enable === true) {
     compress: {}
   }, hexo.config.neat_js)
 
+  // SVG minifier
+  hexo.config.neat_svg = Object.assign({
+    enable: true,
+    logger: false,
+    include: ['*.svg','!*.min.svg'],
+    plugin: []
+  }, hexo.config.neat_svg)
+
   // gzip compression
   hexo.config.neat_gzip = Object.assign({
     enable: true,
@@ -51,6 +59,7 @@ if (hexo.config.neat_enable === true) {
   hexo.extend.filter.register('after_render:html', filter.logicHtml)
   hexo.extend.filter.register('after_render:css', filter.logicCss)
   hexo.extend.filter.register('after_render:js', filter.logicJs)
+  hexo.extend.filter.register('after_generate', filter.logicSvg)
   hexo.extend.filter.register('after_generate', filter.logicGzip)
   hexo.extend.filter.register('after_generate', filter.logicBrotli)
 }
