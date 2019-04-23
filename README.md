@@ -36,7 +36,11 @@ neat_html:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **exclude** - Exclude files. Support [wildcard](https://github.com/micromatch/nanomatch#features) pattern.
+- **exclude** - Exclude files. Support [wildcard](https://github.com/micromatch/nanomatch#features) glob pattern.
+  - It can be specified as a one-liner, `[*.min.html, *.note.html]`.
+  - To exclude a file, double asterisk and the full path must be specified, `**/themes/typing/source/js/source.js`.
+  - `*source.js` also works, but it also excludes `resource.js`.
+  - Test glob pattern on the web using [Globtester](http://www.globtester.com/).
 
 For more options, see [HTMLMinifier](https://github.com/kangax/html-minifier).
 
@@ -50,7 +54,7 @@ neat_css:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **exclude** - Exclude files. Support wilcard pattern.
+- **exclude** - Exclude files. Support wildcard pattern.
 
 ----------
 
@@ -65,9 +69,9 @@ neat_js:
 - **logger** - Verbose output. Defaults to `false`.
 - **output** - Output options
 - **compress** - Compress options
-- **exclude** - Exclude files. Support wilcard pattern.
+- **exclude** - Exclude files. Support wildcard pattern.
 
-For more options, see [UglifyJS](https://github.com/mishoo/UglifyJS2).
+For more options, see [Terser](https://github.com/terser-js/terser).
 
 ----------
 
