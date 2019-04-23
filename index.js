@@ -19,6 +19,7 @@ if (hexo.config.neat_enable === true) {
   hexo.config.neat_css = Object.assign({
     enable: true,
     logger: false,
+    level: 2,
     exclude: ['*.min.css']
   }, hexo.config.neat_css)
 

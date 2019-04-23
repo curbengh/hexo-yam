@@ -55,6 +55,9 @@ neat_css:
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
+- **level** - Optimization level. Defaults to `2`.
+
+For more options, see 
 
 ----------
 
