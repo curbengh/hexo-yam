@@ -15,7 +15,7 @@ if (hexo.config.neat_enable === true) {
     minifyCSS: true
   }, hexo.config.neat_html)
 
-  // Css minifier
+  // CSS minifier
   hexo.config.neat_css = Object.assign({
     enable: true,
     logger: false,
@@ -23,14 +23,14 @@ if (hexo.config.neat_enable === true) {
     level: 2
   }, hexo.config.neat_css)
 
-  // Js minifier
+  // Javascript minifier
   hexo.config.neat_js = Object.assign({
     enable: true,
     logger: false,
     exclude: ['*.min.js'],
+    compress: {},
     mangle: true,
-    output: {},
-    compress: {}
+    output: {}
   }, hexo.config.neat_js)
 
   // SVG minifier

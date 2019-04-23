@@ -70,9 +70,10 @@ neat_js:
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
-- **mangle** - Mangle file names. Defaults to `true`.
-- **output** - Output options.
 - **compress** - Compress options.
+- **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
+- **output** - Output options.
+  - To retain comments, `output: {comments: true}`.
 
 For more options, see [Terser](https://github.com/terser-js/terser).
 
