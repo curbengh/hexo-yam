@@ -79,6 +79,24 @@ For more options, see [Terser](https://github.com/terser-js/terser).
 ----------
 
 ``` yaml
+neat_svg:
+  enable: true
+  include:
+    - '*.svg'
+    - '!*.min.svg'
+```
+- **enable** - Enable the plugin. Defaults to `true`.
+- **logger** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support wildcard pattern.
+  - Exclude `*.min.svg` by default.
+- **plugin** - Plugin options.
+  - To retain comments, `plugins: [{removeComments: false}]`.
+
+For more options, see [svgo](https://github.com/svg/svgo).
+
+----------
+
+``` yaml
 neat_gzip:
   enable: true
   include:
