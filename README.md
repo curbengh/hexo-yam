@@ -57,7 +57,7 @@ neat_css:
 - **exclude** - Exclude files. Support wildcard pattern.
 - **level** - Optimization level. Defaults to `2`.
 
-For more options, see 
+For more options, see [clean-css](https://github.com/jakubpawlowicz/clean-css).
 
 ----------
 
@@ -68,11 +68,11 @@ neat_js:
     - '*.min.js'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
-- **mangle** - Mangle file names. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **output** - Output options
-- **compress** - Compress options
 - **exclude** - Exclude files. Support wildcard pattern.
+- **mangle** - Mangle file names. Defaults to `true`.
+- **output** - Output options.
+- **compress** - Compress options.
 
 For more options, see [Terser](https://github.com/terser-js/terser).
 

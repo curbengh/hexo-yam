@@ -19,18 +19,18 @@ if (hexo.config.neat_enable === true) {
   hexo.config.neat_css = Object.assign({
     enable: true,
     logger: false,
-    level: 2,
-    exclude: ['*.min.css']
+    exclude: ['*.min.css'],
+    level: 2
   }, hexo.config.neat_css)
 
   // Js minifier
   hexo.config.neat_js = Object.assign({
     enable: true,
-    mangle: true,
     logger: false,
+    exclude: ['*.min.js'],
+    mangle: true,
     output: {},
-    compress: {},
-    exclude: ['*.min.js']
+    compress: {}
   }, hexo.config.neat_js)
 
   // html, css, js compression
