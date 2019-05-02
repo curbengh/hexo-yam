@@ -37,7 +37,7 @@ if (hexo.config.neat_enable === true) {
   hexo.config.neat_svg = Object.assign({
     enable: true,
     logger: false,
-    include: ['*.svg','!*.min.svg'],
+    include: ['*.svg', '!*.min.svg'],
     plugin: []
   }, hexo.config.neat_svg)
 
@@ -45,14 +45,14 @@ if (hexo.config.neat_enable === true) {
   hexo.config.neat_gzip = Object.assign({
     enable: true,
     logger: false,
-    include: ['*.html','*.css','*.js','*.txt','*.ttf','*.atom','*.stl','*.xml','*.svg','*.eot','*.json']
+    include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json']
   }, hexo.config.neat_gzip)
 
   // brotli compression
   hexo.config.neat_brotli = Object.assign({
     enable: true,
     logger: false,
-    include: ['*.html','*.css','*.js','*.txt','*.ttf','*.atom','*.stl','*.xml','*.svg','*.eot','*.json']
+    include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json']
   }, hexo.config.neat_brotli)
 
   const filter = require('./lib/filter')
