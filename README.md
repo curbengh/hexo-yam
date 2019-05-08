@@ -142,11 +142,17 @@ neat_brotli:
 - **include** - Include files. Support wildcard pattern.
 
 ## HTTP Compression
-While most modern web browsers [support](https://www.caniuse.com/#feat=brotli) Brotli, you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
+While most modern web browsers [support Brotli](https://www.caniuse.com/#feat=brotli), you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
 
-As of 2018, GitHub/GitLab Pages and Netlify *do not* support brotli. You can generate `.br` files, but they won't be serving those files.
+As of May 2019, GitHub Pages, GitLab Pages and Netlify *do not* support brotli yet. You can generate `.br` files, but they won't serve those files.
 
-If you have access to the web server config, you should disable on-the-fly compression for static files (that are already compressed by this plugin), e.g.
+Name | Status (May 8, 2019)
+--- | ---
+GitHub Pages | [In consideration](https://github.community/t5/GitHub-Pages/Support-for-pre-compressed-assets-and-brotli-compression/m-p/22055)
+GitLab Pages | [In progress](https://gitlab.com/gitlab-org/gitlab-pages/merge_requests/120)
+Netlify | [In consideration](https://postimg.cc/qgxn0261)
+
+If you have access to the web server config, you should disable on-the-fly compression for static files (that are already compressed by this plugin),
 
 - [nginx](https://github.com/google/ngx_brotli): Make sure both filter and static modules are enabled. This way pre-compressed `.br` files will be served while dynamic content can be compressed on-the-fly. Protip: `brotli_types text/plain text/css application/javascript application/json image/svg+xml application/xml+rss;` to prevent compressing media files (which are already compressed anyway).
 - [Apache](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html): See 'Serving pre-compressed content' section of [mod_brotli](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html).
