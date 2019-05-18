@@ -5,7 +5,6 @@ if (hexo.config.neat_enable === true) {
     enable: true,
     logger: false,
     exclude: [],
-    ignoreCustomComments: [/^\s*more/],
     removeComments: true,
     removeCommentsFromCDATA: true,
     collapseWhitespace: true,
