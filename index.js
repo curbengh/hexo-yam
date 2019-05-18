@@ -5,11 +5,12 @@ if (hexo.config.neat_enable === true) {
     enable: true,
     logger: false,
     exclude: [],
-    removeComments: true,
-    removeCommentsFromCDATA: true,
-    collapseWhitespace: true,
     collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    removeComments: true,
     removeEmptyAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
     minifyJS: true,
     minifyCSS: true
   }, hexo.config.neat_html)
