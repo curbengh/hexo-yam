@@ -38,7 +38,7 @@ if (hexo.config.neat_enable === true) {
     enable: true,
     logger: false,
     include: ['*.svg', '!*.min.svg'],
-    plugin: []
+    plugins: []
   }, hexo.config.neat_svg)
 
   // gzip compression

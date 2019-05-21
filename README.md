@@ -90,7 +90,7 @@ neat_svg:
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
   - Exclude `*.min.svg` by default.
-- **plugin** - Plugin options.
+- **plugins** - Plugin options.
   - To retain comments, `plugins: [{removeComments: false}]`.
 
 For more options, see [svgo](https://github.com/svg/svgo).
