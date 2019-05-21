@@ -40,5 +40,16 @@
     "brotli",
     "hexo-yam",
     "hexo"
-  ]
+  ],
+  "greenkeeper": {
+    "commitMessages": {
+      "initialBadge": "docs(readme): Add Greenkeeper badge",
+      "initialDependencies": "chore(package): Update dependencies",
+      "initialBranches": "chore: Whitelist greenkeeper branches",
+      "dependencyUpdate": "chore(package): Update ${dependency} to version ${version}",
+      "devDependencyUpdate": "chore(deps-dev): Update ${dependency} to version ${version}",
+      "dependencyPin": "chore(package): Pin ${dependency} to ${oldVersion}",
+      "devDependencyPin": "chore(deps-dev): Pin ${dependency} to ${oldVersion}"
+    }
+  }
 }
