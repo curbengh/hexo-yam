@@ -1,4 +1,6 @@
 /* global hexo */
+'use strict'
+
 if (hexo.config.neat_enable === true) {
   // HTML minifier
   hexo.config.neat_html = Object.assign({
