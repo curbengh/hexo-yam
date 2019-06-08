@@ -9,6 +9,8 @@ if (hexo.config.neat_enable === true) {
     exclude: [],
     collapseBooleanAttributes: true,
     collapseWhitespace: true,
+    // Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
+    ignoreCustomComments: [/^\s*more/],
     removeComments: true,
     removeEmptyAttributes: true,
     removeScriptTypeAttributes: true,
