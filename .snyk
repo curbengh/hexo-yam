@@ -2,15 +2,15 @@
 version: v1.12.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  'npm:braces:20180219':
-    - hexo-fs > chokidar > anymatch > micromatch > braces:
+  SNYK-JS-SETVALUE-450213:
+    - nanomatch > snapdragon > base > cache-base > set-value:
         reason: Patch/update unavailable
-        expires: '2018-12-31T00:00:00.000Z'
-  'npm:chownr:20180731':
-    - hexo-fs > chokidar > fsevents > node-pre-gyp > tar > chownr:
+        expires: '2019-12-31T00:00:00.000Z'
+    - nanomatch > snapdragon > base > cache-base > union-value > set-value:
         reason: Patch/update unavailable
-        expires: '2018-12-31T00:00:00.000Z'
-    - iltorb > prebuild-install > tar-fs > chownr:
+        expires: '2019-12-31T00:00:00.000Z'
+  SNYK-JS-MIXINDEEP-450212:
+    - nanomatch > snapdragon > base > mixin-deep:
         reason: Patch/update unavailable
-        expires: '2018-12-31T00:00:00.000Z'
+        expires: '2019-12-31T00:00:00.000Z'
 patch: {}
