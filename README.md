@@ -36,11 +36,12 @@ neat_html:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
-- **exclude** - Exclude files. Support [wildcard](https://github.com/micromatch/nanomatch#features) glob pattern.
+- **exclude** - Exclude files.
   - Support one-liner, `exclude: [*.min.html, *.note.html]`.
   - To exclude a file, double asterisk and the full path must be specified, `**/themes/typing/source/js/source.js`.
   - `*source.js` also works, but it also excludes `resource.js`.
   - Test glob pattern on the web using [Globtester](http://www.globtester.com/).
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 For more options, see [HTMLMinifier](https://github.com/kangax/html-minifier).
 
@@ -56,6 +57,7 @@ neat_css:
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
 - **level** - Optimization level. Defaults to `2`.
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 For more options, see [clean-css](https://github.com/jakubpawlowicz/clean-css).
 
@@ -74,6 +76,7 @@ neat_js:
 - **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
 - **output** - Output options.
   - To retain comments, `output: {comments: true}`.
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 For more options, see [Terser](https://github.com/terser-js/terser).
 
@@ -92,6 +95,7 @@ neat_svg:
   - Exclude `*.min.svg` by default.
 - **plugins** - Plugin options.
   - To retain comments, `plugins: [{removeComments: false}]`.
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 For more options, see [svgo](https://github.com/svg/svgo).
 
@@ -118,6 +122,7 @@ neat_gzip:
 - **include** - Include files. Support wildcard pattern.
   - Support one-liner, `include: ['*.html','*.css','*.js']`.
   - Must include asterisk and single quotes. `.html` is invalid. `'*.html'` is valid.
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 ----------
 
@@ -140,6 +145,7 @@ neat_brotli:
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
+- **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files. Defaults to `{ matchBase: true }`.
 
 ## HTTP Compression
 While most modern web browsers [support Brotli](https://www.caniuse.com/#feat=brotli), you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
