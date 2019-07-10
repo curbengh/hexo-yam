@@ -8,7 +8,7 @@
     "lib": "./lib"
   },
   "files": [
-    "lib",
+    "lib/",
     "index.js"
   ],
   "engines": {
