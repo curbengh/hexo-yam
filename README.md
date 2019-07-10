@@ -6,13 +6,11 @@
 [![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
 [![Greenkeeper badge](https://badges.greenkeeper.io/weyusi/hexo-yam.svg)](https://greenkeeper.io/)
 
-> This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat)
+---
 
-Yet Another Minifier for Hexo. Minify and compress html, js, css and svg. xml, json and [many more](https://github.com/weyusi/hexo-yam/blob/master/lib/filter.js#L105) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, JSON and [many more](https://github.com/weyusi/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
-The original package has not been [updated](https://www.npmjs.com/package/hexo-neat) for a while. I update the [dependencies](https://github.com/weyusi/hexo-yam/blob/master/package.json) and add compression support.
-
-All the options are the same, so you can use this as a drop-in replacement.
+This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat). Existing options are the same, so you can use this as a drop-in replacement.
 
 *Note:* See [HTTP Compression](#http-compression) section below for more info on using brotli.
 
