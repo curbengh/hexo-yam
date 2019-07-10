@@ -2,15 +2,8 @@
 version: v1.12.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-JS-SETVALUE-450213:
-    - nanomatch > snapdragon > base > cache-base > set-value:
-        reason: Patch/update unavailable
-        expires: '2019-12-31T00:00:00.000Z'
-    - nanomatch > snapdragon > base > cache-base > union-value > set-value:
-        reason: Patch/update unavailable
-        expires: '2019-12-31T00:00:00.000Z'
-  SNYK-JS-MIXINDEEP-450212:
-    - nanomatch > snapdragon > base > mixin-deep:
-        reason: Patch/update unavailable
+  SNYK-JS-LODASH-450202:
+    - '*':
+        reason: Patch/update unavailable. Introduced through Snyk.
         expires: '2019-12-31T00:00:00.000Z'
 patch: {}
