@@ -25,7 +25,7 @@
     "clean-css": "^4.2.1",
     "html-minifier": "^4.0.0",
     "iltorb": "^2.4.2",
-    "nanomatch": "^1.2.13",
+    "micromatch": "^4.0.2",
     "svgo": "^1.2.2",
     "terser": "^4.0.0"
   },
