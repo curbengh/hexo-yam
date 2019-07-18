@@ -1,14 +1,14 @@
 # Hexo-yam
 
 [![npm version](https://badge.fury.io/js/hexo-yam.svg)](https://www.npmjs.com/package/hexo-yam)
-[![Build Status](https://travis-ci.com/weyusi/hexo-yam.svg?branch=master)](https://travis-ci.com/weyusi/hexo-yam)
-[![NPM Dependencies](https://david-dm.org/weyusi/hexo-yam.svg)](https://david-dm.org/weyusi/hexo-yam)
+[![Build Status](https://travis-ci.com/curbengh/hexo-yam.svg?branch=master)](https://travis-ci.com/curbengh/hexo-yam)
+[![NPM Dependencies](https://david-dm.org/curbengh/hexo-yam.svg)](https://david-dm.org/curbengh/hexo-yam)
 [![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
-[![Greenkeeper badge](https://badges.greenkeeper.io/weyusi/hexo-yam.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/curbengh/hexo-yam.svg)](https://greenkeeper.io/)
 
 ---
 
-Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, JSON and [many more](https://github.com/weyusi/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, JSON and [many more](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
 This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat). Existing options are the same, so you can use this as a drop-in replacement.
 

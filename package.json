@@ -14,12 +14,12 @@
   "engines": {
     "node": ">= 8.6.0"
   },
-  "author": "weyusi",
+  "author": "curben",
   "license": "MIT",
-  "homepage": "https://github.com/weyusi/hexo-yam",
+  "homepage": "https://github.com/curbengh/hexo-yam",
   "repository": {
     "type": "git",
-    "url": "https://github.com/weyusi/hexo-yam.git"
+    "url": "https://github.com/curbengh/hexo-yam.git"
   },
   "dependencies": {
     "clean-css": "^4.2.1",
