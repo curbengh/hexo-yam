@@ -17,7 +17,7 @@ if (hexo.config.neat_enable === true) {
     removeStyleLinkTypeAttributes: true,
     minifyJS: true,
     minifyCSS: true,
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_html)
 
   // CSS minifier
@@ -26,7 +26,7 @@ if (hexo.config.neat_enable === true) {
     logger: false,
     exclude: ['*.min.css'],
     level: 2,
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_css)
 
   // Javascript minifier
@@ -37,7 +37,7 @@ if (hexo.config.neat_enable === true) {
     compress: {},
     mangle: true,
     output: {},
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_js)
 
   // SVG minifier
@@ -46,7 +46,7 @@ if (hexo.config.neat_enable === true) {
     logger: false,
     include: ['*.svg', '!*.min.svg'],
     plugins: [],
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_svg)
 
   // gzip compression
@@ -54,7 +54,7 @@ if (hexo.config.neat_enable === true) {
     enable: true,
     logger: false,
     include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_gzip)
 
   // brotli compression
@@ -62,7 +62,7 @@ if (hexo.config.neat_enable === true) {
     enable: true,
     logger: false,
     include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-    globOptions: { matchBase: true }
+    globOptions: { basename: true }
   }, hexo.config.neat_brotli)
 
   const filter = require('./lib/filter')
