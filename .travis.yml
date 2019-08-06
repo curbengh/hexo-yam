@@ -1,14 +1,13 @@
 language: node_js
 node_js:
-  - "node" # latest stable Node.js release
+  - "node"
 
 cache:
   directories:
-    - "node_modules" # cache the modules for faster build
+    - "node_modules"
 
 script:
-  - npm install -g snyk
-  - npm install # install node modules
+  - npm install snyk
   - snyk auth $SNYK_TOKEN
   - snyk test # Check node modules for vulnerability
   - snyk protect # Patch node modules (if available)
