@@ -15,6 +15,9 @@ script:
   - snyk protect # Patch node modules (if available)
   - snyk monitor # Update dependencies to snyk
 
+  - npm install standard
+  - standard
+
 branches:
   only:
   - master # Only build master branch
