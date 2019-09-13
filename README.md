@@ -1,4 +1,4 @@
-# Hexo-yam
+# hexo-yam
 
 [![npm version](https://badge.fury.io/js/hexo-yam.svg)](https://www.npmjs.com/package/hexo-yam)
 [![Build Status](https://travis-ci.com/curbengh/hexo-yam.svg?branch=master)](https://travis-ci.com/curbengh/hexo-yam)
@@ -6,31 +6,47 @@
 [![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
 [![Greenkeeper badge](https://badges.greenkeeper.io/curbengh/hexo-yam.svg)](https://greenkeeper.io/)
 
----
-
 Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, JSON and [many more](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
-This project is based on [hexo-neat](https://github.com/rozbo/hexo-neat). Existing options are the same, so you can use this as a drop-in replacement.
+## Version 3
+In v3 onwards, this plugin is enabled by default. Most [options](#options) have changed and they are now under `minify:` option.
 
-*Note:* See [HTTP Compression](#http-compression) section below for more info on using brotli.
+Example:
+
+```
+neat_svg:
+  plugins: [{cleanupIDs: false}]
+```
+
+needs to be updated to
+
+```
+minify:
+  svg:
+    plugins: [{cleanupIDs: false}]
+```
 
 ## Installation
 ``` bash
 $ npm install hexo-yam --save
 ```
 
-## Usage
-To enable this plugin, insert the following to `_config.yml`:
-``` yaml
-neat_enable: true
-```
-For further customization, see below.
-
 ## Options
+
 ``` yaml
-neat_html:
+minify:
   enable: true
-  exclude:
+```
+
+- **enable** - Enable the plugin. Defaults to `true`.
+
+---
+
+``` yaml
+minify:
+  html:
+    enable: true
+    exclude:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
@@ -43,29 +59,31 @@ neat_html:
 
 For more options, see [HTMLMinifier](https://github.com/kangax/html-minifier).
 
-----------
+---
 
 ``` yaml
-neat_css:
-  enable: true
-  exclude:
-    - '*.min.css'
+minify:
+  css:
+    enable: true
+    exclude:
+      - '*.min.css'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
 - **level** - Optimization level. Defaults to `2`.
-- **globOptions** - See [`neat_html`](#options).
+- **globOptions** - See [`html:`](#options).
 
 For more options, see [clean-css](https://github.com/jakubpawlowicz/clean-css).
 
-----------
+---
 
 ``` yaml
-neat_js:
-  enable: true
-  exclude:
-    - '*.min.js'
+minify:
+  js:
+    enable: true
+    exclude:
+      - '*.min.js'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
@@ -74,18 +92,19 @@ neat_js:
 - **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
 - **output** - Output options.
   - To retain comments, `output: {comments: true}`.
-- **globOptions** - See [`neat_html`](#options).
+- **globOptions** - See [`html:`](#options).
 
 For more options, see [Terser](https://github.com/terser-js/terser).
 
-----------
+---
 
 ``` yaml
-neat_svg:
-  enable: true
-  include:
-    - '*.svg'
-    - '!*.min.svg'
+minify:
+  svg:
+    enable: true
+    include:
+      - '*.svg'
+      - '!*.min.svg'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
@@ -93,57 +112,59 @@ neat_svg:
   - Exclude `*.min.svg` by default.
 - **plugins** - Plugin options.
   - To retain comments, `plugins: [{removeComments: false}]`.
-- **globOptions** - See [`neat_html`](#options).
+- **globOptions** - See [`html:`](#options).
 
 For more options, see [svgo](https://github.com/svg/svgo).
 
-----------
+---
 
 ``` yaml
-neat_gzip:
-  enable: true
-  include:
-    - '*.html'
-    - '*.css'
-    - '*.js'
-    - '*.txt'
-    - '*.ttf'
-    - '*.atom'
-    - '*.stl'
-    - '*.xml'
-    - '*.svg'
-    - '*.eot'
-    - '*.json'
+minify:
+  gzip:
+    enable: true
+    include:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - '*.txt'
+      - '*.ttf'
+      - '*.atom'
+      - '*.stl'
+      - '*.xml'
+      - '*.svg'
+      - '*.eot'
+      - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
   - Support one-liner, `include: ['*.html','*.css','*.js']`.
   - Must include asterisk and single quotes. `.html` is invalid. `'*.html'` is valid.
-- **globOptions** - See [`neat_html`](#options).
+- **globOptions** - See [`html:`](#options).
 
-----------
+---
 
 ``` yaml
-neat_brotli:
-  enable: true
-  include:
-    - '*.html'
-    - '*.css'
-    - '*.js'
-    - '*.txt'
-    - '*.ttf'
-    - '*.atom'
-    - '*.stl'
-    - '*.xml'
-    - '*.svg'
-    - '*.eot'
-    - '*.json'
+minify:
+  brotli:
+    enable: true
+    include:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - '*.txt'
+      - '*.ttf'
+      - '*.atom'
+      - '*.stl'
+      - '*.xml'
+      - '*.svg'
+      - '*.eot'
+      - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
-- **globOptions** - See [`neat_html`](#options).
+- **globOptions** - See [`html:`](#options).
 
 ## HTTP Compression
 While most modern web browsers [support Brotli](https://www.caniuse.com/#feat=brotli), you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
