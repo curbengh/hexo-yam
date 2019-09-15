@@ -64,10 +64,10 @@ hexo.config.minify.brotli = Object.assign({
 
 if (hexo.config.minify.enable === true) {
   const filter = require('./lib/filter')
-  hexo.extend.filter.register('after_render:html', filter.logicHtml)
-  hexo.extend.filter.register('after_render:css', filter.logicCss)
-  hexo.extend.filter.register('after_render:js', filter.logicJs)
-  hexo.extend.filter.register('after_generate', filter.logicSvg)
-  hexo.extend.filter.register('after_generate', filter.logicGzip)
-  hexo.extend.filter.register('after_generate', filter.logicBrotli)
+  hexo.extend.filter.register('after_render:html', filter.minifyHtml)
+  hexo.extend.filter.register('after_render:css', filter.minifyCss)
+  hexo.extend.filter.register('after_render:js', filter.minifyJs)
+  hexo.extend.filter.register('after_generate', filter.minifySvg)
+  hexo.extend.filter.register('after_generate', filter.gzipFn)
+  hexo.extend.filter.register('after_generate', filter.brotliFn)
 }
