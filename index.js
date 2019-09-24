@@ -24,6 +24,7 @@ hexo.config.minify.html = Object.assign({
 
 hexo.config.minify.css = Object.assign({
   enable: true,
+  // TODO: rename to verbose
   logger: false,
   exclude: ['*.min.css'],
   level: 2,
