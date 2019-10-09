@@ -7,6 +7,7 @@ hexo.config.minify = Object.assign({
 
 hexo.config.minify.html = Object.assign({
   enable: true,
+  priority: 10,
   logger: false,
   exclude: [],
   collapseBooleanAttributes: true,
@@ -24,6 +25,7 @@ hexo.config.minify.html = Object.assign({
 
 hexo.config.minify.css = Object.assign({
   enable: true,
+  priority: 10,
   // TODO: rename to verbose
   logger: false,
   exclude: ['*.min.css'],
@@ -33,6 +35,7 @@ hexo.config.minify.css = Object.assign({
 
 hexo.config.minify.js = Object.assign({
   enable: true,
+  priority: 10,
   logger: false,
   exclude: ['*.min.js'],
   compress: {},
@@ -43,6 +46,7 @@ hexo.config.minify.js = Object.assign({
 
 hexo.config.minify.svg = Object.assign({
   enable: true,
+  priority: 10,
   logger: false,
   include: ['*.svg', '!*.min.svg'],
   plugins: [],
@@ -51,6 +55,7 @@ hexo.config.minify.svg = Object.assign({
 
 hexo.config.minify.gzip = Object.assign({
   enable: true,
+  priority: 10,
   logger: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
@@ -58,6 +63,7 @@ hexo.config.minify.gzip = Object.assign({
 
 hexo.config.minify.brotli = Object.assign({
   enable: true,
+  priority: 10,
   logger: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
@@ -65,10 +71,10 @@ hexo.config.minify.brotli = Object.assign({
 
 if (hexo.config.minify.enable === true) {
   const filter = require('./lib/filter')
-  hexo.extend.filter.register('after_render:html', filter.minifyHtml)
-  hexo.extend.filter.register('after_render:css', filter.minifyCss)
-  hexo.extend.filter.register('after_render:js', filter.minifyJs)
-  hexo.extend.filter.register('after_generate', filter.minifySvg)
-  hexo.extend.filter.register('after_generate', filter.gzipFn)
-  hexo.extend.filter.register('after_generate', filter.brotliFn)
+  hexo.extend.filter.register('after_render:html', filter.minifyHtml, hexo.config.minify.html.priority)
+  hexo.extend.filter.register('after_render:css', filter.minifyCss, hexo.config.minify.css.priority)
+  hexo.extend.filter.register('after_render:js', filter.minifyJs, hexo.config.minify.js.priority)
+  hexo.extend.filter.register('after_generate', filter.minifySvg, hexo.config.minify.svg.priority)
+  hexo.extend.filter.register('after_generate', filter.gzipFn, hexo.config.minify.gzip.priority)
+  hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
 }

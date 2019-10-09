@@ -49,6 +49,7 @@ minify:
     exclude:
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`. Set lower value to set higher priority and vice versa.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files.
   - Support one-liner, `exclude: [*.min.html, *.note.html]`.
@@ -69,6 +70,7 @@ minify:
       - '*.min.css'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
 - **level** - Optimization level. Defaults to `2`.
@@ -86,6 +88,7 @@ minify:
       - '*.min.js'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`.
 - **logger** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support wildcard pattern.
 - **compress** - Compress options.
@@ -107,6 +110,7 @@ minify:
       - '!*.min.svg'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
   - Exclude `*.min.svg` by default.
@@ -136,6 +140,7 @@ minify:
       - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
   - Support one-liner, `include: ['*.html','*.css','*.js']`.
@@ -162,6 +167,7 @@ minify:
       - '*.json'
 ```
 - **enable** - Enable the plugin. Defaults to `true`.
+- **priority** - Plugin's priority. Defaults to `10`.
 - **logger** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support wildcard pattern.
 - **globOptions** - See [`html:`](#options).
