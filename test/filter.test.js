@@ -176,6 +176,23 @@ describe('js', () => {
     expect(result).toBe(code)
   })
 
+  test('option - invalid', () => {
+    const customOpt = {
+      mangle: {
+        foo: 'bar'
+      }
+    }
+    hexo.config.minify.js = customOpt
+
+    const input = 'var o = { "foo": 1, bar: 3 };'
+    const { error } = Terser.minify(input, customOpt)
+    try {
+      j(input, { path: '' })
+    } catch (err) {
+      expect(err.message).toContain(error.message)
+    }
+  })
+
   test('exclude - *.min.js', () => {
     const input = 'var o = { "foo": 1, bar: 3 };'
     const result = j(input, { path: 'foo/bar.min.js' })
