@@ -2,7 +2,9 @@ dist: bionic
 
 language: node_js
 node_js:
-  - "node"
+  - "10"
+  - "12"
+  - "13"
 
 cache:
   npm: true
