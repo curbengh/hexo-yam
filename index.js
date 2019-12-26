@@ -1,11 +1,8 @@
 /* global hexo */
 'use strict'
 
-hexo.config.minify = Object.assign({
-  enable: true
-}, hexo.config.minify)
-
-hexo.config.minify.html = Object.assign({
+const minifyDefault = { enable: true }
+const htmlDefault = {
   enable: true,
   priority: 10,
   logger: false,
@@ -21,9 +18,8 @@ hexo.config.minify.html = Object.assign({
   minifyJS: true,
   minifyCSS: true,
   globOptions: { basename: true }
-}, hexo.config.minify.html)
-
-hexo.config.minify.css = Object.assign({
+}
+const cssDefault = {
   enable: true,
   priority: 10,
   // TODO: rename to verbose
@@ -31,9 +27,8 @@ hexo.config.minify.css = Object.assign({
   exclude: ['*.min.css'],
   level: 2,
   globOptions: { basename: true }
-}, hexo.config.minify.css)
-
-hexo.config.minify.js = Object.assign({
+}
+const jsDefault = {
   enable: true,
   priority: 10,
   logger: false,
@@ -42,32 +37,37 @@ hexo.config.minify.js = Object.assign({
   mangle: true,
   output: {},
   globOptions: { basename: true }
-}, hexo.config.minify.js)
-
-hexo.config.minify.svg = Object.assign({
+}
+const svgDefault = {
   enable: true,
   priority: 10,
   logger: false,
   include: ['*.svg', '!*.min.svg'],
   plugins: [],
   globOptions: { basename: true }
-}, hexo.config.minify.svg)
-
-hexo.config.minify.gzip = Object.assign({
+}
+const gzipDefault = {
   enable: true,
   priority: 10,
   logger: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
-}, hexo.config.minify.gzip)
-
-hexo.config.minify.brotli = Object.assign({
+}
+const brotliDefault = {
   enable: true,
   priority: 10,
   logger: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
-}, hexo.config.minify.brotli)
+}
+
+hexo.config.minify = Object.assign(minifyDefault, hexo.config.minify)
+hexo.config.minify.html = Object.assign(htmlDefault, hexo.config.minify.html)
+hexo.config.minify.css = Object.assign(cssDefault, hexo.config.minify.css)
+hexo.config.minify.js = Object.assign(jsDefault, hexo.config.minify.js)
+hexo.config.minify.svg = Object.assign(svgDefault, hexo.config.minify.svg)
+hexo.config.minify.gzip = Object.assign(gzipDefault, hexo.config.minify.gzip)
+hexo.config.minify.brotli = Object.assign(brotliDefault, hexo.config.minify.brotli)
 
 if (hexo.config.minify.enable === true) {
   const filter = require('./lib/filter')
@@ -77,4 +77,14 @@ if (hexo.config.minify.enable === true) {
   hexo.extend.filter.register('after_generate', filter.minifySvg, hexo.config.minify.svg.priority)
   hexo.extend.filter.register('after_generate', filter.gzipFn, hexo.config.minify.gzip.priority)
   hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
+}
+
+module.exports = {
+  minifyDefault,
+  htmlDefault,
+  cssDefault,
+  jsDefault,
+  svgDefault,
+  gzipDefault,
+  brotliDefault
 }
