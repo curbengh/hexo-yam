@@ -18,6 +18,7 @@ describe('html', () => {
     const input = '<p id="">foo</p>'
     const result = h(input, { path: '' })
     const expected = Htmlminifier(input, hexo.config.minify.html)
+
     expect(result).toBe(expected)
   })
 
@@ -28,6 +29,7 @@ describe('html', () => {
     const input = '<p id="">foo</p>'
     const result = h(input, { path: '' })
     const expected = Htmlminifier(input, customOpt)
+
     expect(result).toBe(input)
     expect(result).toBe(expected)
   })
@@ -38,6 +40,7 @@ describe('html', () => {
 
     const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.min.html' })
+
     expect(result).toBe(input)
   })
 
@@ -47,7 +50,44 @@ describe('html', () => {
 
     const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.html' })
+
     expect(result).toBe(input)
+  })
+
+  test('exclude - basename is true + slash', () => {
+    const exclude = ['**/baz', 'bar.html']
+    const globOptions = { basename: true }
+    hexo.config.minify.html.exclude = exclude
+    hexo.config.minify.html.globOptions = globOptions
+
+    const input = '<p id="">foo</p>'
+    const result = h(input, { path: 'foo/bar.html' })
+
+    expect(result).toBe(input)
+  })
+
+  test('exclude - basename is false + slash', () => {
+    const exclude = ['**/baz', 'bar.html']
+    const globOptions = { basename: false }
+    hexo.config.minify.html.exclude = exclude
+    hexo.config.minify.html.globOptions = globOptions
+
+    const input = '<p id="">foo</p>'
+    const result = h(input, { path: 'foo/bar.html' })
+    const expected = Htmlminifier(input, hexo.config.minify.html)
+
+    expect(result).toBe(expected)
+  })
+
+  test('null', () => {
+    hexo.config.minify.html.exclude = null
+    hexo.config.minify.html.globOptions = null
+
+    const input = '<p id="">foo</p>'
+    const result = h(input, { path: null })
+    const expected = Htmlminifier(input, hexo.config.minify.html)
+
+    expect(result).toBe(expected)
   })
 })
 
