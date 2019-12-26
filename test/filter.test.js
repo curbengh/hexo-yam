@@ -139,6 +139,29 @@ describe('css', () => {
     expect(result).toBe(styles)
   })
 
+  test('option - invalid', async () => {
+    const customOpt = {
+      level: 9000
+    }
+    hexo.config.minify.css = customOpt
+
+    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
+    let result, expected
+
+    try {
+      await c(input, { path: '' })
+    } catch (err) {
+      result = err.message
+    }
+    try {
+      await new CleanCSS(customOpt).minify(input)
+    } catch (err) {
+      expected = err.message
+    }
+
+    expect(result).toContain(expected)
+  })
+
   test('exclude - *.min.css', async () => {
     const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     const result = await c(input, { path: 'foo/bar.min.css' })
