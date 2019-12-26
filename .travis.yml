@@ -14,13 +14,10 @@ script:
   - npm run test
 
 after_script:
-  - npm install snyk
-  - snyk auth $SNYK_TOKEN
-  - snyk test # Check node modules for vulnerability
-  - snyk protect # Patch node modules (if available)
-  - snyk monitor # Update dependencies to snyk
-
-branches:
-  only:
-  - master # Only build master branch
-  - /^greenkeeper.*$/ # Greenkeeper branches
+  - if ([[ $TRAVIS_EVENT_TYPE == "push" ]] || [[ $TRAVIS_EVENT_TYPE == "cron" ]]) && [[ $TRAVIS_BRANCH == "master" ]] && [[ $TRAVIS_NODE_VERSION == "12" ]]; then
+      npm install snyk;
+      snyk auth $SNYK_TOKEN;
+      snyk test;
+      snyk protect;
+      snyk monitor;
+    fi
