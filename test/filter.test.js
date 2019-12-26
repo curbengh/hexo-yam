@@ -11,7 +11,7 @@ describe('html', () => {
   const Htmlminifier = require('html-minifier').minify
 
   beforeEach(() => {
-    hexo.config.minify.html = htmlDefault
+    hexo.config.minify.html = Object.assign({}, htmlDefault)
   })
 
   test('default', () => {
@@ -20,6 +20,15 @@ describe('html', () => {
     const expected = Htmlminifier(input, hexo.config.minify.html)
 
     expect(result).toBe(expected)
+  })
+
+  test('disable', () => {
+    hexo.config.minify.html.enable = false
+
+    const input = '<p id="">foo</p>'
+    const result = h(input, { path: '' })
+
+    expect(result).toBeUndefined()
   })
 
   test('option', () => {
@@ -97,7 +106,7 @@ describe('css', () => {
   const CleanCSS = require('clean-css')
 
   beforeEach(() => {
-    hexo.config.minify.css = cssDefault
+    hexo.config.minify.css = Object.assign({}, cssDefault)
   })
 
   test('default', async () => {
@@ -105,6 +114,13 @@ describe('css', () => {
     const result = await c(input, { path: '' })
     const { styles } = await new CleanCSS(hexo.config.minify.css).minify(input)
     expect(result).toBe(styles)
+  })
+
+  test('disable', async () => {
+    hexo.config.minify.css.enable = false
+    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
+    const result = await c(input, { path: '' })
+    expect(result).toBeUndefined()
   })
 
   test('option', async () => {
@@ -152,7 +168,7 @@ describe('js', () => {
   const Terser = require('terser')
 
   beforeEach(() => {
-    hexo.config.minify.js = jsDefault
+    hexo.config.minify.js = Object.assign({}, jsDefault)
   })
 
   test('default', () => {
@@ -160,6 +176,15 @@ describe('js', () => {
     const result = j(input, { path: '' })
     const { code } = Terser.minify(input, { mangle: jsDefault.mangle })
     expect(result).toBe(code)
+  })
+
+  test('disable', () => {
+    hexo.config.minify.js.enable = false
+
+    const input = 'var o = { "foo": 1, bar: 3 };'
+    const result = j(input, { path: '' })
+
+    expect(result).toBeUndefined()
   })
 
   test('option', () => {
