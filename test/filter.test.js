@@ -533,6 +533,22 @@ describe('brotli', () => {
     expect(result).toBeUndefined()
   })
 
+  test('option', async () => {
+    const level = 1
+    hexo.config.minify.brotli.level = level
+    await b()
+
+    const output = hexo.route.get(path.concat('.br'))
+    const buf = []
+    output.on('data', (chunk) => (buf.push(chunk)))
+    output.on('end', async () => {
+      const result = Buffer.concat(buf)
+      const expected = await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: level } })
+
+      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+    })
+  })
+
   test('option - invalid', async () => {
     const level = 'foo'
     hexo.config.minify.brotli.level = level
