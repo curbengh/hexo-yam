@@ -10,14 +10,15 @@ describe('html', () => {
   const { htmlDefault } = require('../index')
   const h = require('../lib/filter').minifyHtml.bind(hexo)
   const Htmlminifier = require('html-minifier').minify
+  const input = '<p id="">foo</p>'
+  const path = 'index.html'
 
   beforeEach(() => {
     hexo.config.minify.html = Object.assign({}, htmlDefault)
   })
 
   test('default', () => {
-    const input = '<p id="">foo</p>'
-    const result = h(input, { path: '' })
+    const result = h(input, { path })
     const expected = Htmlminifier(input, hexo.config.minify.html)
 
     expect(result).toBe(expected)
@@ -26,8 +27,7 @@ describe('html', () => {
   test('disable', () => {
     hexo.config.minify.html.enable = false
 
-    const input = '<p id="">foo</p>'
-    const result = h(input, { path: '' })
+    const result = h(input, { path })
 
     expect(result).toBeUndefined()
   })
@@ -36,8 +36,7 @@ describe('html', () => {
     const customOpt = { removeEmptyAttributes: false }
     hexo.config.minify.html = customOpt
 
-    const input = '<p id="">foo</p>'
-    const result = h(input, { path: '' })
+    const result = h(input, { path })
     const expected = Htmlminifier(input, customOpt)
 
     expect(result).toBe(input)
@@ -46,19 +45,16 @@ describe('html', () => {
 
   it('option - verbose', () => {
     hexo.config.minify.html.verbose = true
-    const path = 'foo'
     hexo.log.log = jest.fn()
-    const input = '<p>foo</p>'
     h(input, { path })
-    expect(hexo.log.log).toHaveBeenCalled()
-    expect(hexo.log.log).toHaveBeenCalledWith(`html: ${path} [0.00% saved]`)
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`html: ${path}`)
   })
 
   test('exclude', () => {
     const exclude = '*.min.html'
     hexo.config.minify.html.exclude = exclude
 
-    const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.min.html' })
 
     expect(result).toBe(input)
@@ -68,7 +64,6 @@ describe('html', () => {
     const exclude = '**/bar.html'
     hexo.config.minify.html.exclude = exclude
 
-    const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.html' })
 
     expect(result).toBe(input)
@@ -80,7 +75,6 @@ describe('html', () => {
     hexo.config.minify.html.exclude = exclude
     hexo.config.minify.html.globOptions = globOptions
 
-    const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.html' })
 
     expect(result).toBe(input)
@@ -92,7 +86,6 @@ describe('html', () => {
     hexo.config.minify.html.exclude = exclude
     hexo.config.minify.html.globOptions = globOptions
 
-    const input = '<p id="">foo</p>'
     const result = h(input, { path: 'foo/bar.html' })
     const expected = Htmlminifier(input, hexo.config.minify.html)
 
@@ -103,7 +96,6 @@ describe('html', () => {
     hexo.config.minify.html.exclude = null
     hexo.config.minify.html.globOptions = null
 
-    const input = '<p id="">foo</p>'
     const result = h(input, { path: null })
     const expected = Htmlminifier(input, hexo.config.minify.html)
 
@@ -115,22 +107,24 @@ describe('css', () => {
   const { cssDefault } = require('../index')
   const c = require('../lib/filter').minifyCss.bind(hexo)
   const CleanCSS = require('clean-css')
+  const input = 'foo { bar: baz; } foo { aaa: bbb; }'
+  const path = 'foo.css'
 
   beforeEach(() => {
     hexo.config.minify.css = Object.assign({}, cssDefault)
   })
 
   test('default', async () => {
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
-    const result = await c(input, { path: '' })
+    const result = await c(input, { path })
     const { styles } = await new CleanCSS(hexo.config.minify.css).minify(input)
+
     expect(result).toBe(styles)
   })
 
   test('disable', async () => {
     hexo.config.minify.css.enable = false
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
-    const result = await c(input, { path: '' })
+    const result = await c(input, { path })
+
     expect(result).toBeUndefined()
   })
 
@@ -144,17 +138,15 @@ describe('css', () => {
     }
     hexo.config.minify.css = customOpt
 
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
-    const result = await c(input, { path: '' })
+    const result = await c(input, { path })
     const { styles } = await new CleanCSS(customOpt).minify(input)
+
     expect(result).toBe(styles)
   })
 
   it('option - verbose', async () => {
     hexo.config.minify.css.verbose = true
-    const path = 'foo'
     hexo.log.log = jest.fn()
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     await c(input, { path })
 
     expect(hexo.log.log.mock.calls[0][0]).toContain(`css: ${path}`)
@@ -166,11 +158,10 @@ describe('css', () => {
     }
     hexo.config.minify.css = customOpt
 
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     let result, expected
 
     try {
-      await c(input, { path: '' })
+      await c(input, { path })
     } catch (err) {
       result = err.message
     }
@@ -184,24 +175,24 @@ describe('css', () => {
   })
 
   test('exclude - *.min.css', async () => {
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     const result = await c(input, { path: 'foo/bar.min.css' })
+
     expect(result).toBe(input)
   })
 
   test('exclude - basename', async () => {
     const exclude = '*baz.css'
     hexo.config.minify.css.exclude = exclude
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     const result = await c(input, { path: 'foo/barbaz.css' })
+
     expect(result).toBe(input)
   })
 
   test('exclude - slash in pattern', async () => {
     const exclude = '**/bar.css'
     hexo.config.minify.css.exclude = exclude
-    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
     const result = await c(input, { path: 'foo/bar.css' })
+
     expect(result).toBe(input)
   })
 })
@@ -210,14 +201,15 @@ describe('js', () => {
   const { jsDefault } = require('../index')
   const j = require('../lib/filter').minifyJs.bind(hexo)
   const Terser = require('terser')
+  const input = 'var o = { "foo": 1, bar: 3 };'
+  const path = 'foo.js'
 
   beforeEach(() => {
     hexo.config.minify.js = Object.assign({}, jsDefault)
   })
 
   test('default', () => {
-    const input = 'var o = { "foo": 1, bar: 3 };'
-    const result = j(input, { path: '' })
+    const result = j(input, { path })
     const { code } = Terser.minify(input, { mangle: jsDefault.mangle })
 
     expect(result).toBeDefined()
@@ -228,8 +220,7 @@ describe('js', () => {
   test('disable', () => {
     hexo.config.minify.js.enable = false
 
-    const input = 'var o = { "foo": 1, bar: 3 };'
-    const result = j(input, { path: '' })
+    const result = j(input, { path })
 
     expect(result).toBeUndefined()
   })
@@ -242,9 +233,9 @@ describe('js', () => {
     }
     hexo.config.minify.js = customOpt
 
-    const input = 'var o = { "foo": 1, bar: 3 };'
-    const result = j(input, { path: '' })
+    const result = j(input, { path })
     const { code } = Terser.minify(input, customOpt)
+
     expect(result).toBe(code)
   })
 
@@ -252,7 +243,6 @@ describe('js', () => {
     hexo.config.minify.js.verbose = true
     const path = 'foo'
     hexo.log.log = jest.fn()
-    const input = 'var o = { "foo": 1, bar: 3 };'
     j(input, { path })
 
     expect(hexo.log.log.mock.calls[0][0]).toContain(`js: ${path}`)
@@ -266,34 +256,33 @@ describe('js', () => {
     }
     hexo.config.minify.js = customOpt
 
-    const input = 'var o = { "foo": 1, bar: 3 };'
     const { error } = Terser.minify(input, customOpt)
     try {
-      j(input, { path: '' })
+      j(input, { path })
     } catch (err) {
       expect(err.message).toContain(error.message)
     }
   })
 
   test('exclude - *.min.js', () => {
-    const input = 'var o = { "foo": 1, bar: 3 };'
     const result = j(input, { path: 'foo/bar.min.js' })
+
     expect(result).toBe(input)
   })
 
   test('exclude - basename', () => {
     const exclude = '*baz.js'
     hexo.config.minify.js.exclude = exclude
-    const input = 'var o = { "foo": 1, bar: 3 };'
     const result = j(input, { path: 'foo/barbaz.js' })
+
     expect(result).toBe(input)
   })
 
   test('exclude - slash in pattern', () => {
     const exclude = '**/bar.js'
     hexo.config.minify.js.exclude = exclude
-    const input = 'var o = { "foo": 1, bar: 3 };'
     const result = j(input, { path: 'foo/bar.js' })
+
     expect(result).toBe(input)
   })
 })
@@ -302,8 +291,8 @@ describe('svg', () => {
   const { svgDefault } = require('../index')
   const s = require('../lib/filter').minifySvg.bind(hexo)
   const Svgo = require('svgo')
-  const path = 'foo.svg'
   const input = '<svg><rect x="1" y="2" width="3" height="4" id="a"/></svg>'
+  const path = 'foo.svg'
 
   beforeEach(() => {
     hexo.config.minify.svg = Object.assign({}, svgDefault)
@@ -330,6 +319,7 @@ describe('svg', () => {
   test('disable', async () => {
     hexo.config.minify.svg.enable = false
     const result = await s()
+
     expect(result).toBeUndefined()
   })
 
@@ -521,6 +511,7 @@ describe('gzip', () => {
     await g()
 
     const result = hexo.route.get(fooPath.concat('.gz'))
+
     expect(result).toBeDefined()
   })
 
@@ -531,6 +522,7 @@ describe('gzip', () => {
     await g()
 
     const result = hexo.route.get(fooPath.concat('.gz'))
+
     expect(result).toBeDefined()
   })
 })
@@ -625,6 +617,7 @@ describe('brotli', () => {
     await b()
 
     const result = hexo.route.get(path.concat('.br'))
+
     expect(result).toBeUndefined()
   })
 
@@ -635,6 +628,7 @@ describe('brotli', () => {
     await b()
 
     const result = hexo.route.get(fooPath.concat('.br'))
+
     expect(result).toBeDefined()
   })
 
@@ -645,6 +639,7 @@ describe('brotli', () => {
     await b()
 
     const result = hexo.route.get(fooPath.concat('.br'))
+
     expect(result).toBeDefined()
   })
 })
