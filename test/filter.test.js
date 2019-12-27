@@ -44,8 +44,8 @@ describe('html', () => {
     expect(result).toBe(expected)
   })
 
-  it('option - logger', () => {
-    hexo.config.minify.html.logger = true
+  it('option - verbose', () => {
+    hexo.config.minify.html.verbose = true
     const path = 'foo'
     hexo.log.log = jest.fn()
     const input = '<p>foo</p>'
@@ -150,6 +150,16 @@ describe('css', () => {
     expect(result).toBe(styles)
   })
 
+  it('option - verbose', async () => {
+    hexo.config.minify.css.verbose = true
+    const path = 'foo'
+    hexo.log.log = jest.fn()
+    const input = 'foo { bar: baz; } foo { aaa: bbb; }'
+    await c(input, { path })
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`css: ${path}`)
+  })
+
   test('option - invalid', async () => {
     const customOpt = {
       level: 9000
@@ -236,6 +246,16 @@ describe('js', () => {
     const result = j(input, { path: '' })
     const { code } = Terser.minify(input, customOpt)
     expect(result).toBe(code)
+  })
+
+  it('option - verbose', () => {
+    hexo.config.minify.js.verbose = true
+    const path = 'foo'
+    hexo.log.log = jest.fn()
+    const input = 'var o = { "foo": 1, bar: 3 };'
+    j(input, { path })
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`js: ${path}`)
   })
 
   test('option - invalid', () => {
@@ -326,6 +346,14 @@ describe('svg', () => {
       expect(result).toBe(data)
       expect(result).toContain('id="a"')
     })
+  })
+
+  it('option - verbose', async () => {
+    hexo.config.minify.svg.verbose = true
+    hexo.log.log = jest.fn()
+    await s()
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`svg: ${path}`)
   })
 
   test('invalid svg', async () => {
@@ -450,6 +478,14 @@ describe('gzip', () => {
     })
   })
 
+  it('option - verbose', async () => {
+    hexo.config.minify.gzip.verbose = true
+    hexo.log.log = jest.fn()
+    await g()
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`gzip: ${path}`)
+  })
+
   test('option - invalid', async () => {
     const customOpt = {
       level: 9000
@@ -557,6 +593,14 @@ describe('brotli', () => {
 
       expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
     })
+  })
+
+  it('option - verbose', async () => {
+    hexo.config.minify.brotli.verbose = true
+    hexo.log.log = jest.fn()
+    await b()
+
+    expect(hexo.log.log.mock.calls[0][0]).toContain(`brotli: ${path}`)
   })
 
   test('option - level is string', async () => {

@@ -5,7 +5,7 @@ const minifyDefault = { enable: true }
 const htmlDefault = {
   enable: true,
   priority: 10,
-  logger: false,
+  verbose: false,
   exclude: [],
   collapseBooleanAttributes: true,
   collapseWhitespace: true,
@@ -22,8 +22,7 @@ const htmlDefault = {
 const cssDefault = {
   enable: true,
   priority: 10,
-  // TODO: rename to verbose
-  logger: false,
+  verbose: false,
   exclude: ['*.min.css'],
   level: 2,
   globOptions: { basename: true }
@@ -31,7 +30,7 @@ const cssDefault = {
 const jsDefault = {
   enable: true,
   priority: 10,
-  logger: false,
+  verbose: false,
   exclude: ['*.min.js'],
   compress: {},
   mangle: true,
@@ -41,7 +40,7 @@ const jsDefault = {
 const svgDefault = {
   enable: true,
   priority: 10,
-  logger: false,
+  verbose: false,
   include: ['*.svg', '!*.min.svg'],
   plugins: [],
   globOptions: { basename: true }
@@ -49,14 +48,14 @@ const svgDefault = {
 const gzipDefault = {
   enable: true,
   priority: 10,
-  logger: false,
+  verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
 }
 const brotliDefault = {
   enable: true,
   priority: 10,
-  logger: false,
+  verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
   globOptions: { basename: true }
 }
