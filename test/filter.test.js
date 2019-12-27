@@ -198,6 +198,9 @@ describe('js', () => {
     const input = 'var o = { "foo": 1, bar: 3 };'
     const result = j(input, { path: '' })
     const { code } = Terser.minify(input, { mangle: jsDefault.mangle })
+
+    expect(result).toBeDefined()
+    expect(code).toBeDefined()
     expect(result).toBe(code)
   })
 
