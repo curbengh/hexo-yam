@@ -451,3 +451,77 @@ describe('gzip', () => {
     expect(result).toBeDefined()
   })
 })
+
+describe('brotli', () => {
+  const { brotliDefault } = require('../index')
+  const b = require('../lib/filter').brotliFn.bind(hexo)
+  const zlib = require('zlib')
+  const brotli = promisify(zlib.brotliCompress)
+  const unbrotli = promisify(zlib.brotliDecompress)
+  const path = 'foo.txt'
+  const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
+
+  beforeEach(() => {
+    hexo.config.minify.brotli = Object.assign({}, brotliDefault)
+    hexo.route.set(path, input)
+  })
+
+  afterEach(() => {
+    const routeList = hexo.route.list()
+    routeList.forEach((path) => hexo.route.remove(path))
+  })
+
+  test('default', async () => {
+    await b()
+
+    const output = hexo.route.get(path.concat('.br'))
+    const buf = []
+    output.on('data', (chunk) => (buf.push(chunk)))
+    output.on('end', async () => {
+      const result = Buffer.concat(buf)
+      const expected = await brotli(input)
+      const resultUnbr = await unbrotli(result)
+      const expectedUnbr = await unbrotli(expected)
+
+      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(resultUnbr.toString()).toBe(input)
+      expect(expectedUnbr.toString()).toBe(input)
+    })
+  })
+
+  test('disable', async () => {
+    hexo.config.minify.brotli.enable = false
+    const result = await b()
+
+    expect(result).toBeUndefined()
+  })
+
+  test('include - exclude non-text file by default', async () => {
+    const path = 'foo.jpg'
+    hexo.route.set(path, input)
+    await b()
+
+    const result = hexo.route.get(path.concat('.br'))
+    expect(result).toBeUndefined()
+  })
+
+  test('include - basename', async () => {
+    hexo.config.minify.brotli.include = 'bar.txt'
+    const fooPath = 'foo/bar.txt'
+    hexo.route.set(fooPath, input)
+    await b()
+
+    const result = hexo.route.get(fooPath.concat('.br'))
+    expect(result).toBeDefined()
+  })
+
+  test('include - slash in pattern', async () => {
+    hexo.config.minify.brotli.include = '**/foo/*.txt'
+    const fooPath = 'blog/site/example/foo/bar.txt'
+    hexo.route.set(fooPath, input)
+    await b()
+
+    const result = hexo.route.get(fooPath.concat('.br'))
+    expect(result).toBeDefined()
+  })
+})
