@@ -266,3 +266,113 @@ describe('js', () => {
     expect(result).toBe(input)
   })
 })
+
+describe('svg', () => {
+  const { svgDefault } = require('../index')
+  const s = require('../lib/filter').minifySvg.bind(hexo)
+  const Svgo = require('svgo')
+  const path = 'foo.svg'
+  const input = '<svg><rect x="1" y="2" width="3" height="4" id="a"/></svg>'
+
+  beforeEach(() => {
+    hexo.config.minify.svg = Object.assign({}, svgDefault)
+    hexo.route.set(path, input)
+  })
+
+  afterEach(() => {
+    const routeList = hexo.route.list()
+    routeList.forEach((path) => hexo.route.remove(path))
+  })
+
+  test('default', async () => {
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    const output = hexo.route.get(path)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(data)
+    })
+  })
+
+  test('disable', async () => {
+    hexo.config.minify.svg.enable = false
+    const result = await s()
+    expect(result).toBeUndefined()
+  })
+
+  test('option', async () => {
+    const customOpt = [{ cleanupIDs: false }]
+    hexo.config.minify.svg.plugins = customOpt
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    const output = hexo.route.get(path)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(data)
+      expect(result).toContain('id="a"')
+    })
+  })
+
+  test('invalid svg', async () => {
+    const input = '{}'
+    hexo.route.set(path, input)
+    let expected
+    try {
+      await new Svgo(hexo.config.minify.svg).optimize(input)
+    } catch (err) {
+      expected = err
+    }
+    try {
+      await s()
+    } catch (err) {
+      expect(err.message).toContain(expected)
+    }
+  })
+
+  test('include - exclude *.min.svg by default', async () => {
+    const path = 'foo.min.svg'
+    hexo.route.set(path, input)
+    await s()
+
+    const output = hexo.route.get(path)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(input)
+    })
+  })
+
+  test('include - basename', async () => {
+    hexo.config.minify.svg.include = 'bar.svg'
+    const fooPath = 'foo/bar.svg'
+    hexo.route.set(fooPath, input)
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    const output = hexo.route.get(fooPath)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(data)
+    })
+  })
+
+  test('include - slash in pattern', async () => {
+    hexo.config.minify.svg.include = '**/foo/*.svg'
+    const fooPath = 'blog/site/example/foo/bar.svg'
+    hexo.route.set(fooPath, input)
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    const output = hexo.route.get(fooPath)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(data)
+    })
+  })
+})
