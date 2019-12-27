@@ -44,6 +44,16 @@ describe('html', () => {
     expect(result).toBe(expected)
   })
 
+  it('option - logger', () => {
+    hexo.config.minify.html.logger = true
+    const path = 'foo'
+    hexo.log.log = jest.fn()
+    const input = '<p>foo</p>'
+    h(input, { path })
+    expect(hexo.log.log).toHaveBeenCalled()
+    expect(hexo.log.log).toHaveBeenCalledWith(`html: ${path} [0.00% saved]`)
+  })
+
   test('exclude', () => {
     const exclude = '*.min.html'
     hexo.config.minify.html.exclude = exclude
