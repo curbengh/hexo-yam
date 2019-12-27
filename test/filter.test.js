@@ -1,6 +1,7 @@
 /* eslint-env jest */
 'use strict'
 
+const { promisify } = require('util')
 const Hexo = require('hexo')
 const hexo = new Hexo(__dirname)
 global.hexo = hexo
@@ -374,5 +375,79 @@ describe('svg', () => {
     output.on('end', () => {
       expect(result).toBe(data)
     })
+  })
+})
+
+describe('gzip', () => {
+  const { gzipDefault } = require('../index')
+  const g = require('../lib/filter').gzipFn.bind(hexo)
+  const zlib = require('zlib')
+  const gzip = promisify(zlib.gzip)
+  const unzip = promisify(zlib.unzip)
+  const path = 'foo.txt'
+  const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
+
+  beforeEach(() => {
+    hexo.config.minify.gzip = Object.assign({}, gzipDefault)
+    hexo.route.set(path, input)
+  })
+
+  afterEach(() => {
+    const routeList = hexo.route.list()
+    routeList.forEach((path) => hexo.route.remove(path))
+  })
+
+  test('default', async () => {
+    await g()
+
+    const output = hexo.route.get(path.concat('.gz'))
+    const buf = []
+    output.on('data', (chunk) => (buf.push(chunk)))
+    output.on('end', async () => {
+      const result = Buffer.concat(buf)
+      const expected = await gzip(input, { level: zlib.constants.Z_BEST_COMPRESSION })
+      const resultUnzip = await unzip(result)
+      const expectedUnzip = await unzip(expected)
+
+      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(resultUnzip.toString()).toBe(input)
+      expect(expectedUnzip.toString()).toBe(input)
+    })
+  })
+
+  test('disable', async () => {
+    hexo.config.minify.gzip.enable = false
+    const result = await g()
+
+    expect(result).toBeUndefined()
+  })
+
+  test('include - exclude non-text file by default', async () => {
+    const path = 'foo.jpg'
+    hexo.route.set(path, input)
+    await g()
+
+    const result = hexo.route.get(path.concat('.gz'))
+    expect(result).toBeUndefined()
+  })
+
+  test('include - basename', async () => {
+    hexo.config.minify.gzip.include = 'bar.txt'
+    const fooPath = 'foo/bar.txt'
+    hexo.route.set(fooPath, input)
+    await g()
+
+    const result = hexo.route.get(fooPath.concat('.gz'))
+    expect(result).toBeDefined()
+  })
+
+  test('include - slash in pattern', async () => {
+    hexo.config.minify.gzip.include = '**/foo/*.txt'
+    const fooPath = 'blog/site/example/foo/bar.txt'
+    hexo.route.set(fooPath, input)
+    await g()
+
+    const result = hexo.route.get(fooPath.concat('.gz'))
+    expect(result).toBeDefined()
   })
 })
