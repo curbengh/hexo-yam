@@ -559,21 +559,20 @@ describe('brotli', () => {
     })
   })
 
-  test('option - invalid', async () => {
+  test('option - level is string', async () => {
     const level = 'foo'
     hexo.config.minify.brotli.level = level
+    await b()
 
-    let expected
-    try {
-      await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: level } })
-    } catch (err) {
-      expected = err.message
-    }
-    try {
-      await b()
-    } catch (err) {
-      expect(err.message).toContain(expected)
-    }
+    const output = hexo.route.get(path.concat('.br'))
+    const buf = []
+    output.on('data', (chunk) => (buf.push(chunk)))
+    output.on('end', async () => {
+      const result = Buffer.concat(buf)
+      const expected = await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } })
+
+      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+    })
   })
 
   test('include - exclude non-text file by default', async () => {
