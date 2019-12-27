@@ -422,6 +422,43 @@ describe('gzip', () => {
     expect(result).toBeUndefined()
   })
 
+  test('option', async () => {
+    const customOpt = {
+      level: 1
+    }
+    hexo.config.minify.gzip.level = customOpt.level
+    await g()
+
+    const output = hexo.route.get(path.concat('.gz'))
+    const buf = []
+    output.on('data', (chunk) => (buf.push(chunk)))
+    output.on('end', async () => {
+      const result = Buffer.concat(buf)
+      const expected = await gzip(input, customOpt)
+
+      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+    })
+  })
+
+  test('option - invalid', async () => {
+    const customOpt = {
+      level: 9000
+    }
+    hexo.config.minify.gzip.level = customOpt.level
+
+    let expected
+    try {
+      await gzip(input, customOpt)
+    } catch (err) {
+      expected = err.message
+    }
+    try {
+      await g()
+    } catch (err) {
+      expect(err.message).toContain(expected)
+    }
+  })
+
   test('include - exclude non-text file by default', async () => {
     const path = 'foo.jpg'
     hexo.route.set(path, input)
@@ -494,6 +531,23 @@ describe('brotli', () => {
     const result = await b()
 
     expect(result).toBeUndefined()
+  })
+
+  test('option - invalid', async () => {
+    const level = 'foo'
+    hexo.config.minify.brotli.level = level
+
+    let expected
+    try {
+      await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: level } })
+    } catch (err) {
+      expected = err.message
+    }
+    try {
+      await b()
+    } catch (err) {
+      expect(err.message).toContain(expected)
+    }
   })
 
   test('include - exclude non-text file by default', async () => {
