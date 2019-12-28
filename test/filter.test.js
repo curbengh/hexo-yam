@@ -437,7 +437,7 @@ describe('gzip', () => {
       const resultUnzip = await unzip(result)
       const expectedUnzip = await unzip(expected)
 
-      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(result.equals(expected)).toBe(true)
       expect(resultUnzip.toString()).toBe(input)
       expect(expectedUnzip.toString()).toBe(input)
     })
@@ -464,7 +464,7 @@ describe('gzip', () => {
       const result = Buffer.concat(buf)
       const expected = await gzip(input, customOpt)
 
-      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(result.equals(expected)).toBe(true)
     })
   })
 
@@ -558,7 +558,7 @@ describe('brotli', () => {
       const resultUnbr = await unbrotli(result)
       const expectedUnbr = await unbrotli(expected)
 
-      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(result.equals(expected)).toBe(true)
       expect(resultUnbr.toString()).toBe(input)
       expect(expectedUnbr.toString()).toBe(input)
     })
@@ -583,7 +583,7 @@ describe('brotli', () => {
       const result = Buffer.concat(buf)
       const expected = await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: level } })
 
-      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(result.equals(expected)).toBe(true)
     })
   })
 
@@ -607,7 +607,7 @@ describe('brotli', () => {
       const result = Buffer.concat(buf)
       const expected = await brotli(input, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } })
 
-      expect(result.toString('base64')).toBe(Buffer.from(expected, 'binary').toString('base64'))
+      expect(result.equals(expected)).toBe(true)
     })
   })
 
