@@ -61,16 +61,16 @@ describe('html', () => {
   })
 
   test('exclude - slash in pattern', () => {
-    const exclude = '**/bar.html'
+    const exclude = '**/lectus/**/*.html'
     hexo.config.minify.html.exclude = exclude
 
-    const result = h(input, { path: 'foo/bar.html' })
+    const result = h(input, { path: 'eleifend/lectus/nullam/dapibus/netus.html' })
 
     expect(result).toBe(input)
   })
 
   test('exclude - basename is true + slash', () => {
-    const exclude = ['**/baz', 'bar.html']
+    const exclude = ['**/lectus/**/*.html', 'bar.html']
     const globOptions = { basename: true }
     hexo.config.minify.html.exclude = exclude
     hexo.config.minify.html.globOptions = globOptions
@@ -81,7 +81,7 @@ describe('html', () => {
   })
 
   test('exclude - basename is false + slash', () => {
-    const exclude = ['**/baz', 'bar.html']
+    const exclude = ['**/lectus/**/*.html', 'bar.html']
     const globOptions = { basename: false }
     hexo.config.minify.html.exclude = exclude
     hexo.config.minify.html.globOptions = globOptions
@@ -189,9 +189,9 @@ describe('css', () => {
   })
 
   test('exclude - slash in pattern', async () => {
-    const exclude = '**/bar.css'
+    const exclude = '**/lectus/**/*.css'
     hexo.config.minify.css.exclude = exclude
-    const result = await c(input, { path: 'foo/bar.css' })
+    const result = await c(input, { path: 'eleifend/lectus/nullam/dapibus/netus.css' })
 
     expect(result).toBe(input)
   })
@@ -279,9 +279,9 @@ describe('js', () => {
   })
 
   test('exclude - slash in pattern', () => {
-    const exclude = '**/bar.js'
+    const exclude = '**/lectus/**/*.js'
     hexo.config.minify.js.exclude = exclude
-    const result = j(input, { path: 'foo/bar.js' })
+    const result = j(input, { path: 'eleifend/lectus/nullam/dapibus/netus.js' })
 
     expect(result).toBe(input)
   })
@@ -391,8 +391,8 @@ describe('svg', () => {
   })
 
   test('include - slash in pattern', async () => {
-    hexo.config.minify.svg.include = '**/foo/*.svg'
-    const path = 'blog/site/example/foo/bar.svg'
+    hexo.config.minify.svg.include = '**/lectus/**/*.svg'
+    const path = 'eleifend/lectus/nullam/dapibus/netus.svg'
     hexo.route.set(path, input)
     await s()
     const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
@@ -597,8 +597,8 @@ describe('gzip', () => {
   })
 
   test('include - slash in pattern', async () => {
-    hexo.config.minify.gzip.include = '**/foo/*.txt'
-    const path = 'blog/site/example/foo/bar.txt'
+    hexo.config.minify.gzip.include = '**/lectus/**/*.txt'
+    const path = 'eleifend/lectus/nullam/dapibus/netus.txt'
     hexo.route.set(path, input)
     await g()
 
@@ -714,8 +714,8 @@ describe('brotli', () => {
   })
 
   test('include - slash in pattern', async () => {
-    hexo.config.minify.brotli.include = '**/foo/*.txt'
-    const path = 'blog/site/example/foo/bar.txt'
+    hexo.config.minify.brotli.include = '**/lectus/**/*.txt'
+    const path = 'eleifend/lectus/nullam/dapibus/netus.txt'
     hexo.route.set(path, input)
     await b()
 
