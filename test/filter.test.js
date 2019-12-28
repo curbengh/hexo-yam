@@ -377,12 +377,12 @@ describe('svg', () => {
 
   test('include - basename', async () => {
     hexo.config.minify.svg.include = 'bar.svg'
-    const fooPath = 'foo/bar.svg'
-    hexo.route.set(fooPath, input)
+    const path = 'foo/bar.svg'
+    hexo.route.set(path, input)
     await s()
     const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
 
-    const output = hexo.route.get(fooPath)
+    const output = hexo.route.get(path)
     let result = ''
     output.on('data', (chunk) => (result += chunk))
     output.on('end', () => {
@@ -392,17 +392,98 @@ describe('svg', () => {
 
   test('include - slash in pattern', async () => {
     hexo.config.minify.svg.include = '**/foo/*.svg'
-    const fooPath = 'blog/site/example/foo/bar.svg'
-    hexo.route.set(fooPath, input)
+    const path = 'blog/site/example/foo/bar.svg'
+    hexo.route.set(path, input)
     await s()
     const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
 
-    const output = hexo.route.get(fooPath)
+    const output = hexo.route.get(path)
     let result = ''
     output.on('data', (chunk) => (result += chunk))
     output.on('end', () => {
       expect(result).toBe(data)
     })
+  })
+
+  test('include - basename + slash', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.svg',
+      'gravida/sociis/erat/ante.svg',
+      'aptent/elementum.svg',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.svg.include = [
+      'dolor.svg',
+      '**/sociis/**/*.svg'
+    ]
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    const minPaths = paths.slice(0, 2)
+    const unminPaths = paths.slice(2)
+
+    minPaths.forEach((inpath) => {
+      const output = hexo.route.get(inpath)
+      let result = ''
+      output.on('data', (chunk) => (result += chunk))
+      output.on('end', () => {
+        expect(result).toBe(data)
+      })
+    })
+
+    unminPaths.forEach((inpath) => {
+      const output = hexo.route.get(inpath)
+      let result = ''
+      output.on('data', (chunk) => (result += chunk))
+      output.on('end', () => {
+        expect(result).toBe(input)
+      })
+    })
+  })
+
+  test('include - reverse pattern + basename disabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.svg',
+      'gravida/sociis/erat/ante.svg',
+      'aptent/elementum.svg',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.svg.include = [
+      '!dolor.svg'
+    ]
+    hexo.config.minify.svg.globOptions = {
+      basename: false
+    }
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await s()
+    const { data } = await new Svgo(hexo.config.minify.svg).optimize(input)
+
+    paths.forEach((inpath) => {
+      const output = hexo.route.get(inpath)
+      let result = ''
+      output.on('data', (chunk) => (result += chunk))
+      output.on('end', () => {
+        expect(result).toBe(data)
+      })
+    })
+  })
+
+  test('include - empty route', async () => {
+    hexo.route.remove(path)
+
+    const result = await s()
+    expect(result.length).toBe(0)
   })
 })
 
@@ -506,22 +587,22 @@ describe('gzip', () => {
 
   test('include - basename', async () => {
     hexo.config.minify.gzip.include = 'bar.txt'
-    const fooPath = 'foo/bar.txt'
-    hexo.route.set(fooPath, input)
+    const path = 'foo/bar.txt'
+    hexo.route.set(path, input)
     await g()
 
-    const result = hexo.route.get(fooPath.concat('.gz'))
+    const result = hexo.route.get(path.concat('.gz'))
 
     expect(result).toBeDefined()
   })
 
   test('include - slash in pattern', async () => {
     hexo.config.minify.gzip.include = '**/foo/*.txt'
-    const fooPath = 'blog/site/example/foo/bar.txt'
-    hexo.route.set(fooPath, input)
+    const path = 'blog/site/example/foo/bar.txt'
+    hexo.route.set(path, input)
     await g()
 
-    const result = hexo.route.get(fooPath.concat('.gz'))
+    const result = hexo.route.get(path.concat('.gz'))
 
     expect(result).toBeDefined()
   })
@@ -623,22 +704,22 @@ describe('brotli', () => {
 
   test('include - basename', async () => {
     hexo.config.minify.brotli.include = 'bar.txt'
-    const fooPath = 'foo/bar.txt'
-    hexo.route.set(fooPath, input)
+    const path = 'foo/bar.txt'
+    hexo.route.set(path, input)
     await b()
 
-    const result = hexo.route.get(fooPath.concat('.br'))
+    const result = hexo.route.get(path.concat('.br'))
 
     expect(result).toBeDefined()
   })
 
   test('include - slash in pattern', async () => {
     hexo.config.minify.brotli.include = '**/foo/*.txt'
-    const fooPath = 'blog/site/example/foo/bar.txt'
-    hexo.route.set(fooPath, input)
+    const path = 'blog/site/example/foo/bar.txt'
+    hexo.route.set(path, input)
     await b()
 
-    const result = hexo.route.get(fooPath.concat('.br'))
+    const result = hexo.route.get(path.concat('.br'))
 
     expect(result).toBeDefined()
   })

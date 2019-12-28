@@ -58,9 +58,25 @@ minify:
 - **globOptions** - [micromatch options](https://github.com/micromatch/micromatch#options) to customise how glob patterns match files.
   - Defaults to `{ basename: true }`, unless the pattern has a slash.
     - basename is disabled depending on each pattern.
-    - When specifying an array of patterns, e.g. `exclude: ['*foo.html', '**/bar.html']`, basename applies to `'*foo.html'`, but not `'**/bar.html'`.
+    - This means the following options would work,
+    ``` yml
+    exclude:
+      - '*foo.html'
+      - '**/bar/*/*.html'
+    globOptions:
+      basename: true # default
+    ```
+    - This behaviour doesn't apply to pattern that starts with `!` (negation).
+    - This limitation only applies to `include:` option used in svg, gzip and brotli.
+    - This means the following options would *not* work,
+    ``` yml
+    include:
+      - '!foo.svg'
+      - '!**/bar/*/*.svg'
+    globOptions:
+      basename: true
+    ```
     - basename would stay disabled, if explicitly disabled in `globOptions:`.
-    - However, basename option applies to all patterns in `include:`
 
 For more options, see [HTMLMinifier](https://github.com/kangax/html-minifier).
 
