@@ -49,7 +49,7 @@
   "jest": {
     "clearMocks": true,
     "collectCoverage": true,
-    "coverageDirectory": "coverage",
+    "coverageDirectory": "./coverage/",
     "testEnvironment": "node"
   },
   "greenkeeper": {

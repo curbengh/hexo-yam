@@ -21,3 +21,5 @@ after_script:
       snyk protect;
       snyk monitor;
     fi
+  - npm install codecov
+  - codecov
