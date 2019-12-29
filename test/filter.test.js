@@ -606,6 +606,102 @@ describe('gzip', () => {
 
     expect(result).toBeDefined()
   })
+
+  test('include - basename + slash + basename enabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.gzip.include = [
+      '*.html',
+      '**/sociis/**/*.css'
+    ]
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await g()
+
+    const routeList = hexo.route.list()
+    const expected = [
+      'lorem/ipsum/dolor.html.gz',
+      'gravida/sociis/erat/ante.css.gz'
+    ]
+    const notExpected = [
+      'aptent/elementum.js.gz',
+      'felis/blandit/cursus.svg.gz'
+    ]
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
+    expect(routeList).toEqual(expect.not.arrayContaining(notExpected))
+  })
+
+  test('include - basename + slash + basename disabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.gzip.include = [
+      '*.html',
+      '**/sociis/**/*.css'
+    ]
+    hexo.config.minify.gzip.globOptions = {
+      basename: false
+    }
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await g()
+
+    const routeList = hexo.route.list()
+    const expected = [
+      'gravida/sociis/erat/ante.css.gz'
+    ]
+    const notExpected = [
+      'lorem/ipsum/dolor.html.gz',
+      'aptent/elementum.js.gz',
+      'felis/blandit/cursus.svg.gz'
+    ]
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
+    expect(routeList).toEqual(expect.not.arrayContaining(notExpected))
+  })
+
+  test('include - reverse pattern + basename disabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.gzip.include = [
+      '!dolor.html'
+    ]
+    hexo.config.minify.gzip.globOptions = {
+      basename: false
+    }
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await g()
+
+    const routeList = hexo.route.list()
+    const expected = paths.map((path) => path.concat('.gz'))
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
+  })
 })
 
 describe('brotli', () => {
@@ -722,5 +818,101 @@ describe('brotli', () => {
     const result = hexo.route.get(path.concat('.br'))
 
     expect(result).toBeDefined()
+  })
+
+  test('include - basename + slash + basename enabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.brotli.include = [
+      '*.html',
+      '**/sociis/**/*.css'
+    ]
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await b()
+
+    const routeList = hexo.route.list()
+    const expected = [
+      'lorem/ipsum/dolor.html.br',
+      'gravida/sociis/erat/ante.css.br'
+    ]
+    const notExpected = [
+      'aptent/elementum.js.br',
+      'felis/blandit/cursus.svg.br'
+    ]
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
+    expect(routeList).toEqual(expect.not.arrayContaining(notExpected))
+  })
+
+  test('include - basename + slash + basename disabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.brotli.include = [
+      '*.html',
+      '**/sociis/**/*.css'
+    ]
+    hexo.config.minify.brotli.globOptions = {
+      basename: false
+    }
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await b()
+
+    const routeList = hexo.route.list()
+    const expected = [
+      'gravida/sociis/erat/ante.css.br'
+    ]
+    const notExpected = [
+      'lorem/ipsum/dolor.html.br',
+      'aptent/elementum.js.br',
+      'felis/blandit/cursus.svg.br'
+    ]
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
+    expect(routeList).toEqual(expect.not.arrayContaining(notExpected))
+  })
+
+  test('include - reverse pattern + basename disabled', async () => {
+    hexo.route.remove(path)
+
+    const paths = [
+      'lorem/ipsum/dolor.html',
+      'gravida/sociis/erat/ante.css',
+      'aptent/elementum.js',
+      'felis/blandit/cursus.svg'
+    ]
+    hexo.config.minify.brotli.include = [
+      '!dolor.html'
+    ]
+    hexo.config.minify.brotli.globOptions = {
+      basename: false
+    }
+
+    paths.forEach((inpath) => {
+      hexo.route.set(inpath, input)
+    })
+    await b()
+
+    const routeList = hexo.route.list()
+    const expected = paths.map((path) => path.concat('.br'))
+
+    expect(routeList).toEqual(expect.arrayContaining(expected))
   })
 })
