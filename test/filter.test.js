@@ -43,7 +43,7 @@ describe('html', () => {
     expect(result).toBe(expected)
   })
 
-  it('option - verbose', () => {
+  test('option - verbose', () => {
     hexo.config.minify.html.verbose = true
     hexo.log.log = jest.fn()
     h(input, { path })
@@ -144,7 +144,7 @@ describe('css', () => {
     expect(result).toBe(styles)
   })
 
-  it('option - verbose', async () => {
+  test('option - verbose', async () => {
     hexo.config.minify.css.verbose = true
     hexo.log.log = jest.fn()
     await c(input, { path })
@@ -239,7 +239,7 @@ describe('js', () => {
     expect(result).toBe(code)
   })
 
-  it('option - verbose', () => {
+  test('option - verbose', () => {
     hexo.config.minify.js.verbose = true
     const path = 'foo'
     hexo.log.log = jest.fn()
@@ -338,7 +338,7 @@ describe('svg', () => {
     })
   })
 
-  it('option - verbose', async () => {
+  test('option - verbose', async () => {
     hexo.config.minify.svg.verbose = true
     hexo.log.log = jest.fn()
     await s()
@@ -549,7 +549,7 @@ describe('gzip', () => {
     })
   })
 
-  it('option - verbose', async () => {
+  test('option - verbose', async () => {
     hexo.config.minify.gzip.verbose = true
     hexo.log.log = jest.fn()
     await g()
@@ -764,7 +764,7 @@ describe('brotli', () => {
     })
   })
 
-  it('option - verbose', async () => {
+  test('option - verbose', async () => {
     hexo.config.minify.brotli.verbose = true
     hexo.log.log = jest.fn()
     await b()
