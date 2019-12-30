@@ -241,7 +241,6 @@ describe('js', () => {
 
   test('option - verbose', () => {
     hexo.config.minify.js.verbose = true
-    const path = 'foo'
     hexo.log.log = jest.fn()
     j(input, { path })
 
