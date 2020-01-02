@@ -27,20 +27,13 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, J
 ## Version 4
 In v4, `logger:` option has been renamed to `verbose:`
 
-Example:
+Migrate:
 
-``` yml
+``` diff
 minify:
   html:
-    logger: true
-```
-
-needs to be updated to
-
-``` yml
-minify:
-  html:
-    verbose: true
+-    logger: true
++    verbose: true
 ```
 
 ## Installation
