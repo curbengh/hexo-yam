@@ -32,6 +32,12 @@ describe('html', () => {
     expect(result).toBeUndefined()
   })
 
+  test('empty file', () => {
+    const result = h('', { path })
+
+    expect(result).toBeUndefined()
+  })
+
   test('option', () => {
     const customOpt = { removeEmptyAttributes: false }
     hexo.config.minify.html = customOpt
@@ -124,6 +130,12 @@ describe('css', () => {
   test('disable', async () => {
     hexo.config.minify.css.enable = false
     const result = await c(input, { path })
+
+    expect(result).toBeUndefined()
+  })
+
+  test('empty file', async () => {
+    const result = await c('', { path })
 
     expect(result).toBeUndefined()
   })
@@ -225,6 +237,12 @@ describe('js', () => {
     expect(result).toBeUndefined()
   })
 
+  test('empty file', () => {
+    const result = j('', { path })
+
+    expect(result).toBeUndefined()
+  })
+
   test('option', () => {
     const customOpt = {
       mangle: {
@@ -320,6 +338,15 @@ describe('svg', () => {
     const result = await s()
 
     expect(result).toBeUndefined()
+  })
+
+  test('empty file', async () => {
+    hexo.route.set(path, '')
+    const result = await s()
+
+    // empty file resolves to an array of undefined
+    expect(result).toBeDefined()
+    expect(result[0]).toBeUndefined()
   })
 
   test('option', async () => {
@@ -528,6 +555,18 @@ describe('gzip', () => {
     const result = await g()
 
     expect(result).toBeUndefined()
+  })
+
+  test('empty file', async () => {
+    hexo.route.set(path, '')
+
+    const routeList = hexo.route.list()
+    expect(routeList).not.toContain(path.concat('.gz'))
+
+    const result = await g()
+    // empty file resolves to an array of undefined
+    expect(result).toBeDefined()
+    expect(result[0]).toBeUndefined()
   })
 
   test('option', async () => {
@@ -745,6 +784,18 @@ describe('brotli', () => {
     const result = await b()
 
     expect(result).toBeUndefined()
+  })
+
+  test('empty file', async () => {
+    hexo.route.set(path, '')
+
+    const routeList = hexo.route.list()
+    expect(routeList).not.toContain(path.concat('.br'))
+
+    const result = await b()
+    // empty file resolves to an array of undefined
+    expect(result).toBeDefined()
+    expect(result[0]).toBeUndefined()
   })
 
   test('option', async () => {
