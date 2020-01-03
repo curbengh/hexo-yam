@@ -67,6 +67,13 @@ const xmlDefault = {
   removeComments: true,
   globOptions: { basename: true }
 }
+const jsonDefault = {
+  enable: false,
+  priority: 10,
+  verbose: false,
+  include: ['*.json', '!*.min.json'],
+  globOptions: { basename: true }
+}
 
 hexo.config.minify = Object.assign(minifyDefault, hexo.config.minify)
 hexo.config.minify.html = Object.assign(htmlDefault, hexo.config.minify.html)
@@ -76,6 +83,7 @@ hexo.config.minify.svg = Object.assign(svgDefault, hexo.config.minify.svg)
 hexo.config.minify.gzip = Object.assign(gzipDefault, hexo.config.minify.gzip)
 hexo.config.minify.brotli = Object.assign(brotliDefault, hexo.config.minify.brotli)
 hexo.config.minify.xml = Object.assign(xmlDefault, hexo.config.minify.xml)
+hexo.config.minify.json = Object.assign(jsonDefault, hexo.config.minify.json)
 
 if (hexo.config.minify.enable === true) {
   const filter = require('./lib/filter')
@@ -86,6 +94,7 @@ if (hexo.config.minify.enable === true) {
   hexo.extend.filter.register('after_generate', filter.gzipFn, hexo.config.minify.gzip.priority)
   hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
   hexo.extend.filter.register('after_generate', filter.minifyXml, hexo.config.minify.xml.priority)
+  hexo.extend.filter.register('after_generate', filter.minifyJson, hexo.config.minify.json.priority)
 }
 
 module.exports = {
@@ -96,5 +105,6 @@ module.exports = {
   svgDefault,
   gzipDefault,
   brotliDefault,
-  xmlDefault
+  xmlDefault,
+  jsonDefault
 }

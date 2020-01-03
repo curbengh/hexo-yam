@@ -7,7 +7,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
 [![Greenkeeper badge](https://badges.greenkeeper.io/curbengh/hexo-yam.svg)](https://greenkeeper.io/)
 
-Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, JSON and [many more](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
 
 ## Table of contents
@@ -22,6 +22,7 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, J
 - [Gzip](#gzip)
 - [Brotli](#brotli)
 - [XML](#xml)
+- [JSON](#json)
 - [Globbing](#globbing)
 - [HTTP Compression](#http-compression)
 
@@ -194,6 +195,8 @@ minify:
 
 ## XML
 
+Remove whitespaces in xml.
+
 ``` yaml
 minify:
   xml:
@@ -208,6 +211,25 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
   - Exclude `*.min.xml` by default.
 - **removeComments** - Remove [comments](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction) in xml. Defaults to `true`.
+- **globOptions** - See [globbing](#globbing) section.
+
+## JSON
+
+Remove whitespaces in json.
+
+``` yaml
+minify:
+  json:
+    enable: false
+    include:
+      - '*.json'
+      - '!*.min.json'
+```
+- **enable** - Enable the plugin. Defaults to `false`.
+- **priority** - Plugin's priority. Defaults to `10`.
+- **verbose** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+  - Exclude `*.min.json` by default.
 - **globOptions** - See [globbing](#globbing) section.
 
 ## Globbing
