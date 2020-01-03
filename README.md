@@ -21,6 +21,7 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS and SVG. XML, J
 - [SVG](#svg)
 - [Gzip](#gzip)
 - [Brotli](#brotli)
+- [XML](#xml)
 - [Globbing](#globbing)
 - [HTTP Compression](#http-compression)
 
@@ -190,6 +191,24 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-11`. Defaults to `11`, or the value of [`zlib.constants.BROTLI_MAX_QUALITY`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_brotli_constants)
+
+## XML
+
+``` yaml
+minify:
+  xml:
+    enable: false
+    include:
+      - '*.xml'
+      - '!*.min.xml'
+```
+- **enable** - Enable the plugin. Defaults to `false`.
+- **priority** - Plugin's priority. Defaults to `10`.
+- **verbose** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+  - Exclude `*.min.xml` by default.
+- **removeComments** - Remove [comments](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction) in xml. Defaults to `true`.
+- **globOptions** - See [globbing](#globbing) section.
 
 ## Globbing
 
