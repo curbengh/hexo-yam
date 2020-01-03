@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "jest test/filter.test.js"
+    "test": "jest"
   },
   "engines": {
     "node": ">= 10.18.0"
