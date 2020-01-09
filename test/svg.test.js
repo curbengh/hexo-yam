@@ -81,11 +81,8 @@ describe('svg', () => {
     } catch (err) {
       expected = err
     }
-    try {
-      await s()
-    } catch (err) {
-      expect(err.message).toContain(expected)
-    }
+    expect(expected).toBeDefined()
+    await expect(s()).rejects.toThrow(expected)
   })
 
   test('include - exclude *.min.svg by default', async () => {

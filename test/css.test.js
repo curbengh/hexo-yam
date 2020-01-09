@@ -65,20 +65,15 @@ describe('css', () => {
     }
     hexo.config.minify.css = customOpt
 
-    let result, expected
-
-    try {
-      await c(input, { path })
-    } catch (err) {
-      result = err.message
-    }
+    let expected
     try {
       await new CleanCSS(customOpt).minify(input)
     } catch (err) {
       expected = err.message
     }
 
-    expect(result).toContain(expected)
+    expect(expected).toBeDefined()
+    await expect(c(input, { path })).rejects.toThrow(expected)
   })
 
   test('exclude - *.min.css', async () => {

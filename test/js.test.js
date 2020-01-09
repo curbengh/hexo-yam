@@ -69,11 +69,11 @@ describe('js', () => {
     hexo.config.minify.js = customOpt
 
     const { error } = Terser.minify(input, customOpt)
-    try {
+
+    expect(error.message).toBeDefined()
+    expect(() => {
       j(input, { path })
-    } catch (err) {
-      expect(err.message).toContain(error.message)
-    }
+    }).toThrow(error.message)
   })
 
   test('exclude - *.min.js', () => {

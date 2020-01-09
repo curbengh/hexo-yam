@@ -51,11 +51,7 @@ describe('xml', () => {
 
   test('invalid input', async () => {
     hexo.route.set(path, 'foo')
-    try {
-      await jsonFn()
-    } catch (err) {
-      expect(err.message).toContain('SyntaxError')
-    }
+    await expect(jsonFn()).rejects.toThrow(/SyntaxError/)
   })
 
   test('empty file', async () => {
