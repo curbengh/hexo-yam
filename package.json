@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "hexo": "^4.2.0",
-    "jest": "^24.9.0",
+    "jest": "^25.4.0",
     "standard": "^14.3.1"
   },
   "keywords": [
