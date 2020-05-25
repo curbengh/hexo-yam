@@ -103,4 +103,12 @@ describe('html', () => {
 
     expect(result).toBe(expected)
   })
+
+  test('invalid string', () => {
+    const invalid = '<html><>?:"{}|_+</html>'
+
+    expect(() => {
+      h(invalid, { path })
+    }).toThrow('Parse Error')
+  })
 })
