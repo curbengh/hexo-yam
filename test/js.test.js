@@ -97,4 +97,12 @@ describe('js', () => {
 
     expect(result).toBe(input)
   })
+
+  test('invalid string', () => {
+    const invalid = 'console.log("\\");'
+
+    expect(() => {
+      j(invalid, { path })
+    }).toThrow('SyntaxError')
+  })
 })
