@@ -229,4 +229,26 @@ describe('gzip', () => {
 
     expect(routeList).toEqual(expect.arrayContaining(expected))
   })
+
+  test('blns', async () => {
+    const blns = require('./fixtures/blns.json')
+
+    for (const nStr of blns) {
+      hexo.route.remove(path)
+
+      hexo.route.set(path, nStr)
+
+      await g()
+
+      const output = hexo.route.get(path.concat('.gz'))
+      const buf = []
+      output.on('data', (chunk) => (buf.push(chunk)))
+      output.on('end', async () => {
+        const result = Buffer.concat(buf)
+        const resultUnzip = await unzip(result)
+
+        expect(resultUnzip.toString()).toBe(nStr)
+      })
+    }
+  })
 })
