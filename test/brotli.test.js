@@ -227,4 +227,26 @@ describe('brotli', () => {
 
     expect(routeList).toEqual(expect.arrayContaining(expected))
   })
+
+  test('blns', async () => {
+    const blns = require('./fixtures/blns.json')
+
+    for (const nStr of blns) {
+      hexo.route.remove(path)
+
+      hexo.route.set(path, nStr)
+
+      await b()
+
+      const output = hexo.route.get(path.concat('.br'))
+      const buf = []
+      output.on('data', (chunk) => (buf.push(chunk)))
+      output.on('end', async () => {
+        const result = Buffer.concat(buf)
+        const resultUnbr = await unbrotli(result)
+
+        expect(resultUnbr.toString()).toBe(nStr)
+      })
+    }
+  })
 })
