@@ -189,4 +189,18 @@ describe('xml', () => {
     const result = await x()
     expect(result.length).toBe(0)
   })
+
+  test('avoid processing CDATA', async () => {
+    const input = '<foo><![CDATA[<p>lorem</p>\n<p>ipsum</p>]]></foo>'
+    hexo.route.set(path, input)
+
+    await x()
+
+    const output = hexo.route.get(path)
+    let result = ''
+    output.on('data', (chunk) => (result += chunk))
+    output.on('end', () => {
+      expect(result).toBe(input)
+    })
+  })
 })

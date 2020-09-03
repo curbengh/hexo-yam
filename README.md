@@ -215,6 +215,8 @@ minify:
 - **removeComments** - Remove [comments](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction) in xml. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 
+For more options, see [minify-xml](https://github.com/kristian/minify-xml#options).
+
 ## JSON
 
 Remove whitespaces in json.
