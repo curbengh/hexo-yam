@@ -2,7 +2,7 @@
 'use strict'
 
 const Hexo = require('hexo')
-const Htmlminifier = require('html-minifier').minify
+const { minify: htmlMinify } = require('html-minifier')
 
 describe('html', () => {
   const hexo = new Hexo(__dirname)
@@ -26,7 +26,7 @@ describe('html', () => {
       globOptions: { basename: true }
     }
   }
-  const expected = Htmlminifier(input, defaultCfg.html)
+  const expected = htmlMinify(input, defaultCfg.html)
 
   beforeEach(() => {
     hexo.config.minify = JSON.parse(JSON.stringify(defaultCfg))
@@ -57,7 +57,7 @@ describe('html', () => {
     hexo.config.minify.html = customOpt
 
     const result = h(input, { path })
-    const expected = Htmlminifier(input, customOpt)
+    const expected = htmlMinify(input, customOpt)
 
     expect(result).toBe(input)
     expect(result).toBe(expected)
