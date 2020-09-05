@@ -1,7 +1,7 @@
 # hexo-yam
 
 [![npm version](https://img.shields.io/npm/v/hexo-yam)](https://www.npmjs.com/package/hexo-yam)
-[![Build Status](https://img.shields.io/travis/curbengh/hexo-yam)](https://travis-ci.com/curbengh/hexo-yam)
+[![Build Status](https://github.com/curbengh/hexo-yam/workflows/Tester/badge.svg)](https://github.com/curbengh/hexo-yam/actions?query=workflow%3ATester)
 [![codecov](https://img.shields.io/codecov/c/gh/curbengh/hexo-yam)](https://codecov.io/gh/curbengh/hexo-yam)
 [![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
 [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam)](https://snyk.io/test/npm/hexo-yam)

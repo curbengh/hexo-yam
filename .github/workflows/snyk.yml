@@ -3,7 +3,7 @@ name: Snyk
 on:
   schedule:
     # Every day
-    - cron: '*/0 0 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   security:
