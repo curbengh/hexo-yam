@@ -89,7 +89,7 @@ describe('svg', () => {
       expected = err
     }
     expect(expected).toBeDefined()
-    await expect(s()).rejects.toThrow(expected)
+    await expect(s()).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 
   test('include - exclude *.min.svg by default', async () => {

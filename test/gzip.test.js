@@ -103,10 +103,10 @@ describe('gzip', () => {
     try {
       await gzip(input, customOpt)
     } catch (err) {
-      expected = err.message
+      expected = err
     }
     expect(expected).toBeDefined()
-    await expect(g()).rejects.toThrow(expected)
+    await expect(g()).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 
   test('include - exclude non-text file by default', async () => {

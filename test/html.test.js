@@ -125,6 +125,6 @@ describe('html', () => {
 
     expect(() => {
       h(invalid, { path })
-    }).toThrow('Parse Error')
+    }).toThrow(`Path: ${path}\nError: Parse Error`)
   })
 })

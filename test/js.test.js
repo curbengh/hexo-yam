@@ -82,15 +82,15 @@ describe('js', () => {
     }
     hexo.config.minify.js = customOpt
 
-    let error
+    let expected
     try {
       await terserMinify(input, customOpt)
     } catch (err) {
-      error = err.message
+      expected = err
     }
 
-    expect(error).toBeDefined()
-    await expect(j(input, { path })).rejects.toThrow(error)
+    expect(expected).toBeDefined()
+    await expect(j(input, { path })).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 
   test('exclude - *.min.js', async () => {
@@ -118,6 +118,6 @@ describe('js', () => {
   test('invalid string', async () => {
     const invalid = 'console.log("\\");'
 
-    await expect(j(invalid, { path })).rejects.toThrow('SyntaxError')
+    await expect(j(invalid, { path })).rejects.toThrow(`Path: ${path}\nSyntaxError`)
   })
 })

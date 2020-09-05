@@ -76,11 +76,11 @@ describe('css', () => {
     try {
       await new CleanCSS(customOpt).minify(input)
     } catch (err) {
-      expected = err.message
+      expected = err
     }
 
     expect(expected).toBeDefined()
-    await expect(c(input, { path })).rejects.toThrow(expected)
+    await expect(c(input, { path })).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 
   test('exclude - *.min.css', async () => {
