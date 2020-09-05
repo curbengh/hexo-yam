@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "hexo": "^5.1.1",
-    "jest": "^25.4.0",
+    "jest": "^26.4.2",
     "standard": "^14.3.1"
   },
   "keywords": [
