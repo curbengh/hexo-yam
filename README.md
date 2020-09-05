@@ -1,10 +1,10 @@
 # hexo-yam
 
-[![npm version](https://img.shields.io/npm/v/hexo-yam)](https://www.npmjs.com/package/hexo-yam)
-[![Build Status](https://github.com/curbengh/hexo-yam/workflows/Tester/badge.svg)](https://github.com/curbengh/hexo-yam/actions?query=workflow%3ATester)
+[![npm version](https://img.shields.io/npm/v/hexo-yam?logo=npm)](https://www.npmjs.com/package/hexo-yam)
+[![Build Status](https://img.shields.io/github/workflow/status/curbengh/hexo-yam/Tester?logo=github)](https://github.com/curbengh/hexo-yam/actions?query=workflow%3ATester)
 [![codecov](https://img.shields.io/codecov/c/gh/curbengh/hexo-yam)](https://codecov.io/gh/curbengh/hexo-yam)
 [![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
-[![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam)](https://snyk.io/test/npm/hexo-yam)
+[![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam?logo=snyk)](https://snyk.io/test/npm/hexo-yam)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/context:javascript)
 
