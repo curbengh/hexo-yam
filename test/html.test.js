@@ -2,18 +2,34 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { htmlDefault } = require('../index')
-const h = require('../lib/filter').minifyHtml.bind(hexo)
 const Htmlminifier = require('html-minifier').minify
-const input = '<p id="">foo</p>'
-const path = 'index.html'
-const expected = Htmlminifier(input, htmlDefault)
 
 describe('html', () => {
+  const hexo = new Hexo(__dirname)
+  const h = require('../lib/filter').minifyHtml.bind(hexo)
+  const input = '<p id="">foo</p>'
+  const path = 'index.html'
+  const defaultCfg = {
+    html: {
+      enable: true,
+      verbose: false,
+      exclude: [],
+      collapseBooleanAttributes: true,
+      collapseWhitespace: true,
+      ignoreCustomComments: [/^\s*more/],
+      removeComments: true,
+      removeEmptyAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      minifyJS: true,
+      minifyCSS: true,
+      globOptions: { basename: true }
+    }
+  }
+  const expected = Htmlminifier(input, defaultCfg.html)
+
   beforeEach(() => {
-    hexo.config.minify.html = Object.assign({}, htmlDefault)
+    hexo.config.minify = JSON.parse(JSON.stringify(defaultCfg))
   })
 
   test('default', () => {

@@ -1,89 +1,81 @@
 /* global hexo */
 'use strict'
 
-const minifyDefault = { enable: true }
-const htmlDefault = {
+hexo.config.minify = Object.assign({
   enable: true,
-  priority: 10,
-  verbose: false,
-  exclude: [],
-  collapseBooleanAttributes: true,
-  collapseWhitespace: true,
-  // Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
-  ignoreCustomComments: [/^\s*more/],
-  removeComments: true,
-  removeEmptyAttributes: true,
-  removeScriptTypeAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  minifyJS: true,
-  minifyCSS: true,
-  globOptions: { basename: true }
-}
-const cssDefault = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  exclude: ['*.min.css'],
-  level: 2,
-  globOptions: { basename: true }
-}
-const jsDefault = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  exclude: ['*.min.js'],
-  compress: {},
-  mangle: true,
-  output: {},
-  globOptions: { basename: true }
-}
-const svgDefault = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  include: ['*.svg', '!*.min.svg'],
-  plugins: [],
-  globOptions: { basename: true }
-}
-const gzipDefault = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true }
-}
-const brotliDefault = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true }
-}
-const xmlDefault = {
-  enable: false,
-  priority: 10,
-  verbose: false,
-  include: ['*.xml', '!*.min.xml'],
-  removeComments: true,
-  globOptions: { basename: true }
-}
-const jsonDefault = {
-  enable: false,
-  priority: 10,
-  verbose: false,
-  include: ['*.json', '!*.min.json'],
-  globOptions: { basename: true }
-}
-
-hexo.config.minify = Object.assign(minifyDefault, hexo.config.minify)
-hexo.config.minify.html = Object.assign(htmlDefault, hexo.config.minify.html)
-hexo.config.minify.css = Object.assign(cssDefault, hexo.config.minify.css)
-hexo.config.minify.js = Object.assign(jsDefault, hexo.config.minify.js)
-hexo.config.minify.svg = Object.assign(svgDefault, hexo.config.minify.svg)
-hexo.config.minify.gzip = Object.assign(gzipDefault, hexo.config.minify.gzip)
-hexo.config.minify.brotli = Object.assign(brotliDefault, hexo.config.minify.brotli)
-hexo.config.minify.xml = Object.assign(xmlDefault, hexo.config.minify.xml)
-hexo.config.minify.json = Object.assign(jsonDefault, hexo.config.minify.json)
+  html: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    exclude: [],
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    // Ignore '<!-- more -->' https://hexo.io/docs/tag-plugins#Post-Excerpt
+    ignoreCustomComments: [/^\s*more/],
+    removeComments: true,
+    removeEmptyAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    minifyJS: true,
+    minifyCSS: true,
+    globOptions: { basename: true }
+  },
+  css: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    exclude: ['*.min.css'],
+    level: 2,
+    globOptions: { basename: true }
+  },
+  js: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    exclude: ['*.min.js'],
+    compress: {},
+    mangle: true,
+    output: {},
+    globOptions: { basename: true }
+  },
+  svg: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    include: ['*.svg', '!*.min.svg'],
+    plugins: [],
+    globOptions: { basename: true }
+  },
+  gzip: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
+    globOptions: { basename: true }
+  },
+  brotli: {
+    enable: true,
+    priority: 10,
+    verbose: false,
+    include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
+    globOptions: { basename: true }
+  },
+  xml: {
+    enable: false,
+    priority: 10,
+    verbose: false,
+    include: ['*.xml', '!*.min.xml'],
+    removeComments: true,
+    globOptions: { basename: true }
+  },
+  json: {
+    enable: false,
+    priority: 10,
+    verbose: false,
+    include: ['*.json', '!*.min.json'],
+    globOptions: { basename: true }
+  }
+}, hexo.config.minify)
 
 if (hexo.config.minify.enable === true) {
   const filter = require('./lib/filter')
@@ -95,16 +87,4 @@ if (hexo.config.minify.enable === true) {
   hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
   hexo.extend.filter.register('after_generate', filter.minifyXml, hexo.config.minify.xml.priority)
   hexo.extend.filter.register('after_generate', filter.minifyJson, hexo.config.minify.json.priority)
-}
-
-module.exports = {
-  minifyDefault,
-  htmlDefault,
-  cssDefault,
-  jsDefault,
-  svgDefault,
-  gzipDefault,
-  brotliDefault,
-  xmlDefault,
-  jsonDefault
 }

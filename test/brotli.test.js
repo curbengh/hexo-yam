@@ -2,20 +2,26 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { brotliDefault } = require('../index')
-const b = require('../lib/filter').brotliFn.bind(hexo)
 const zlib = require('zlib')
 const { promisify } = require('util')
 const brotli = promisify(zlib.brotliCompress)
 const unbrotli = promisify(zlib.brotliDecompress)
-const path = 'foo.txt'
-const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
 
 describe('brotli', () => {
+  const hexo = new Hexo(__dirname)
+  const b = require('../lib/filter').brotliFn.bind(hexo)
+  const path = 'foo.txt'
+  const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
+
   beforeEach(() => {
-    hexo.config.minify.brotli = Object.assign({}, brotliDefault)
+    hexo.config.minify = {
+      brotli: {
+        enable: true,
+        verbose: false,
+        include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
+        globOptions: { basename: true }
+      }
+    }
     hexo.route.set(path, input)
   })
 

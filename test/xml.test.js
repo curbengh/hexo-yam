@@ -2,17 +2,24 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { xmlDefault } = require('../index')
-const x = require('../lib/filter').minifyXml.bind(hexo)
-const path = 'foo.xml'
-const input = '<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <!-- foo bar -->\n  <title>foo</title>\n</feed>'
-const expected = '<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>foo</title></feed>'
 
 describe('xml', () => {
+  const hexo = new Hexo(__dirname)
+  const x = require('../lib/filter').minifyXml.bind(hexo)
+  const path = 'foo.xml'
+  const input = '<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <!-- foo bar -->\n  <title>foo</title>\n</feed>'
+  const expected = '<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>foo</title></feed>'
+
   beforeEach(() => {
-    hexo.config.minify.xml = Object.assign({}, xmlDefault)
+    hexo.config.minify = {
+      xml: {
+        enable: false,
+        verbose: false,
+        include: ['*.xml', '!*.min.xml'],
+        removeComments: true,
+        globOptions: { basename: true }
+      }
+    }
     // plugin is disabled by default
     hexo.config.minify.xml.enable = true
     hexo.route.set(path, input)

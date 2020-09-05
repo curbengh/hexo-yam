@@ -2,17 +2,24 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { cssDefault } = require('../index')
-const c = require('../lib/filter').minifyCss.bind(hexo)
 const CleanCSS = require('clean-css')
-const input = 'foo { bar: baz; } foo { aaa: bbb; }'
-const path = 'foo.css'
 
 describe('css', () => {
+  const hexo = new Hexo(__dirname)
+  const c = require('../lib/filter').minifyCss.bind(hexo)
+  const input = 'foo { bar: baz; } foo { aaa: bbb; }'
+  const path = 'foo.css'
+
   beforeEach(() => {
-    hexo.config.minify.css = Object.assign({}, cssDefault)
+    hexo.config.minify = {
+      css: {
+        enable: true,
+        verbose: false,
+        exclude: ['*.min.css'],
+        level: 2,
+        globOptions: { basename: true }
+      }
+    }
   })
 
   test('default', async () => {

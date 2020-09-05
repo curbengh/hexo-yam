@@ -2,23 +2,32 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { jsDefault } = require('../index')
-const j = require('../lib/filter').minifyJs.bind(hexo)
 const { minify: terserMinify } = require('terser')
-const input = 'var o = { "foo": 1, bar: 3 };'
-const path = 'foo.js'
-let expected = ''
 
 describe('js', () => {
+  const hexo = new Hexo(__dirname)
+  const j = require('../lib/filter').minifyJs.bind(hexo)
+  const input = 'var o = { "foo": 1, bar: 3 };'
+  const path = 'foo.js'
+  let expected = ''
+
   beforeAll(async () => {
-    const { code } = await terserMinify(input, { mangle: jsDefault.mangle })
+    const { code } = await terserMinify(input, { mangle: true })
     expected = code
   })
 
   beforeEach(async () => {
-    hexo.config.minify.js = Object.assign({}, jsDefault)
+    hexo.config.minify = {
+      js: {
+        enable: true,
+        verbose: false,
+        exclude: ['*.min.js'],
+        compress: {},
+        mangle: true,
+        output: {},
+        globOptions: { basename: true }
+      }
+    }
   })
 
   test('default', async () => {

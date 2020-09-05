@@ -2,17 +2,23 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { jsonDefault } = require('../index')
-const jsonFn = require('../lib/filter').minifyJson.bind(hexo)
-const path = 'foo.json'
-const input = '{\n\t"vitae": "hendrerit",\n\t"tristique": [\n\t\t"primis",\n\t\t"quam"\n\t]\n}'
-const expected = '{"vitae":"hendrerit","tristique":["primis","quam"]}'
 
 describe('xml', () => {
+  const hexo = new Hexo(__dirname)
+  const jsonFn = require('../lib/filter').minifyJson.bind(hexo)
+  const path = 'foo.json'
+  const input = '{\n\t"vitae": "hendrerit",\n\t"tristique": [\n\t\t"primis",\n\t\t"quam"\n\t]\n}'
+  const expected = '{"vitae":"hendrerit","tristique":["primis","quam"]}'
+
   beforeEach(() => {
-    hexo.config.minify.json = Object.assign({}, jsonDefault)
+    hexo.config.minify = {
+      json: {
+        enable: false,
+        verbose: false,
+        include: ['*.json', '!*.min.json'],
+        globOptions: { basename: true }
+      }
+    }
     // plugin is disabled by default
     hexo.config.minify.json.enable = true
     hexo.route.set(path, input)

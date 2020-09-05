@@ -2,20 +2,26 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { gzipDefault } = require('../index')
-const g = require('../lib/filter').gzipFn.bind(hexo)
 const zlib = require('zlib')
 const { promisify } = require('util')
 const gzip = promisify(zlib.gzip)
 const unzip = promisify(zlib.unzip)
-const path = 'foo.txt'
-const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
 
 describe('gzip', () => {
+  const hexo = new Hexo(__dirname)
+  const g = require('../lib/filter').gzipFn.bind(hexo)
+  const path = 'foo.txt'
+  const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
+
   beforeEach(() => {
-    hexo.config.minify.gzip = Object.assign({}, gzipDefault)
+    hexo.config.minify = {
+      gzip: {
+        enable: true,
+        verbose: false,
+        include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
+        globOptions: { basename: true }
+      }
+    }
     hexo.route.set(path, input)
   })
 

@@ -2,17 +2,24 @@
 'use strict'
 
 const Hexo = require('hexo')
-const hexo = new Hexo(__dirname)
-global.hexo = hexo
-const { svgDefault } = require('../index')
-const s = require('../lib/filter').minifySvg.bind(hexo)
 const Svgo = require('svgo')
-const input = '<svg><rect x="1" y="2" width="3" height="4" id="a"/></svg>'
-const path = 'foo.svg'
 
 describe('svg', () => {
+  const hexo = new Hexo(__dirname)
+  const s = require('../lib/filter').minifySvg.bind(hexo)
+  const input = '<svg><rect x="1" y="2" width="3" height="4" id="a"/></svg>'
+  const path = 'foo.svg'
+
   beforeEach(() => {
-    hexo.config.minify.svg = Object.assign({}, svgDefault)
+    hexo.config.minify = {
+      svg: {
+        enable: true,
+        verbose: false,
+        include: ['*.svg', '!*.min.svg'],
+        plugins: [],
+        globOptions: { basename: true }
+      }
+    }
     hexo.route.set(path, input)
   })
 
