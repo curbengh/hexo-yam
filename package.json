@@ -54,24 +54,5 @@
     "collectCoverage": true,
     "coverageDirectory": "./coverage/",
     "testEnvironment": "node"
-  },
-  "greenkeeper": {
-    "commitMessages": {
-      "initialBadge": "docs(readme): Add Greenkeeper badge",
-      "initialDependencies": "chore(deps): Update dependencies to enable Greenkeeper",
-      "initialBranches": "chore: Whitelist greenkeeper branches",
-      "dependencyUpdate": "chore(deps): Update ${dependency} from ${oldVersion} to ${version}",
-      "devDependencyUpdate": "chore(deps-dev): Update ${dependency} from ${oldVersion} to ${version}",
-      "dependencyPin": "chore(deps): Pin ${dependency} to ${oldVersion}",
-      "devDependencyPin": "chore(deps-dev): Pin ${dependency} to ${oldVersion}"
-    },
-    "prTitles": {
-      "initialPR": "chore(deps): Update dependencies to enable Greenkeeper",
-      "initialPrBadge": "docs(readme): Add Greenkeeper badge",
-      "initialPrBadgeOnly": "docs(readme): Add Greenkeeper badge",
-      "initialSubgroupPR": "chore(deps): Update dependencies for ${group}",
-      "basicPR": "chore: Update ${dependency} from ${oldVersion} to ${version}",
-      "groupPR": "chore: Update ${dependency} in ${group} from ${oldVersion} to ${version}"
-    }
   }
 }
