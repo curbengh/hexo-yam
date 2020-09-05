@@ -55,6 +55,8 @@ minify:
   svg:
   gzip:
   brotli:
+  xml:
+  json:
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -64,6 +66,8 @@ minify:
 - **svg** - See [SVG](#svg) section
 - **gzip** - See [Gzip](#gzip) section
 - **brotli** - See [Brotli](#brotli) section
+- **xml** - See [XML](#xml) section
+- **json** - See [JSON](#json) section
 
 ## HTML
 
