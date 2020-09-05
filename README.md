@@ -1,12 +1,12 @@
 # hexo-yam
 
-[![npm version](https://badge.fury.io/js/hexo-yam.svg)](https://www.npmjs.com/package/hexo-yam)
-[![Build Status](https://travis-ci.com/curbengh/hexo-yam.svg?branch=master)](https://travis-ci.com/curbengh/hexo-yam)
-[![codecov](https://codecov.io/gh/curbengh/hexo-yam/branch/master/graph/badge.svg)](https://codecov.io/gh/curbengh/hexo-yam)
-[![NPM Dependencies](https://david-dm.org/curbengh/hexo-yam.svg)](https://david-dm.org/curbengh/hexo-yam)
-[![Known Vulnerabilities](https://snyk.io/test/npm/hexo-yam/badge.svg)](https://snyk.io/test/npm/hexo-yam)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/curbengh/hexo-yam.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/curbengh/hexo-yam/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/curbengh/hexo-yam.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/curbengh/hexo-yam/context:javascript)
+[![npm version](https://img.shields.io/npm/v/hexo-yam)](https://www.npmjs.com/package/hexo-yam)
+[![Build Status](https://img.shields.io/travis/curbengh/hexo-yam)](https://travis-ci.com/curbengh/hexo-yam)
+[![codecov](https://img.shields.io/codecov/c/gh/curbengh/hexo-yam)](https://codecov.io/gh/curbengh/hexo-yam)
+[![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
+[![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam)](https://snyk.io/test/npm/hexo-yam)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/context:javascript)
 
 Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
