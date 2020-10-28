@@ -33,7 +33,7 @@
   "devDependencies": {
     "hexo": "^5.1.1",
     "jest": "^26.4.2",
-    "standard": "^14.3.1"
+    "standard": "^15.0.1"
   },
   "keywords": [
     "html",
