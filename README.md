@@ -280,7 +280,7 @@ As of Sep 2020, GitHub Pages and GitLab Pages *do not* support brotli yet. You c
 Name | Brotli support
 --- | ---
 GitHub Pages | [In consideration](https://github.community/t5/GitHub-Pages/Support-for-pre-compressed-assets-and-brotli-compression/m-p/22055)
-GitLab Pages | [In progress](https://gitlab.com/gitlab-org/gitlab-pages/merge_requests/120)
+GitLab Pages | Yes
 Netlify | Yes
 Hexo Server | [In progress](https://github.com/hexojs/hexo-server/pull/100)
 
