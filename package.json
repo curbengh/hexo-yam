@@ -23,7 +23,7 @@
   "homepage": "https://github.com/curbengh/hexo-yam",
   "repository": "curbengh/hexo-yam",
   "dependencies": {
-    "clean-css": "^4.2.1",
+    "clean-css": "^5.0.1",
     "html-minifier": "^4.0.0",
     "micromatch": "^4.0.2",
     "minify-xml": "^2.1.1",
