@@ -2,7 +2,7 @@
 'use strict'
 
 const Hexo = require('hexo')
-const { minify: htmlMinify } = require('html-minifier')
+const { minify: htmlMinify } = require('html-minifier-terser')
 
 describe('html', () => {
   const hexo = new Hexo(__dirname)
