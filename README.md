@@ -140,7 +140,16 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
   - Exclude `*.min.svg` by default.
 - **plugins** - Plugin options.
-  - Example: to retain comments, `plugins: [{removeComments: false}]`.
+  - Examples:
+  ``` yaml
+  plugins:
+    # Retain comments
+    - name: 'removeComments'
+      active: false
+    # Do not remove unused ID attributes
+    - name: 'cleanupIDs'
+      active: false
+  ```
   - For more options, see [svgo](https://github.com/svg/svgo).
 - **globOptions** - See [globbing](#globbing) section.
 
