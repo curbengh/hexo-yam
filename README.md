@@ -13,7 +13,7 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 
 ## Table of contents
 
-- [Version 4](#version-4)
+- [Version 5](#version-5)
 - [Installation](#installation)
 - [Options](#options)
 - [HTML](#html)
@@ -27,16 +27,20 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 - [Globbing](#globbing)
 - [HTTP Compression](#http-compression)
 
-## Version 4
-In v4, `logger:` option has been renamed to `verbose:`
-
-Migrate:
+## Version 5
+In v5, `svg.plugins:` option should follow svgo v2+ syntax:
 
 ``` diff
 minify:
-  html:
--    logger: true
-+    verbose: true
+  svg:
+    plugins:
+-      - removeComments: false
+-      - cleanupIDs: false
+
++      - name: 'removeComments'
++        active: false
++      - name: 'cleanupIDs'
++        active: false
 ```
 
 ## Installation
