@@ -1,7 +1,7 @@
 {
   "name": "hexo-yam",
   "description": "Yet Another Minifier. Minify and compress html, js, css, svg, xml and json",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "readme": "README.md",
   "main": "index.js",
   "directories": {
@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">= 10.18.0"
+    "node": ">= 12.13.0"
   },
   "author": "curben",
   "license": "MIT",
