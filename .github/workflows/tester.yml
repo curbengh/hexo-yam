@@ -53,6 +53,6 @@ jobs:
         env:
           CI: true
       - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1.5.0
         with:
           fail_ci_if_error: true
