@@ -2,13 +2,20 @@
 'use strict'
 
 const Hexo = require('hexo')
-const { optimize: svgOptimize, extendDefaultPlugins } = require('svgo')
+const { optimize: svgOptimize } = require('svgo')
 
 describe('svg', () => {
   const hexo = new Hexo(__dirname)
   const s = require('../lib/filter').minifySvg.bind(hexo)
   const input = '<svg><rect x="1" y="2" width="3" height="4" id="a"/></svg>'
   const path = 'foo.svg'
+  // svgo's plugins option
+  let plugins = [{
+    name: 'preset-default',
+    params: {
+      overrides: {}
+    }
+  }]
 
   beforeEach(() => {
     hexo.config.minify = {
@@ -16,10 +23,16 @@ describe('svg', () => {
         enable: true,
         verbose: false,
         include: ['*.svg', '!*.min.svg'],
-        plugins: extendDefaultPlugins([]),
+        plugins: {},
         globOptions: { basename: true }
       }
     }
+    plugins = [{
+      name: 'preset-default',
+      params: {
+        overrides: {}
+      }
+    }]
     hexo.route.set(path, input)
   })
 
@@ -30,7 +43,7 @@ describe('svg', () => {
 
   test('default', async () => {
     await s()
-    const { data } = svgOptimize(input, hexo.config.minify.svg)
+    const { data } = svgOptimize(input, { plugins })
 
     const output = hexo.route.get(path)
     let result = ''
@@ -57,13 +70,18 @@ describe('svg', () => {
   })
 
   test('option', async () => {
-    const customOpt = [{
-      name: 'cleanupIDs',
-      active: false
-    }]
+    const customOpt = {
+      cleanupIDs: false
+    }
     hexo.config.minify.svg.plugins = customOpt
+    plugins = [{
+      name: 'preset-default',
+      params: {
+        overrides: customOpt
+      }
+    }]
     await s()
-    const { data } = svgOptimize(input, { ...hexo.config.minify.svg, plugins: extendDefaultPlugins(customOpt) })
+    const { data } = svgOptimize(input, { plugins })
 
     const output = hexo.route.get(path)
     let result = ''
@@ -85,7 +103,7 @@ describe('svg', () => {
   test('option - plugins - invalid', async () => {
     hexo.config.minify.svg.plugins = 'invalid'
     await s()
-    const { data } = svgOptimize(input, { ...hexo.config.minify.svg, plugins: extendDefaultPlugins([]) })
+    const { data } = svgOptimize(input, { plugins })
 
     const output = hexo.route.get(path)
     let result = ''
@@ -99,7 +117,7 @@ describe('svg', () => {
     const input = '{}'
     hexo.route.set(path, input)
 
-    const { error } = svgOptimize(input, hexo.config.minify.svg)
+    const { error } = svgOptimize(input, { plugins })
 
     expect(error).toBeDefined()
     await expect(s()).rejects.toThrow(`Path: ${path}\n${error}`)
@@ -123,7 +141,7 @@ describe('svg', () => {
     const path = 'foo/bar.svg'
     hexo.route.set(path, input)
     await s()
-    const { data } = svgOptimize(input, hexo.config.minify.svg)
+    const { data } = svgOptimize(input, { plugins })
 
     const output = hexo.route.get(path)
     let result = ''
@@ -138,7 +156,7 @@ describe('svg', () => {
     const path = 'eleifend/lectus/nullam/dapibus/netus.svg'
     hexo.route.set(path, input)
     await s()
-    const { data } = svgOptimize(input, hexo.config.minify.svg)
+    const { data } = svgOptimize(input, { plugins })
 
     const output = hexo.route.get(path)
     let result = ''
@@ -166,7 +184,7 @@ describe('svg', () => {
       hexo.route.set(inpath, input)
     })
     await s()
-    const { data } = svgOptimize(input, hexo.config.minify.svg)
+    const { data } = svgOptimize(input, { plugins })
 
     const minPaths = paths.slice(0, 2)
     const unminPaths = paths.slice(2)
@@ -210,7 +228,7 @@ describe('svg', () => {
       hexo.route.set(inpath, input)
     })
     await s()
-    const { data } = svgOptimize(input, hexo.config.minify.svg)
+    const { data } = svgOptimize(input, { plugins })
 
     paths.forEach((inpath) => {
       const output = hexo.route.get(inpath)

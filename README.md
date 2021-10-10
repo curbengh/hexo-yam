@@ -27,21 +27,31 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 - [Globbing](#globbing)
 - [HTTP Compression](#http-compression)
 
-## Version 5
-In v5, `svg.plugins:` option should follow svgo v2+ syntax:
+## Version 6
+In v6, `svg.plugins:` option should be the following syntax:
 
 ``` diff
 minify:
   svg:
     plugins:
+# v6
++      removeComments: false
++      cleanupIDs: false
++      builtinPluginName:
++        optionName: 'optionValue'
+
+# v5
+-      - name: 'removeComments'
+-        active: false
+-      - name: 'cleanupIDs'
+-        active: false
+
+# v4
 -      - removeComments: false
 -      - cleanupIDs: false
-
-+      - name: 'removeComments'
-+        active: false
-+      - name: 'cleanupIDs'
-+        active: false
 ```
+
+The option only overrides svgo's default plugins, other options are not supported.
 
 ## Installation
 ``` bash
@@ -148,11 +158,9 @@ minify:
   ``` yaml
   plugins:
     # Retain comments
-    - name: 'removeComments'
-      active: false
+    removeComments: false
     # Do not remove unused ID attributes
-    - name: 'cleanupIDs'
-      active: false
+    cleanupIDs: false
   ```
   - For more options, see [svgo](https://github.com/svg/svgo).
 - **globOptions** - See [globbing](#globbing) section.

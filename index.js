@@ -1,8 +1,6 @@
 /* global hexo */
 'use strict'
 
-const { extendDefaultPlugins } = require('svgo')
-
 hexo.config.minify = Object.assign({
   enable: true
 }, hexo.config.minify)
@@ -50,7 +48,7 @@ hexo.config.minify.svg = Object.assign({
   priority: 10,
   verbose: false,
   include: ['*.svg', '!*.min.svg'],
-  plugins: extendDefaultPlugins([]),
+  plugins: {},
   globOptions: { basename: true }
 }, hexo.config.minify.svg)
 
