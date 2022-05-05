@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">= 12.13.0"
+    "node": ">= 14.15.0"
   },
   "author": "curben",
   "license": "MIT",
@@ -31,9 +31,9 @@
     "terser": "^5.3.0"
   },
   "devDependencies": {
-    "hexo": "^5.1.1",
-    "jest": "^27.2.5",
-    "standard": "^16.0.1"
+    "hexo": "^6.1.0",
+    "jest": "^28.0.3",
+    "standard": "^17.0.0"
   },
   "keywords": [
     "html",
