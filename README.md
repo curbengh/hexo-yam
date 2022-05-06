@@ -13,7 +13,6 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 
 ## Table of contents
 
-- [Version 5](#version-5)
 - [Installation](#installation)
 - [Options](#options)
 - [HTML](#html)
@@ -26,32 +25,6 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 - [JSON](#json)
 - [Globbing](#globbing)
 - [HTTP Compression](#http-compression)
-
-## Version 6
-In v6, `svg.plugins:` option should be the following syntax:
-
-``` diff
-minify:
-  svg:
-    plugins:
-# v6
-+      removeComments: false
-+      cleanupIDs: false
-+      builtinPluginName:
-+        optionName: 'optionValue'
-
-# v5
--      - name: 'removeComments'
--        active: false
--      - name: 'cleanupIDs'
--        active: false
-
-# v4
--      - removeComments: false
--      - cleanupIDs: false
-```
-
-The option only overrides svgo's default plugins, other options are not supported.
 
 ## Installation
 ``` bash
@@ -296,7 +269,7 @@ globOptions:
 
 While most modern web browsers [support Brotli](https://www.caniuse.com/#feat=brotli), you also need to consider whether the web/app server, hosting platform, reverse proxy or CDN (whichever relevant to you) support it.
 
-As of Sep 2020, GitHub Pages and GitLab Pages *do not* support brotli yet. You can generate `.br` files, but they won't serve those files.
+Brotli support as of May 2022:
 
 Name | Brotli support
 --- | ---
@@ -307,9 +280,9 @@ Hexo Server | [In progress](https://github.com/hexojs/hexo-server/pull/100)
 
 If you have access to the web server config, you should disable on-the-fly compression for static files (that are already compressed by this plugin),
 
+- [Caddy](https://caddyserver.com/features): [0.9.4+](https://caddyserver.com/blog/caddy-0_9_4-released) by default support pre-compressed `.gz` `.br` files and on-the-fly gzip compress dynamic files. [v2.4.0+](https://github.com/caddyserver/caddy/releases/tag/v2.4.0-beta.2) requires specifying the [`precompressed`](https://caddyserver.com/docs/caddyfile/directives/file_server) option.
 - [nginx](https://github.com/google/ngx_brotli): Make sure both filter and static modules are enabled. This way pre-compressed `.br` files will be served while dynamic content can be compressed on-the-fly. Protip: `brotli_types text/plain text/css application/javascript application/json image/svg+xml application/xml+rss;` to prevent compressing media files (which are already compressed anyway).
 - [Apache](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html): See 'Serving pre-compressed content' section of [mod_brotli](https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html).
-- [Caddy](https://caddyserver.com/features): [0.9.4+](https://caddyserver.com/blog/caddy-0_9_4-released) by default support pre-compressed `.gz` `.br` files and on-the-fly gzip compress dynamic files. v2 requires [manual configuration](https://mdleom.com/blog/2020/11/12/caddy2-pre-compressed/), serving them automatically to be supported [in future](https://github.com/caddyserver/caddy/issues/2665).
 - [express](https://github.com/expressjs/express)/[connect](https://github.com/senchalabs/connect): Use [pre-compressed-assets](https://github.com/domadams/pre-compressed-assets). You still can continue to use [compression](https://github.com/expressjs/compression)/[shrink-ray-current](https://github.com/Alorel/shrink-ray) for dynamic files.
 
 ## Credits
