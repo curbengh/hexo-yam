@@ -2,8 +2,4 @@
 version: v1.12.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-JS-LODASH-450202:
-    - '*':
-        reason: Patch/update unavailable. Introduced through Snyk.
-        expires: '2019-12-31T00:00:00.000Z'
-patch: {}
+patch:
