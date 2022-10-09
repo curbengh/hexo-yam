@@ -8,6 +8,7 @@ on:
     paths:
       - .github/workflows/semgrep.yml
   schedule:
+    # Weekly
     - cron: '0 0 * * 0'
 jobs:
   semgrep:
