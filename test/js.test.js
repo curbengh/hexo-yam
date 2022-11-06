@@ -24,7 +24,7 @@ describe('js', () => {
         exclude: ['*.min.js'],
         compress: {},
         mangle: true,
-        output: {},
+        format: {},
         globOptions: { basename: true }
       }
     }

@@ -39,7 +39,7 @@ hexo.config.minify.js = Object.assign({
   exclude: ['*.min.js'],
   compress: {},
   mangle: true,
-  output: {},
+  format: {},
   globOptions: { basename: true }
 }, hexo.config.minify.js)
 
