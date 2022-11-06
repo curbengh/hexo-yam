@@ -133,7 +133,7 @@ minify:
     # Retain comments
     removeComments: false
     # Do not remove unused ID attributes
-    cleanupIDs: false
+    cleanupIds: false
   ```
   - For more options, see [svgo](https://github.com/svg/svgo).
 - **globOptions** - See [globbing](#globbing) section.
