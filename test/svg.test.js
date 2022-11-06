@@ -71,7 +71,7 @@ describe('svg', () => {
 
   test('option', async () => {
     const customOpt = {
-      cleanupIDs: false
+      cleanupIds: false
     }
     hexo.config.minify.svg.plugins = customOpt
     plugins = [{
@@ -117,10 +117,14 @@ describe('svg', () => {
     const input = '{}'
     hexo.route.set(path, input)
 
-    const { error } = svgOptimize(input, { plugins })
-
-    expect(error).toBeDefined()
-    await expect(s()).rejects.toThrow(`Path: ${path}\n${error}`)
+    let expected
+    try {
+      svgOptimize(input, { plugins })
+    } catch (err) {
+      expected = err
+    }
+    expect(expected).toBeDefined()
+    await expect(s()).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 
   test('include - exclude *.min.svg by default', async () => {
