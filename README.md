@@ -5,8 +5,6 @@
 [![codecov](https://img.shields.io/codecov/c/gh/curbengh/hexo-yam?logo=codecov)](https://codecov.io/gh/curbengh/hexo-yam)
 [![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
 [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam?logo=snyk)](https://snyk.io/test/npm/hexo-yam)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/curbengh/hexo-yam.svg?logo=lgtm)](https://lgtm.com/projects/g/curbengh/hexo-yam/context:javascript)
 
 Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
