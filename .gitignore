@@ -4,3 +4,4 @@ package-lock.json
 tmp/
 *.log
 coverage/
+bun.lockb

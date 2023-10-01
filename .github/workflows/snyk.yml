@@ -3,22 +3,20 @@ name: Snyk
 on:
   schedule:
     # Weekly
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
   pull_request:
     branches:
-      - 'dependabot/github_actions/github/codeql-action**'
+      - "dependabot/github_actions/github/codeql-action**"
 
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
-        run: npm install
+        run: bun install
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         continue-on-error: true # To make sure that SARIF upload gets called

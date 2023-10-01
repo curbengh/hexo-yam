@@ -7,10 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16.x"
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -19,6 +17,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-cache
       - name: Install Dependencies
-        run: npm install
+        run: bun install
       - name: Lint
-        run: npm run lint
+        run: bun run lint
