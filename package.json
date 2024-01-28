@@ -24,7 +24,7 @@
   "repository": "curbengh/hexo-yam",
   "dependencies": {
     "clean-css": "^5.1.2",
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^7.2.0",
     "micromatch": "^4.0.2",
     "minify-xml": "^3.2.0",
     "svgo": "^3.0.0",
