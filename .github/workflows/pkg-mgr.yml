@@ -1,0 +1,25 @@
+name: Package Manager
+
+on: [push, pull_request]
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkg-mgr: [yarn, pnpm]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install package manager
+        run: npm install --global ${{ matrix.pkg-mgr }}
+      - name: Install Dependencies
+        run: ${{ matrix.pkg-mgr }} install
+      - name: Test
+        run: ${{ matrix.pkg-mgr }} run test
+        env:
+          CI: true

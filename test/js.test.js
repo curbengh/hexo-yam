@@ -2,7 +2,7 @@
 'use strict'
 
 const Hexo = require('hexo')
-const { minify: terserMinify } = require('terser')
+const { minify: jsMinify } = require('@swc/core')
 
 describe('js', () => {
   const hexo = new Hexo(__dirname)
@@ -12,7 +12,7 @@ describe('js', () => {
   let expected = ''
 
   beforeAll(async () => {
-    const { code } = await terserMinify(input, { mangle: true })
+    const { code } = await jsMinify(input, { mangle: true })
     expected = code
   })
 
@@ -24,7 +24,7 @@ describe('js', () => {
         exclude: ['*.min.js'],
         compress: {},
         mangle: true,
-        output: {},
+        format: {},
         globOptions: { basename: true }
       }
     }
@@ -55,13 +55,13 @@ describe('js', () => {
   test('option', async () => {
     const customOpt = {
       mangle: {
-        properties: true
+        properties: {}
       }
     }
     hexo.config.minify.js = customOpt
 
     const result = await j(input, { path })
-    const { code: expected } = await terserMinify(input, customOpt)
+    const { code: expected } = await jsMinify(input, customOpt)
 
     expect(result).toBe(expected)
   })
@@ -84,7 +84,7 @@ describe('js', () => {
 
     let expected
     try {
-      await terserMinify(input, customOpt)
+      await jsMinify(input, customOpt)
     } catch (err) {
       expected = err
     }
@@ -118,6 +118,14 @@ describe('js', () => {
   test('invalid string', async () => {
     const invalid = 'console.log("\\");'
 
-    await expect(j(invalid, { path })).rejects.toThrow(`Path: ${path}\nSyntaxError`)
+    let expected
+    try {
+      await jsMinify(invalid)
+    } catch (err) {
+      expected = err
+    }
+
+    expect(expected).toBeDefined()
+    await expect(j(invalid, { path })).rejects.toThrow(`Path: ${path}\n${expected}`)
   })
 })

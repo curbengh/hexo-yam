@@ -8,7 +8,6 @@
 
 Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
-
 ## Table of contents
 
 - [Installation](#installation)
@@ -101,13 +100,12 @@ minify:
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
-- **compress** - Compress options.
-- **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
-- **output** - Output options.
-  - To retain comments, `output: {comments: true}`.
+- **compress** - [Compress options](https://swc.rs/docs/configuration/minification#jscminifycompress).
+- **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://swc.rs/docs/configuration/minification#jscminifymangle).
+- **format** - [Format options](https://swc.rs/docs/configuration/minification#jscminifyformat).
 - **globOptions** - See [globbing](#globbing) section.
 
-For more options, see [Terser](https://github.com/terser-js/terser).
+For more options, see [SWC](https://swc.rs/docs/configuration/minification).
 
 ## SVG
 
