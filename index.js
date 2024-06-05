@@ -2,7 +2,8 @@
 'use strict'
 
 hexo.config.minify = Object.assign({
-  enable: true
+  enable: true,
+  previewServer: true
 }, hexo.config.minify)
 
 hexo.config.minify.html = Object.assign({
@@ -85,7 +86,7 @@ hexo.config.minify.json = Object.assign({
   globOptions: { basename: true }
 }, hexo.config.minify.json)
 
-if (hexo.config.minify.enable === true) {
+if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer === true && ['s', 'server'].includes(hexo.env.cmd))) {
   const filter = require('./lib/filter')
   hexo.extend.filter.register('after_render:html', filter.minifyHtml, hexo.config.minify.html.priority)
   hexo.extend.filter.register('after_render:css', filter.minifyCss, hexo.config.minify.css.priority)
