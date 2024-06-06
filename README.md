@@ -6,7 +6,7 @@
 [![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
 [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam?logo=snyk)](https://snyk.io/test/npm/hexo-yam)
 
-Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip and [brotli](https://en.wikipedia.org/wiki/Brotli) [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip, brotli and zstd [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
 
 
 ## Table of contents
@@ -19,6 +19,7 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 - [SVG](#svg)
 - [Gzip](#gzip)
 - [Brotli](#brotli)
+- [Zstd](#zstd)
 - [XML](#xml)
 - [JSON](#json)
 - [Globbing](#globbing)
@@ -189,6 +190,32 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-11`. Defaults to `11`, or the value of [`zlib.constants.BROTLI_MAX_QUALITY`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_brotli_constants)
+
+## Zstd
+
+``` yaml
+minify:
+  zstd:
+    enable: false
+    include:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - '*.txt'
+      - '*.ttf'
+      - '*.atom'
+      - '*.stl'
+      - '*.xml'
+      - '*.svg'
+      - '*.eot'
+      - '*.json'
+```
+- **enable** - Enable the plugin. Defaults to `false`.
+- **priority** - Plugin's priority. Defaults to `10`.
+- **verbose** - Verbose output. Defaults to `false`.
+- **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+- **globOptions** - See [globbing](#globbing) section.
+- **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
 
 ## XML
 

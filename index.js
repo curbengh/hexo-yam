@@ -68,6 +68,14 @@ hexo.config.minify.brotli = Object.assign({
   globOptions: { basename: true }
 }, hexo.config.minify.brotli)
 
+hexo.config.minify.zstd = Object.assign({
+  enable: false,
+  priority: 10,
+  verbose: false,
+  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
+  globOptions: { basename: true }
+}, hexo.config.minify.zstd)
+
 hexo.config.minify.xml = Object.assign({
   enable: false,
   priority: 10,
@@ -93,6 +101,7 @@ if (hexo.config.minify.enable === true) {
   hexo.extend.filter.register('after_generate', filter.minifySvg, hexo.config.minify.svg.priority)
   hexo.extend.filter.register('after_generate', filter.gzipFn, hexo.config.minify.gzip.priority)
   hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
+  hexo.extend.filter.register('after_generate', filter.zstdFn, hexo.config.minify.zstd.priority)
   hexo.extend.filter.register('after_generate', filter.minifyXml, hexo.config.minify.xml.priority)
   hexo.extend.filter.register('after_generate', filter.minifyJson, hexo.config.minify.json.priority)
 }
