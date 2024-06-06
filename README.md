@@ -217,6 +217,10 @@ minify:
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
 
+### Cannot find module '@mongodb-js/zstd-linux-x64-gnu'
+
+`npm install --include=optional`
+
 ## XML
 
 Remove whitespaces in xml.
