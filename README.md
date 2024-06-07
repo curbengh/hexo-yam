@@ -35,6 +35,7 @@ $ npm install hexo-yam --save
 ``` yaml
 minify:
   enable: true
+  previewServer: true
   html:
   css:
   js:
@@ -46,6 +47,7 @@ minify:
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
+- **previewServer** - Disable the plugin when running `hexo server`. Defaults to `true`.
 - **html** - See [HTML](#html) section
 - **css** - See [CSS](#css) section
 - **js** - See [JS](#js) section
