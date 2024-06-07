@@ -219,7 +219,7 @@ minify:
 
 ### Cannot find module '@mongodb-js/zstd-linux-x64-gnu'
 
-`npm install --include=optional`
+`npm install --include=optional --force`
 
 ## XML
 
