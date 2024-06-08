@@ -26,7 +26,7 @@ Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and J
 ## Installation
 
 ```bash
-$ npm install hexo-yam --save
+$ npm install hexo-yam --save --include=optional --force
 ```
 
 ## Options
