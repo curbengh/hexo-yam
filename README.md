@@ -4,9 +4,9 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/curbengh/hexo-yam/tester.yml?branch=master&logo=github)](https://github.com/curbengh/hexo-yam/actions?query=workflow%3ATester)
 [![codecov](https://img.shields.io/codecov/c/gh/curbengh/hexo-yam?logo=codecov)](https://codecov.io/gh/curbengh/hexo-yam)
 [![NPM Dependencies](https://img.shields.io/librariesio/release/npm/hexo-yam)](https://libraries.io/npm/hexo-yam)
-[![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/hexo-yam?logo=snyk)](https://snyk.io/test/npm/hexo-yam)
+[![Known Vulnerabilities](https://snyk.io/test/github/curbengh/hexo-yam/badge.svg)](https://snyk.io/test/github/curbengh/hexo-yam)
 
-Yet Another Minifier for Hexo. Minify and compress HTML, JS, CSS, SVG, XML and JSON. [Other files](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) are also compressed. Support gzip, brotli and zstd [compressions](https://en.wikipedia.org/wiki/HTTP_compression).
+Yet Another Minifier for Hexo. Minify HTML, JS, CSS, SVG, XML and JSON. Compress static [web assets](https://github.com/curbengh/hexo-yam/blob/ba77db0094a7c07ea9f70f010bfc15541d4105ca/index.js#L64) using gzip, brotli and zstd.
 
 ## Table of contents
 
