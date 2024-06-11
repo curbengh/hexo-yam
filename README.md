@@ -26,7 +26,7 @@ Yet Another Minifier for Hexo. Minify HTML, JS, CSS, SVG, XML and JSON. Compress
 ## Installation
 
 ```bash
-$ npm install hexo-yam --save --include=optional --force
+$ npm install --save hexo-yam
 ```
 
 ## Options
@@ -270,7 +270,15 @@ minify:
 
 ### Cannot find module '@mongodb-js/zstd-linux-x64-gnu'
 
-`npm install --include=optional --force`
+`npm install --save @mongodb-js/zstd-linux-x64-gnu`
+
+- @mongodb-js/zstd-darwin-arm64 (Apple Silicon)
+- @mongodb-js/zstd-darwin-x64 (Intel Mac)
+- @mongodb-js/zstd-linux-arm64-gnu
+- @mongodb-js/zstd-linux-arm64-musl (Alpine)
+- @mongodb-js/zstd-linux-x64-gnu
+- @mongodb-js/zstd-linux-x64-musl (Alpine)
+- @mongodb-js/zstd-win32-x64-msvc
 
 ## Globbing
 

@@ -23,7 +23,11 @@ jobs:
           key: ${{ runner.os }}-npm-cache
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
-        run: npm install --include=optional
+        run: |
+          npm install
+          npm install @mongodb-js/zstd-linux-x64-musl \
+            @mongodb-js/zstd-win32-x64-msvc \
+            @mongodb-js/zstd-darwin-arm64
       - name: Test
         run: npm run test
         env:
