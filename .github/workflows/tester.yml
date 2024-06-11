@@ -29,9 +29,10 @@ jobs:
         run: |
           echo "PLATFORM=win32-x64-msvc" >> "$GITHUB_ENV"
       - name: Install zstd binary
+        shell: bash
         run: |
           echo $PLATFORM
-          npm install @mongodb-js/zstd-$PLATFORM
+          npm install "@mongodb-js/zstd-$PLATFORM"
       - name: Test
         run: npm run test
         env:
