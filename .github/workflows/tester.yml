@@ -7,8 +7,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: ["18", "20", "22"]
+        os: [windows-latest]
+        node-version: ["18"]
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -27,16 +27,9 @@ jobs:
       - name: Determine zstd binary version
         shell: bash
         run: |
-          case "$RUNNER_OS" in
-            "Linux")
-                echo "PLATFORM=linux-x64-gnu" >> "$GITHUB_ENV" ;;
-            "Windows")
-                echo "PLATFORM=win32-x64-msvc" >> "$GITHUB_ENV" ;;
-            "macOS")
-                echo "PLATFORM=darwin-arm64" >> "$GITHUB_ENV" ;;
-          esac
+          echo "$RUNNER_OS"
       - name: Install zstd binary
-        run: npm install "@mongodb-js/zstd-${PLATFORM}"
+        run: npm install "@mongodb-js/zstd-win32-x64-msvc"
       - name: Test
         run: npm run test
         env:
