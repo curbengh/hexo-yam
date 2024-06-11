@@ -36,6 +36,7 @@ jobs:
                 echo "PLATFORM=darwin-arm64" >> "$GITHUB_ENV" ;;
           esac
       - name: Install zstd binary
+        shell: bash
         run: npm install "@mongodb-js/zstd-$PLATFORM"
       - name: Test
         run: npm run test
