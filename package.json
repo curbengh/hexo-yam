@@ -40,16 +40,11 @@
     "standard": "^17.0.0"
   },
   "keywords": [
-    "html",
-    "js",
-    "css",
-    "svg",
-    "xml",
-    "json",
     "minify",
     "compress",
     "gzip",
     "brotli",
+    "zstd",
     "hexo-yam",
     "hexo"
   ],
