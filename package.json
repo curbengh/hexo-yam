@@ -21,7 +21,10 @@
   "author": "curben",
   "license": "MIT",
   "homepage": "https://github.com/curbengh/hexo-yam",
-  "repository": "curbengh/hexo-yam",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curbengh/hexo-yam.git"
+  },
   "dependencies": {
     "clean-css": "^5.1.2",
     "html-minifier-terser": "^7.2.0",
