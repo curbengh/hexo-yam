@@ -1,12 +1,13 @@
 /* global hexo */
 'use strict'
 
-hexo.config.minify = Object.assign({
+hexo.config.minify = {
   enable: true,
-  previewServer: true
-}, hexo.config.minify)
+  previewServer: true,
+  ...hexo.config.minify
+}
 
-hexo.config.minify.html = Object.assign({
+hexo.config.minify.html = {
   enable: true,
   priority: 10,
   verbose: false,
@@ -21,19 +22,21 @@ hexo.config.minify.html = Object.assign({
   removeStyleLinkTypeAttributes: true,
   minifyJS: true,
   minifyCSS: true,
-  globOptions: { basename: true }
-}, hexo.config.minify.html)
+  globOptions: { basename: true },
+  ...hexo.config.minify.html
+}
 
-hexo.config.minify.css = Object.assign({
+hexo.config.minify.css = {
   enable: true,
   priority: 10,
   verbose: false,
   exclude: ['*.min.css'],
   level: 2,
-  globOptions: { basename: true }
-}, hexo.config.minify.css)
+  globOptions: { basename: true },
+  ...hexo.config.minify.css
+}
 
-hexo.config.minify.js = Object.assign({
+hexo.config.minify.js = {
   enable: true,
   priority: 10,
   verbose: false,
@@ -41,68 +44,100 @@ hexo.config.minify.js = Object.assign({
   compress: {},
   mangle: true,
   output: {},
-  globOptions: { basename: true }
-}, hexo.config.minify.js)
+  globOptions: { basename: true },
+  ...hexo.config.minify.js
+}
 
-hexo.config.minify.svg = Object.assign({
+hexo.config.minify.svg = {
   enable: true,
   priority: 10,
   verbose: false,
   include: ['*.svg', '!*.min.svg'],
   plugins: {},
-  globOptions: { basename: true }
-}, hexo.config.minify.svg)
+  globOptions: { basename: true },
+  ...hexo.config.minify.svg
+}
 
-hexo.config.minify.gzip = Object.assign({
+hexo.config.minify.gzip = {
   enable: true,
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true }
-}, hexo.config.minify.gzip)
+  globOptions: { basename: true },
+  ...hexo.config.minify.gzip
+}
 
-hexo.config.minify.brotli = Object.assign({
+hexo.config.minify.brotli = {
   enable: true,
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true }
-}, hexo.config.minify.brotli)
+  globOptions: { basename: true },
+  ...hexo.config.minify.brotli
+}
 
-hexo.config.minify.zstd = Object.assign({
+hexo.config.minify.zstd = {
   enable: false,
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true }
-}, hexo.config.minify.zstd)
+  globOptions: { basename: true },
+  ...hexo.config.minify.zstd
+}
 
-hexo.config.minify.xml = Object.assign({
+hexo.config.minify.xml = {
   enable: false,
   priority: 10,
   verbose: false,
   include: ['*.xml', '!*.min.xml'],
   removeComments: true,
-  globOptions: { basename: true }
-}, hexo.config.minify.xml)
+  globOptions: { basename: true },
+  ...hexo.config.minify.xml
+}
 
-hexo.config.minify.json = Object.assign({
+hexo.config.minify.json = {
   enable: false,
   priority: 10,
   verbose: false,
   include: ['*.json', '!*.min.json'],
-  globOptions: { basename: true }
-}, hexo.config.minify.json)
+  globOptions: { basename: true },
+  ...hexo.config.minify.json
+}
 
 if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer === true && ['s', 'server'].includes(hexo.env.cmd))) {
-  const filter = require('./lib/filter')
-  hexo.extend.filter.register('after_render:html', filter.minifyHtml, hexo.config.minify.html.priority)
-  hexo.extend.filter.register('after_render:css', filter.minifyCss, hexo.config.minify.css.priority)
-  hexo.extend.filter.register('after_render:js', filter.minifyJs, hexo.config.minify.js.priority)
-  hexo.extend.filter.register('after_generate', filter.minifySvg, hexo.config.minify.svg.priority)
-  hexo.extend.filter.register('after_generate', filter.gzipFn, hexo.config.minify.gzip.priority)
-  hexo.extend.filter.register('after_generate', filter.brotliFn, hexo.config.minify.brotli.priority)
-  hexo.extend.filter.register('after_generate', filter.zstdFn, hexo.config.minify.zstd.priority)
-  hexo.extend.filter.register('after_generate', filter.minifyXml, hexo.config.minify.xml.priority)
-  hexo.extend.filter.register('after_generate', filter.minifyJson, hexo.config.minify.json.priority)
+  if (hexo.config.minify.html.enable === true) {
+    hexo.extend.filter.register('after_render:html', require('./lib/html').minifyHtml, hexo.config.minify.html.priority)
+  }
+  if (hexo.config.minify.css.enable === true) {
+    hexo.extend.filter.register('after_render:css', require('./lib/css').minifyCss, hexo.config.minify.css.priority)
+  }
+  if (hexo.config.minify.js.enable === true) {
+    hexo.extend.filter.register('after_render:js', require('./lib/js').minifyJs, hexo.config.minify.js.priority)
+  }
+  if (hexo.config.minify.svg.enable === true) {
+    hexo.extend.filter.register('after_generate', require('./lib/svg').minifySvg, hexo.config.minify.svg.priority)
+  }
+  if (hexo.config.minify.gzip.enable || hexo.config.minify.brotli.enable) {
+    const zlib = require('./lib/zlib')
+    if (hexo.config.minify.gzip.enable === true) {
+      hexo.extend.filter.register('after_generate', zlib.gzipFn, hexo.config.minify.gzip.priority)
+    }
+    if (hexo.config.minify.brotli.enable === true) {
+      hexo.extend.filter.register('after_generate', zlib.brotliFn, hexo.config.minify.brotli.priority)
+    }
+  }
+  if (hexo.config.minify.zstd.enable === true) {
+    try {
+      hexo.extend.filter.register('after_generate', require('./lib/zstd').zstdFn, hexo.config.minify.zstd.priority)
+    } catch (ex) {
+      const log = hexo.log || console
+      log.warn(`ZSTD load failed. ${ex}`)
+    }
+  }
+  if (hexo.config.minify.xml.enable === true) {
+    hexo.extend.filter.register('after_generate', require('./lib/xml').minifyXml, hexo.config.minify.xml.priority)
+  }
+  if (hexo.config.minify.json.enable === true) {
+    hexo.extend.filter.register('after_generate', require('./lib/json').minifyJson, hexo.config.minify.json.priority)
+  }
 }
