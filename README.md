@@ -177,7 +177,9 @@ minify:
     enable: false
     include:
       - "*.json"
+      - "*.webmanifest"
       - "!*.min.json"
+      - "!*.min.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `false`.
@@ -197,6 +199,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -205,6 +209,7 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -226,6 +231,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -234,6 +241,7 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -253,6 +261,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -261,6 +271,7 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `false`.
