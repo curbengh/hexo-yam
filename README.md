@@ -39,10 +39,11 @@ minify:
   css:
   js:
   svg:
-  gzip:
-  brotli:
   xml:
   json:
+  gzip:
+  brotli:
+  zstd:
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -51,10 +52,11 @@ minify:
 - **css** - See [CSS](#css) section
 - **js** - See [JS](#js) section
 - **svg** - See [SVG](#svg) section
-- **gzip** - See [Gzip](#gzip) section
-- **brotli** - See [Brotli](#brotli) section
 - **xml** - See [XML](#xml) section
 - **json** - See [JSON](#json) section
+- **gzip** - See [Gzip](#gzip) section
+- **brotli** - See [Brotli](#brotli) section
+- **zstd** - See [Zstd](#zstd) section
 
 ## HTML
 

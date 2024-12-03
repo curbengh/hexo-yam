@@ -58,33 +58,6 @@ hexo.config.minify.svg = {
   ...hexo.config.minify.svg
 }
 
-hexo.config.minify.gzip = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true },
-  ...hexo.config.minify.gzip
-}
-
-hexo.config.minify.brotli = {
-  enable: true,
-  priority: 10,
-  verbose: false,
-  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true },
-  ...hexo.config.minify.brotli
-}
-
-hexo.config.minify.zstd = {
-  enable: false,
-  priority: 10,
-  verbose: false,
-  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
-  globOptions: { basename: true },
-  ...hexo.config.minify.zstd
-}
-
 hexo.config.minify.xml = {
   enable: false,
   priority: 10,
@@ -99,9 +72,36 @@ hexo.config.minify.json = {
   enable: false,
   priority: 10,
   verbose: false,
-  include: ['*.json', '!*.min.json'],
+  include: ['*.json', '*.webmanifest', '!*.min.json', '!*.min.webmanifest'],
   globOptions: { basename: true },
   ...hexo.config.minify.json
+}
+
+hexo.config.minify.gzip = {
+  enable: true,
+  priority: 10,
+  verbose: false,
+  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  globOptions: { basename: true },
+  ...hexo.config.minify.gzip
+}
+
+hexo.config.minify.brotli = {
+  enable: true,
+  priority: 10,
+  verbose: false,
+  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  globOptions: { basename: true },
+  ...hexo.config.minify.brotli
+}
+
+hexo.config.minify.zstd = {
+  enable: false,
+  priority: 10,
+  verbose: false,
+  include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  globOptions: { basename: true },
+  ...hexo.config.minify.zstd
 }
 
 if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer === true && ['s', 'server'].includes(hexo.env.cmd))) {
@@ -116,6 +116,12 @@ if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer ===
   }
   if (hexo.config.minify.svg.enable === true) {
     hexo.extend.filter.register('after_generate', require('./lib/svg').minifySvg, hexo.config.minify.svg.priority)
+  }
+  if (hexo.config.minify.xml.enable === true) {
+    hexo.extend.filter.register('after_generate', require('./lib/xml').minifyXml, hexo.config.minify.xml.priority)
+  }
+  if (hexo.config.minify.json.enable === true) {
+    hexo.extend.filter.register('after_generate', require('./lib/json').minifyJson, hexo.config.minify.json.priority)
   }
   if (hexo.config.minify.gzip.enable || hexo.config.minify.brotli.enable) {
     const zlib = require('./lib/zlib')
@@ -133,11 +139,5 @@ if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer ===
       const log = hexo.log || console
       log.warn(`ZSTD load failed. ${ex}`)
     }
-  }
-  if (hexo.config.minify.xml.enable === true) {
-    hexo.extend.filter.register('after_generate', require('./lib/xml').minifyXml, hexo.config.minify.xml.priority)
-  }
-  if (hexo.config.minify.json.enable === true) {
-    hexo.extend.filter.register('after_generate', require('./lib/json').minifyJson, hexo.config.minify.json.priority)
   }
 }
