@@ -32,6 +32,8 @@ hexo.config.minify.css = {
   verbose: false,
   exclude: ['*.min.css'],
   level: 2,
+  sourceMap: false,
+  mapIncludeSources: false,
   globOptions: { basename: true },
   ...hexo.config.minify.css
 }
@@ -44,6 +46,7 @@ hexo.config.minify.js = {
   compress: {},
   mangle: true,
   output: {},
+  sourceMap: false,
   globOptions: { basename: true },
   ...hexo.config.minify.js
 }
@@ -109,10 +112,20 @@ if (hexo.config.minify.enable === true && !(hexo.config.minify.previewServer ===
     hexo.extend.filter.register('after_render:html', require('./lib/html').minifyHtml, hexo.config.minify.html.priority)
   }
   if (hexo.config.minify.css.enable === true) {
-    hexo.extend.filter.register('after_render:css', require('./lib/css').minifyCss, hexo.config.minify.css.priority)
+    if (hexo.config.minify.css.sourceMap) {
+      hexo.extend.filter.register('after_generate', require('./lib/css').minifyCssWithMap, hexo.config.minify.js.priority)
+    }
+    else {
+      hexo.extend.filter.register('after_render:css', require('./lib/css').minifyCss, hexo.config.minify.css.priority)
+    }
   }
   if (hexo.config.minify.js.enable === true) {
-    hexo.extend.filter.register('after_render:js', require('./lib/js').minifyJs, hexo.config.minify.js.priority)
+    if (hexo.config.minify.js.sourceMap) {
+      hexo.extend.filter.register('after_generate', require('./lib/js').minifyJsWithMap, hexo.config.minify.js.priority)
+    }
+    else {
+      hexo.extend.filter.register('after_render:js', require('./lib/js').minifyJs, hexo.config.minify.js.priority)
+    }
   }
   if (hexo.config.minify.svg.enable === true) {
     hexo.extend.filter.register('after_generate', require('./lib/svg').minifySvg, hexo.config.minify.svg.priority)

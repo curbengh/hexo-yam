@@ -90,6 +90,8 @@ minify:
 - **verbose** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **level** - Optimization level. Defaults to `2`.
+- **sourceMap** - Source map options. Defaults to `false`.
+- **mapIncludeSources** - Include sources in map, Defaults to `false`.
 - **globOptions** - See [globbing](#globbing) section.
 
 For more options, see [clean-css](https://github.com/jakubpawlowicz/clean-css).
@@ -112,6 +114,8 @@ minify:
 - **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
 - **output** - Output options.
   - To retain comments, `output: {comments: true}`.
+- **sourceMap** - Source map options. Defaults to `false`.
+  - To include sources in map, `sourceMap: { includeSources: true }`
 - **globOptions** - See [globbing](#globbing) section.
 
 For more options, see [Terser](https://github.com/terser-js/terser).
