@@ -85,6 +85,7 @@ hexo.config.minify.gzip = {
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.map', '*.wasm', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  ensureCompressed: true,
   globOptions: { basename: true },
   ...hexo.config.minify.gzip
 }
@@ -94,6 +95,7 @@ hexo.config.minify.brotli = {
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.map', '*.wasm', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  ensureCompressed: true,
   globOptions: { basename: true },
   ...hexo.config.minify.brotli
 }
@@ -103,6 +105,7 @@ hexo.config.minify.zstd = {
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.map', '*.wasm', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json', '*.webmanifest'],
+  ensureCompressed: true,
   globOptions: { basename: true },
   ...hexo.config.minify.zstd
 }

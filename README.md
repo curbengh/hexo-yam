@@ -222,6 +222,7 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
   - Support one-liner, `include: ['*.html','*.css','*.js']`.
   - Must include asterisk and single quotes. `.html` is invalid. `'*.html'` is valid.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level; lower value may results in faster compression but slightly larger (compressed) file. Range `1-9`. Defaults to `9`, or the value of [`zlib.constants.Z_BEST_COMPRESSION`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_zlib_constants)
 
@@ -252,6 +253,7 @@ minify:
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-11`. Defaults to `11`, or the value of [`zlib.constants.BROTLI_MAX_QUALITY`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_brotli_constants)
 
@@ -282,6 +284,7 @@ minify:
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
 
