@@ -39,10 +39,11 @@ minify:
   css:
   js:
   svg:
-  gzip:
-  brotli:
   xml:
   json:
+  gzip:
+  brotli:
+  zstd:
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -51,10 +52,11 @@ minify:
 - **css** - See [CSS](#css) section
 - **js** - See [JS](#js) section
 - **svg** - See [SVG](#svg) section
-- **gzip** - See [Gzip](#gzip) section
-- **brotli** - See [Brotli](#brotli) section
 - **xml** - See [XML](#xml) section
 - **json** - See [JSON](#json) section
+- **gzip** - See [Gzip](#gzip) section
+- **brotli** - See [Brotli](#brotli) section
+- **zstd** - See [Zstd](#zstd) section
 
 ## HTML
 
@@ -88,6 +90,8 @@ minify:
 - **verbose** - Verbose output. Defaults to `false`.
 - **exclude** - Exclude files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **level** - Optimization level. Defaults to `2`.
+- **sourceMap** - Source map options. Defaults to `false`.
+- **mapIncludeSources** - Include sources in map, Defaults to `false`.
 - **globOptions** - See [globbing](#globbing) section.
 
 For more options, see [clean-css](https://github.com/jakubpawlowicz/clean-css).
@@ -110,6 +114,8 @@ minify:
 - **mangle** - Mangle variable names. Defaults to `true`. Pass an object to specify [mangle options](https://github.com/terser-js/terser#mangle-options).
 - **output** - Output options.
   - To retain comments, `output: {comments: true}`.
+- **sourceMap** - Source map options. Defaults to `false`.
+  - To include sources in map, `sourceMap: { includeSources: true }`
 - **globOptions** - See [globbing](#globbing) section.
 
 For more options, see [Terser](https://github.com/terser-js/terser).
@@ -175,7 +181,9 @@ minify:
     enable: false
     include:
       - "*.json"
+      - "*.webmanifest"
       - "!*.min.json"
+      - "!*.min.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `false`.
@@ -195,6 +203,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -203,6 +213,7 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
@@ -211,6 +222,7 @@ minify:
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
   - Support one-liner, `include: ['*.html','*.css','*.js']`.
   - Must include asterisk and single quotes. `.html` is invalid. `'*.html'` is valid.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level; lower value may results in faster compression but slightly larger (compressed) file. Range `1-9`. Defaults to `9`, or the value of [`zlib.constants.Z_BEST_COMPRESSION`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_zlib_constants)
 
@@ -224,6 +236,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -232,12 +246,14 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `true`.
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-11`. Defaults to `11`, or the value of [`zlib.constants.BROTLI_MAX_QUALITY`](https://nodejs.org/docs/latest-v12.x/api/zlib.html#zlib_brotli_constants)
 
@@ -251,6 +267,8 @@ minify:
       - "*.html"
       - "*.css"
       - "*.js"
+      - "*.map"
+      - "*.wasm"
       - "*.txt"
       - "*.ttf"
       - "*.atom"
@@ -259,12 +277,14 @@ minify:
       - "*.svg"
       - "*.eot"
       - "*.json"
+      - "*.webmanifest"
 ```
 
 - **enable** - Enable the plugin. Defaults to `false`.
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
+- **ensureCompressed** - Ensure the compressed file is smaller than the original, otherwise do not output. Defaults to `true`.
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
 

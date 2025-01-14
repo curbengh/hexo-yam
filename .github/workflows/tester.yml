@@ -24,20 +24,8 @@ jobs:
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
         run: npm install
-      - name: Determine zstd binary version
-        shell: bash
-        run: |
-          case "$RUNNER_OS" in
-            "Linux")
-                echo "PLATFORM=linux-x64-gnu" >> "$GITHUB_ENV" ;;
-            "Windows")
-                echo "PLATFORM=win32-x64-msvc" >> "$GITHUB_ENV" ;;
-            "macOS")
-                echo "PLATFORM=darwin-arm64" >> "$GITHUB_ENV" ;;
-          esac
       - name: Install zstd binary
-        shell: bash
-        run: npm install "@mongodb-js/zstd-$PLATFORM"
+        run: npm install "@mongodb-js/zstd"
       - name: Test
         run: npm run test
         env:

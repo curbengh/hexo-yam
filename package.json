@@ -29,15 +29,26 @@
     "clean-css": "^5.1.2",
     "html-minifier-terser": "^7.2.0",
     "micromatch": "^4.0.2",
-    "minify-xml": "^3.2.0",
+    "minify-xml": "^4.5.2",
     "svgo": "^3.0.0",
-    "terser": "^5.3.0",
-    "@mongodb-js/zstd": "^1.2.0"
+    "terser": "^5.3.0"
   },
   "devDependencies": {
     "hexo": "^7.1.0",
     "jest": "^29.1.2",
     "standard": "^17.0.0"
+  },
+  "peerDependencies": {
+    "@mongodb-js/zstd": "^2.0.0",
+    "@bokuweb/zstd-wasm": "^0.0.22"
+  },
+  "peerDependenciesMeta": {
+    "@mongodb-js/zstd": {
+      "optional": true
+    },
+    "@bokuweb/zstd-wasm": {
+      "optional": true
+    }
   },
   "keywords": [
     "minify",
