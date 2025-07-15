@@ -268,18 +268,6 @@ minify:
 - **globOptions** - See [globbing](#globbing) section.
 - **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
 
-### Cannot find module '@mongodb-js/zstd-linux-x64-gnu'
-
-`npm install --save @mongodb-js/zstd-linux-x64-gnu`
-
-- @mongodb-js/zstd-darwin-arm64 (Apple Silicon)
-- @mongodb-js/zstd-darwin-x64 (Intel Mac)
-- @mongodb-js/zstd-linux-arm64-gnu
-- @mongodb-js/zstd-linux-arm64-musl (Alpine)
-- @mongodb-js/zstd-linux-x64-gnu
-- @mongodb-js/zstd-linux-x64-musl (Alpine)
-- @mongodb-js/zstd-win32-x64-msvc
-
 ## Globbing
 
 Use "globOptions" to customise how glob patterns match files. Refer to [micromatch](https://github.com/micromatch/micromatch#options) for available options.

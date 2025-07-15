@@ -24,51 +24,12 @@ jobs:
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
         run: npm install
-      - name: Determine zstd binary version
-        shell: bash
-        run: |
-          case "$RUNNER_OS" in
-            "Linux")
-                echo "PLATFORM=linux-x64-gnu" >> "$GITHUB_ENV" ;;
-            "Windows")
-                echo "PLATFORM=win32-x64-msvc" >> "$GITHUB_ENV" ;;
-            "macOS")
-                echo "PLATFORM=darwin-arm64" >> "$GITHUB_ENV" ;;
-          esac
-      - name: Install zstd binary
-        shell: bash
-        run: npm install "@mongodb-js/zstd-$PLATFORM"
       - name: Test
         run: npm run test
         env:
           CI: true
-  coverage:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: ["22"]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-npm-cache
-          restore-keys: ${{ runner.os }}-npm-cache
-      - name: Install Dependencies
-        run: bun install
-      - name: Coverage
-        run: npm run test
-        env:
-          CI: true
       - name: Upload coverage report to Codecov
+        if: matrix.os == "ubuntu-latest" && matrix.node-version == "22"
         uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
