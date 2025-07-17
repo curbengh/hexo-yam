@@ -23,7 +23,16 @@ jobs:
           key: ${{ runner.os }}-npm-cache
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
-        run: npm install
+        run: npm install --include=optional --force
+      - name: Show deps structure
+        run: find /home/runner/work/hexo-yam/ -type d
+      - name: "Upload Artifact"
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-${{ matrix.node-version }}-node_modules
+          path: ./node_modules/
+          retention-days: 1
       - name: Test
         run: npm run test
         env:
