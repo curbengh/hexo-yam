@@ -12,6 +12,8 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -23,18 +25,17 @@ jobs:
           key: ${{ runner.os }}-npm-cache
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
-        run: npm install --include=optional --force
+        run: |
+          bun install
+          bun install --dev jest-circus
+      - name: Install @unrs/resolver-binding
+        if: matrix.os == 'ubuntu-latest'
+        run: bun install --dev @unrs/resolver-binding-linux-x64-gnu
       - name: Show deps structure
-        run: find /home/runner/work/hexo-yam/ -type d
-      - name: "Upload Artifact"
         if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.os }}-${{ matrix.node-version }}-node_modules
-          path: ./node_modules/
-          retention-days: 1
+        run: find /home/runner/work/hexo-yam/ -type d
       - name: Test
-        run: npm run test
+        run: bun run test
         env:
           CI: true
       - name: Upload coverage report to Codecov
