@@ -23,7 +23,9 @@ jobs:
           key: ${{ runner.os }}-npm-cache
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install --save-dev jest-circus
       - name: Test
         run: npm run test
         env:
