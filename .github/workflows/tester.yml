@@ -12,8 +12,6 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -26,16 +24,10 @@ jobs:
           restore-keys: ${{ runner.os }}-npm-cache
       - name: Install Dependencies
         run: |
-          bun install
-          bun install --dev jest-circus
-      - name: Install @unrs/resolver-binding
-        if: matrix.os == 'ubuntu-latest'
-        run: bun install --dev @unrs/resolver-binding-linux-x64-gnu
-      - name: Show deps structure
-        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
-        run: find /home/runner/work/hexo-yam/ -type d
+          npm install
+          npm install --save-dev jest-circus
       - name: Test
-        run: bun run test
+        run: npm run test
         env:
           CI: true
       - name: Upload coverage report to Codecov
