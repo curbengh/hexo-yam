@@ -22,10 +22,23 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-npm-cache
           restore-keys: ${{ runner.os }}-npm-cache
+      - name: Determine unrs-resolver binary version
+        shell: bash
+        run: |
+          case "$RUNNER_OS" in
+            "Linux")
+                echo "PLATFORM=linux-x64-gnu" >> "$GITHUB_ENV" ;;
+            "Windows")
+                echo "PLATFORM=win32-x64-msvc" >> "$GITHUB_ENV" ;;
+            "macOS")
+                echo "PLATFORM=darwin-arm64" >> "$GITHUB_ENV" ;;
+          esac
       - name: Install Dependencies
+        shell: bash
         run: |
           npm install
-          npm install --save-dev jest-circus
+          npm install --include=optional --force @mongodb-js/zstd
+          npm install "@unrs/resolver-binding-$PLATFORM"
       - name: Test
         run: npm run test
         env:
