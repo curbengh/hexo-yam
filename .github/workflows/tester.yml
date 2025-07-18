@@ -45,7 +45,7 @@ jobs:
           CI: true
       - name: Upload coverage report to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
         env:
