@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">= 20.9.0"
+    "node": ">= 22.15.0"
   },
   "author": "curben",
   "license": "MIT",
