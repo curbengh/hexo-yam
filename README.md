@@ -266,7 +266,7 @@ minify:
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **globOptions** - See [globbing](#globbing) section.
-- **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
+- **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`ZSTD_CLEVEL_DEFAULT`](https://nodejs.org/api/zlib.html#zlib_compressor_options_1)
 
 ## Globbing
 

@@ -31,8 +31,7 @@
     "micromatch": "^4.0.2",
     "minify-xml": "^3.2.0",
     "svgo": "^4.0.0",
-    "terser": "^5.3.0",
-    "@mongodb-js/zstd": "^2.0.1"
+    "terser": "^5.3.0"
   },
   "devDependencies": {
     "hexo": "^7.1.0",
