@@ -2,8 +2,8 @@
 'use strict'
 
 const Hexo = require('hexo')
-const zlib = require('zlib')
-const { promisify } = require('util')
+const zlib = require('node:zlib')
+const { promisify } = require('node:util')
 const gzip = promisify(zlib.gzip)
 const unzip = promisify(zlib.unzip)
 

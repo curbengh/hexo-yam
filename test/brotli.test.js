@@ -2,8 +2,8 @@
 'use strict'
 
 const Hexo = require('hexo')
-const zlib = require('zlib')
-const { promisify } = require('util')
+const zlib = require('node:zlib')
+const { promisify } = require('node:util')
 const brotli = promisify(zlib.brotliCompress)
 const unbrotli = promisify(zlib.brotliDecompress)
 
