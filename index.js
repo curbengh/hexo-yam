@@ -70,7 +70,7 @@ hexo.config.minify.brotli = Object.assign({
 }, hexo.config.minify.brotli)
 
 hexo.config.minify.zstd = Object.assign({
-  enable: false,
+  enable: true,
   priority: 10,
   verbose: false,
   include: ['*.html', '*.css', '*.js', '*.txt', '*.ttf', '*.atom', '*.stl', '*.xml', '*.svg', '*.eot', '*.json'],
