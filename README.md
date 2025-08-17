@@ -41,6 +41,7 @@ minify:
   svg:
   gzip:
   brotli:
+  zstd:
   xml:
   json:
 ```
@@ -53,6 +54,7 @@ minify:
 - **svg** - See [SVG](#svg) section
 - **gzip** - See [Gzip](#gzip) section
 - **brotli** - See [Brotli](#brotli) section
+- **zstd** - See [Zstd](#zstd) section
 - **xml** - See [XML](#xml) section
 - **json** - See [JSON](#json) section
 
@@ -246,7 +248,7 @@ minify:
 ```yaml
 minify:
   zstd:
-    enable: false
+    enable: true
     include:
       - "*.html"
       - "*.css"
@@ -261,12 +263,12 @@ minify:
       - "*.json"
 ```
 
-- **enable** - Enable the plugin. Defaults to `false`.
+- **enable** - Enable the plugin. Defaults to `true`.
 - **priority** - Plugin's priority. Defaults to `10`.
 - **verbose** - Verbose output. Defaults to `false`.
 - **include** - Include files. Support [wildcard](http://www.globtester.com/) pattern(s) in a string or array.
 - **globOptions** - See [globbing](#globbing) section.
-- **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`DEFAULT_LEVEL`](https://github.com/mongodb-js/zstd/blob/a3a08c61c9045411c8275e248498dbc583457fb5/src/lib.rs#L9)
+- **level** - Compression level. Range `1-22`. Defaults to `3`, or the value of [`ZSTD_CLEVEL_DEFAULT`](https://nodejs.org/api/zlib.html#zlib_compressor_options_1)
 
 ## Globbing
 
