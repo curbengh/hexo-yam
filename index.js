@@ -1,7 +1,7 @@
 /* global hexo */
 'use strict'
 
-/** @typedef {import("@types/hexo")} */
+/** @typedef {import('hexo')} */
 
 hexo.config.minify = {
   enable: true,

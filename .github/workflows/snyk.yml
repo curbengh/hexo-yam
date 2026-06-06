@@ -3,16 +3,15 @@ name: Snyk
 on:
   schedule:
     # Weekly
-    - cron: "0 0 * * 0"
+    - cron: 0 0 * * 0
   pull_request:
-    branches:
-      - "dependabot/github_actions/github/codeql-action**"
+    branches: [dependabot/github_actions/github/codeql-action**]
 
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
