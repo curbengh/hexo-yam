@@ -37,7 +37,6 @@ jobs:
         shell: bash
         run: |
           npm install
-          npm install --include=optional --force @mongodb-js/zstd
           npm install "@unrs/resolver-binding-$PLATFORM"
       - name: Test
         run: npm run test
