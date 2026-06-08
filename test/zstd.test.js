@@ -2,14 +2,16 @@
 'use strict'
 
 const Hexo = require('hexo')
-const { compress: zstd, decompress: unzstd } = require('@mongodb-js/zstd')
+const zlib = require('zlib')
+const { promisify } = require('util')
+const zstd = promisify(zlib.zstdCompress)
+const unzstd = promisify(zlib.zstdDecompress)
 
 describe('zstd', () => {
   const hexo = new Hexo(__dirname)
   const z = require('../lib/filter').zstdFn.bind(hexo)
   const path = 'foo.txt'
   const input = 'Lorem ipsum dolor sit amet consectetur adipiscing elit fusce'
-  const inputBuf = Buffer.from(input, 'utf8')
 
   beforeEach(() => {
     hexo.config.minify = {
@@ -36,7 +38,7 @@ describe('zstd', () => {
     output.on('data', (chunk) => (buf.push(chunk)))
     output.on('end', async () => {
       const result = Buffer.concat(buf)
-      const expected = await zstd(inputBuf)
+      const expected = await zstd(input)
       const resultUnzst = await unzstd(result)
       const expectedUnzst = await unzstd(expected)
 
@@ -74,7 +76,7 @@ describe('zstd', () => {
     output.on('data', (chunk) => (buf.push(chunk)))
     output.on('end', async () => {
       const result = Buffer.concat(buf)
-      const expected = await zstd(inputBuf, level)
+      const expected = await zstd(input, { params: { [zlib.constants.ZSTD_c_compressionLevel]: level } })
 
       expect(result.equals(expected)).toBe(true)
     })
@@ -98,7 +100,7 @@ describe('zstd', () => {
     output.on('data', (chunk) => (buf.push(chunk)))
     output.on('end', async () => {
       const result = Buffer.concat(buf)
-      const expected = await zstd(inputBuf, undefined)
+      const expected = await zstd(input, { params: { [zlib.constants.ZSTD_c_compressionLevel]: zlib.constants.ZSTD_CLEVEL_DEFAULT } })
 
       expect(result.equals(expected)).toBe(true)
     })
