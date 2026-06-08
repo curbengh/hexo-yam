@@ -34,7 +34,7 @@
     "terser": "^5.3.0"
   },
   "devDependencies": {
-    "hexo": "^7.1.0",
+    "hexo": "^8.1.2",
     "jest": "^30.0.4",
     "standard": "^17.0.0"
   },
