@@ -2,7 +2,7 @@
 'use strict'
 
 const Hexo = require('hexo')
-const { minify: htmlMinify } = require('html-minifier-terser')
+const { minify: htmlMinify } = require('html-minifier-next')
 
 describe('html', () => {
   const hexo = new Hexo(__dirname)
@@ -127,6 +127,6 @@ describe('html', () => {
   test('invalid string', async () => {
     const invalid = '<html><>?:"{}|_+</html>'
 
-    await expect(h(invalid, { path })).rejects.toThrow('Parse Error: <>?:"{}|_+</html>')
+    await expect(h(invalid, { path })).rejects.toThrow('Parse error at line 1, column 7')
   })
 })
